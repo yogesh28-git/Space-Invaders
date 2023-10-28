@@ -135,7 +135,10 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Event\EventService.cpp" />
+    <ClCompile Include="source\Gameplay\AnimationTest.cpp" />
+    <ClCompile Include="source\Gameplay\CollisionDetectionTest.cpp" />
     <ClCompile Include="source\Gameplay\GameplayService.cpp" />
+    <ClCompile Include="source\Gameplay\SFMLTest.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
     <ClCompile Include="source\Main\GameService.cpp" />
     <ClCompile Include="source\Main\GraphicService.cpp" />
@@ -143,7 +146,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Event\EventService.h" />
+    <ClInclude Include="header\Gameplay\AnimationTest.h" />
+    <ClInclude Include="header\Gameplay\CollisionDetectionTest.h" />
     <ClInclude Include="header\Gameplay\GameplayService.h" />
+    <ClInclude Include="header\Gameplay\Interface\ITest.h" />
+    <ClInclude Include="header\Gameplay\SFMLTest.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
     <ClInclude Include="header\Main\GameService.h" />
     <ClInclude Include="header\Main\GraphicService.h" />
