@@ -6,7 +6,7 @@
 
 namespace Gameplay
 {
-	GameplayService::GameplayService() { test = new SFMLTest(); }
+	GameplayService::GameplayService() { test = new AnimationTest(); }
 
 	GameplayService::~GameplayService() { delete (test); }
 

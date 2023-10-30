@@ -7,7 +7,7 @@ namespace Gameplay
     class AnimationTest : public Interface::ITest
     {
     private:
-        const sf::String texture_path = "assets/textures/pacman_death.png";
+        const sf::String texture_path = "assets/textures/circle_animation.png";
 
         const float tile_width = 16;
         const float tile_height = 16;
