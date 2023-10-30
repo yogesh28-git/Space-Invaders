@@ -11,40 +11,44 @@ namespace Gameplay
 
 	void CollisionDetectionTest::initialize()
 	{
-		rectangle_shape_one.setSize(sf::Vector2f(150, 150));
-		rectangle_shape_one.setPosition(600, 400);
-		rectangle_shape_one.setFillColor(sf::Color::Red);
+		rectangle_shape_one.setSize(rectangle_size);
+		rectangle_shape_one.setPosition(rectangle_one_position);
+		rectangle_shape_one.setFillColor(rectangle_one_color);
 
-		rectangle_shape_two.setSize(sf::Vector2f(150, 150));
-		rectangle_shape_two.setPosition(850, 550);
-		rectangle_shape_two.setFillColor(sf::Color::Green);
+		rectangle_shape_two.setSize(rectangle_size);
+		rectangle_shape_two.setPosition(rectangle_two_position);
+		rectangle_shape_two.setFillColor(rectangle_two_color);
 	}
 
 	void CollisionDetectionTest::update()
 	{
 		updateRectanglePosition();
-
-		if (rectangle_shape_one.getGlobalBounds().intersects(rectangle_shape_two.getGlobalBounds())) 
-		{
-			rectangle_shape_one.setFillColor(sf::Color::Yellow);
-			rectangle_shape_two.setFillColor(sf::Color::Yellow);
-		}
-		else 
-		{
-			rectangle_shape_one.setFillColor(sf::Color::Red);
-			rectangle_shape_two.setFillColor(sf::Color::Green);
-		}
+		updateRectangleColor();
 	}
 
 	void CollisionDetectionTest::updateRectanglePosition()
 	{
 		if (ServiceLocator::getInstance()->getEventService()->pressedLeftMouseButton())
 		{
-			rectangle_shape_one.setPosition(900, 450);
+			rectangle_shape_one.setPosition(rectangle_intersection_position);
 		}
 		else if (ServiceLocator::getInstance()->getEventService()->pressedRightMouseButton())
 		{
-			rectangle_shape_one.setPosition(600, 400);
+			rectangle_shape_one.setPosition(rectangle_one_position);
+		}
+	}
+
+	void CollisionDetectionTest::updateRectangleColor()
+	{
+		if (rectangle_shape_one.getGlobalBounds().intersects(rectangle_shape_two.getGlobalBounds()))
+		{
+			rectangle_shape_one.setFillColor(rectangle_intersection_color);
+			rectangle_shape_two.setFillColor(rectangle_intersection_color);
+		}
+		else
+		{
+			rectangle_shape_one.setFillColor(rectangle_one_color);
+			rectangle_shape_two.setFillColor(rectangle_two_color);
 		}
 	}
 

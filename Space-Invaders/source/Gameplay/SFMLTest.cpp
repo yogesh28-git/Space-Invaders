@@ -9,9 +9,9 @@ namespace Gameplay
 
 	void SFMLTest::initialize()
 	{
-		rectangle_shape = sf::RectangleShape(sf::Vector2f(200, 200));
-		rectangle_shape.setFillColor(sf::Color::Red);
-		rectangle_shape.setPosition(860, 460);
+		rectangle_shape = sf::RectangleShape(sf::Vector2f(rectangle_width, rectangle_height));
+		rectangle_shape.setFillColor(rectangle_color);
+		rectangle_shape.setPosition(rectangle_position);
 	}
 
 	void SFMLTest::update() { }

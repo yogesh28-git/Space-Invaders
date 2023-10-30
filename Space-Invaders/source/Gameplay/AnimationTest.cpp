@@ -9,23 +9,23 @@ namespace Gameplay
 
 	void AnimationTest::initialize()
 	{
-		if (texture.loadFromFile("assets/textures/pacman_death.png")) 
+		if (texture.loadFromFile(texture_path)) 
 		{
 			sprite.setTexture(texture);
-			sprite.setPosition(940, 490);
-			sprite.setScale(5,5);
+			sprite.setPosition(sprite_position);
+			sprite.setScale(sprite_scale, sprite_scale);
 		}
 
 		currentFrame = 0;
-		frameTime = sf::seconds(0.2f);
+		frameTime = sf::seconds(frame_duration);
 	}
 
 	void AnimationTest::update()
 	{
 		if (clock.getElapsedTime() >= frameTime)
 		{
-			currentFrame = (currentFrame + 1) % 12; // Assuming 6 frames in the animation
-			sprite.setTextureRect(sf::IntRect(currentFrame * 32, 0, 16, 16)); // Adjust based on your sprite size
+			currentFrame = (currentFrame + 1) % number_of_animation_frames;
+			sprite.setTextureRect(sf::IntRect(currentFrame * (2 * tile_width), 0, tile_width, tile_height));
 			clock.restart();
 		}
 	}
