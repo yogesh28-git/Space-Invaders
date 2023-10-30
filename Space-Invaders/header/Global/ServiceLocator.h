@@ -5,6 +5,7 @@
 #include "../../header/Player/PlayerService.h"
 #include "../../header/Time/TimeService.h"
 #include "../../header/Sound/SoundService.h"
+#include "../../header/Enemy/EnemyService.h"
 
 namespace Global
 {
@@ -14,9 +15,10 @@ namespace Global
         Event::EventService* event_service;
         Main::GraphicService* graphic_service;
         UI::UIService* ui_service;
-        Player::PlayerService* player_service;
         Time::TimeService* time_service;
         Sound::SoundService* sound_service;
+        Player::PlayerService* player_service;
+        Enemy::EnemyService* enemy_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -34,9 +36,10 @@ namespace Global
         Event::EventService* getEventService();
         Main::GraphicService* getGraphicService();
         UI::UIService* getUIService();
-        Player::PlayerService* getPlayerService();
         Time::TimeService* getTimeService();
         Sound::SoundService* getSoundService();
+        Player::PlayerService* getPlayerService();
+        Enemy::EnemyService* getEnemyService();
         void deleteServiceLocator();
     };
 }
