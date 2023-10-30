@@ -6,13 +6,14 @@ namespace Global
 	using namespace Main;
 	using namespace Event;
 	using namespace UI;
-	using namespace Gameplay;
+	using namespace Player;
 
 	ServiceLocator::ServiceLocator()
 	{
 		graphic_service = nullptr;
+		time_service = nullptr;
 		event_service = nullptr;
-		gameplay_service = nullptr;
+		player_service = nullptr;
 		ui_service = nullptr;
 
 		createServices();
@@ -22,26 +23,29 @@ namespace Global
 
 	void ServiceLocator::createServices()
 	{
-		event_service = new EventService();
 		graphic_service = new GraphicService();
-		gameplay_service = new GameplayService();
+		time_service = new TimeService();
+		event_service = new EventService();
+		player_service = new PlayerService();
 		ui_service = new UIService();
 	}
 
 	void ServiceLocator::initialize()
 	{
 		graphic_service->initialize();
+		time_service->initialize();
 		event_service->initialize();
-		gameplay_service->initialize();
+		player_service->initialize();
 		ui_service->initialize();
 	}
 
 	void ServiceLocator::update()
 	{
-		event_service->update();
 		graphic_service->update();
+		time_service->update();
+		event_service->update();
 
-		if (GameService::getGameState() == GameState::GAMEPLAY) gameplay_service->update();
+		if (GameService::getGameState() == GameState::GAMEPLAY) player_service->update();
 
 		ui_service->update();
 	}
@@ -50,7 +54,7 @@ namespace Global
 	{
 		graphic_service->render();
 		
-		if (GameService::getGameState() == GameState::GAMEPLAY) gameplay_service->render();
+		if (GameService::getGameState() == GameState::GAMEPLAY) player_service->render();
 
 		ui_service->render();
 	}
@@ -58,9 +62,10 @@ namespace Global
 	void ServiceLocator::clearAllServices()
 	{
 		delete(ui_service);
-		delete(graphic_service);
+		delete(player_service);
 		delete(event_service);
-		delete(gameplay_service);
+		delete(graphic_service);
+		delete(time_service);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -75,7 +80,9 @@ namespace Global
 
 	UIService* ServiceLocator::getUIService() { return ui_service; }
 
-	Gameplay::GameplayService* ServiceLocator::getGameplayService() { return gameplay_service; }
+	Player::PlayerService* ServiceLocator::getPlayerService() { return player_service; }
+
+	Global::TimeService* ServiceLocator::getTimeService() { return time_service; }
 
 	void ServiceLocator::deleteServiceLocator() { delete(this); }
 }

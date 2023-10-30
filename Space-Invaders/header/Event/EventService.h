@@ -35,6 +35,8 @@ namespace Event
 		void processEvents();
 
 		bool pressedEscapeKey();
+		bool pressedLeftArrowKey();
+		bool pressedRightArrowKey();
 		bool pressedLeftMouseButton();
 		bool pressedRightMouseButton();
 	};

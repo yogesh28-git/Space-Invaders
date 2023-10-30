@@ -2,7 +2,8 @@
 #include "../../header/Main/GraphicService.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/UI/UIService.h"
-#include "../../header/Gameplay/GameplayService.h"
+#include "../../header/Player/PlayerService.h"
+#include "../../header/Global/TimeService.h"
 
 namespace Global
 {
@@ -12,7 +13,8 @@ namespace Global
         Event::EventService* event_service;
         Main::GraphicService* graphic_service;
         UI::UIService* ui_service;
-        Gameplay::GameplayService* gameplay_service;
+        Player::PlayerService* player_service;
+        Global::TimeService* time_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -30,7 +32,8 @@ namespace Global
         Event::EventService* getEventService();
         Main::GraphicService* getGraphicService();
         UI::UIService* getUIService();
-        Gameplay::GameplayService* getGameplayService();
+        Player::PlayerService* getPlayerService();
+        Global::TimeService* getTimeService();
         void deleteServiceLocator();
     };
 }

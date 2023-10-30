@@ -33,18 +33,6 @@
     <ClCompile Include="source\UI\UIService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Gameplay\GameplayService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gameplay\SFMLTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gameplay\CollisionDetectionTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gameplay\AnimationTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Main\GameService.h">
@@ -65,19 +53,7 @@
     <ClInclude Include="header\UI\Interface\IUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\Gameplay\GameplayService.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\Interface\ITest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\SFMLTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\CollisionDetectionTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\AnimationTest.h">
+    <ClInclude Include="header\Player\PlayerService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
