@@ -2,6 +2,8 @@
 #include "../../header/Main/GameService.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Main/GraphicService.h"
+#include "../../header/Sound/SoundService.h"
+#include "../../header/Global/Config.h"
 
 namespace UI
 {
@@ -61,7 +63,7 @@ namespace UI
                 printf("ERROR :: UIService :: Unable to find Outscal Logo Texture");
         }
 
-        bool SplashScreenUIController::tryLoadingOutscalLogo() { return outscal_logo_texture.loadFromFile("assets/textures/outscal_logo.png"); }
+        bool SplashScreenUIController::tryLoadingOutscalLogo() { return outscal_logo_texture.loadFromFile(Config::outscal_logo_texture_path); }
 
         void SplashScreenUIController::setPositionToCenter()
         {
@@ -95,6 +97,7 @@ namespace UI
         void SplashScreenUIController::logoAnimationComplete()
         {
             GameService::setGameState(GameState::MAIN_MENU);
+            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
         }
     }
 }

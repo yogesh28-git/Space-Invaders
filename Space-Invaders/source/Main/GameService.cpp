@@ -32,7 +32,7 @@ namespace Main
 
 	void GameService::showSplashScreen()
 	{
-		setGameState(GameState::GAMEPLAY);
+		setGameState(GameState::SPLASH_SCREEN);
 		ServiceLocator::getInstance()->getUIService()->showScreen();
 	}
 

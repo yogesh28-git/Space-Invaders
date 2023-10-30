@@ -2,6 +2,7 @@
 #include "../../header/Main/GameService.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Main/GraphicService.h"
+#include "../../header/Global/Config.h"
 
 namespace UI
 {
@@ -21,7 +22,7 @@ namespace UI
 
         void MainMenuUIController::initializeBackgroundImage()
         {
-            if (background_texture.loadFromFile("assets/textures/space_invaders_bg.png"))
+            if (background_texture.loadFromFile(Config::background_texture_path))
             {
                 background_sprite.setTexture(background_texture);
                 scaleBackgroundImage();
@@ -48,9 +49,9 @@ namespace UI
 
         bool MainMenuUIController::loadButtonTexturesFromFile()
         {
-            return play_button_texture.loadFromFile("assets/textures/play_button.png") &&
-                instructions_button_texture.loadFromFile("assets/textures/instructions_button.png") &&
-                quit_button_texture.loadFromFile("assets/textures/quit_button.png");
+            return play_button_texture.loadFromFile(Config::play_button_texture_path) &&
+                instructions_button_texture.loadFromFile(Config::instructions_button_texture_path) &&
+                quit_button_texture.loadFromFile(Config::quit_button_texture_path);
         }
 
         void MainMenuUIController::setButtonSprites()
@@ -117,11 +118,13 @@ namespace UI
 
             if (clickedButton(&play_button_sprite, mouse_position))
             {
+                ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
                 GameService::setGameState(GameState::GAMEPLAY);
             }
 
             if (clickedButton(&instructions_button_sprite, mouse_position))
             {
+                ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
                 printf("Clicked Instruction Button \n");
             }
 

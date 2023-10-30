@@ -8,6 +8,7 @@ namespace Player
 {
 	using namespace Global;
 	using namespace Event;
+	using namespace Time;
 
 	PlayerController::PlayerController()
 	{

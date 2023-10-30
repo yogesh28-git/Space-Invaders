@@ -137,7 +137,8 @@
     <ClCompile Include="source\Event\EventService.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
-    <ClCompile Include="source\Global\TimeService.cpp" />
+    <ClCompile Include="source\Sound\SoundService.cpp" />
+    <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\Main\GameService.cpp" />
     <ClCompile Include="source\Main\GraphicService.cpp" />
     <ClCompile Include="source\Player\PlayerController.cpp" />
@@ -152,7 +153,8 @@
     <ClInclude Include="header\Event\EventService.h" />
     <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
-    <ClInclude Include="header\Global\TimeService.h" />
+    <ClInclude Include="header\Sound\SoundService.h" />
+    <ClInclude Include="header\Time\TimeService.h" />
     <ClInclude Include="header\Main\GameService.h" />
     <ClInclude Include="header\Main\GraphicService.h" />
     <ClInclude Include="header\Player\PlayerController.h" />

@@ -4,9 +4,11 @@ namespace Global
 {
 	const sf::String Config::outscal_logo_texture_path = "assets/textures/outscal_logo.png";
 
-	const sf::String Config::background_texture_path = "assets/textures/minesweeper_bg.png";
+	const sf::String Config::background_texture_path = "assets/textures/space_invaders_bg.png";
 
 	const sf::String Config::player_texture_path = "assets/textures/player_ship.png";
+
+	const sf::String Config::enemy_texture_path = "assets/textures/enemy_ship.png";
 
 	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
 
