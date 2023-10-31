@@ -24,7 +24,7 @@ namespace Enemy
 
 	void EnemyController::initialize()
 	{
-		enemy_model->initialize(initial_position);
+		enemy_model->initialize();
 		enemy_view->initialize(this);
 	}
 
@@ -62,7 +62,11 @@ namespace Enemy
 		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 		currentPosition.x -= enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-		if (currentPosition.x <= left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
+		if (currentPosition.x <= left_most_position.x)
+		{
+			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			enemy_model->setReferencePosition(currentPosition);
+		}
 		else enemy_model->setEnemyPosition(currentPosition);
 	}
 
@@ -71,11 +75,26 @@ namespace Enemy
 		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 		currentPosition.x += enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-		if (currentPosition.x >= right_most_position.x) enemy_model->setMovementDirection(MovementDirection::LEFT);
+		if (currentPosition.x >= right_most_position.x)
+		{
+			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			enemy_model->setReferencePosition(currentPosition);
+		}
 		else enemy_model->setEnemyPosition(currentPosition);
 	}
 
-	void EnemyController::moveDown() { }
+	void EnemyController::moveDown() 
+	{
+		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+		currentPosition.y += enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		if (currentPosition.y >= enemy_model->getReferencePosition().y + vertical_travel_distance)
+		{
+			if(enemy_model->getReferencePosition().x <= left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
+			else enemy_model->setMovementDirection(MovementDirection::LEFT);
+		}
+		else enemy_model->setEnemyPosition(currentPosition);
+	}
 
 	sf::Vector2f EnemyController::getEnemyPosition()
 	{

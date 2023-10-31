@@ -8,8 +8,10 @@ namespace Global
 	using namespace UI;
 	using namespace Time;
 	using namespace Sound;
+	using namespace Gameplay;
 	using namespace Player;
 	using namespace Enemy;
+	using namespace Element;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -17,8 +19,10 @@ namespace Global
 		time_service = nullptr;
 		sound_service = nullptr;
 		event_service = nullptr;
+		gameplay_service = nullptr;
 		player_service = nullptr;
 		enemy_service = nullptr;
+		element_service = nullptr;
 		ui_service = nullptr;
 
 		createServices();
@@ -32,8 +36,10 @@ namespace Global
 		time_service = new TimeService();
 		sound_service = new SoundService();
 		event_service = new EventService();
+		gameplay_service = new GameplayService();
 		player_service = new PlayerService();
 		enemy_service = new EnemyService();
+		element_service = new ElementService();
 		ui_service = new UIService();
 	}
 
@@ -43,8 +49,10 @@ namespace Global
 		time_service->initialize();
 		sound_service->initialize();
 		event_service->initialize();
+		gameplay_service->initialize();
 		player_service->initialize();
 		enemy_service->initialize();
+		element_service->initialize();
 		ui_service->initialize();
 	}
 
@@ -56,8 +64,10 @@ namespace Global
 
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
+			gameplay_service->update();
 			player_service->update();
 			enemy_service->update();
+			element_service->update();
 		}
 
 		ui_service->update();
@@ -69,8 +79,10 @@ namespace Global
 		
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
+			gameplay_service->render();
 			player_service->render();
 			enemy_service->render();
+			element_service->render();
 		}
 
 		ui_service->render();
@@ -81,6 +93,8 @@ namespace Global
 		delete(ui_service);
 		delete(player_service);
 		delete(enemy_service);
+		delete(gameplay_service);
+		delete(element_service);
 		delete(event_service);
 		delete(graphic_service);
 		delete(sound_service);
@@ -103,9 +117,13 @@ namespace Global
 
 	Enemy::EnemyService* ServiceLocator::getEnemyService() { return enemy_service; }
 
+	Element::ElementService* ServiceLocator::getElementService() { return element_service; }
+
 	Time::TimeService* ServiceLocator::getTimeService() { return time_service; }
 
 	Sound::SoundService* ServiceLocator::getSoundService() { return sound_service; }
+
+	Gameplay::GameplayService* ServiceLocator::getGameplayService() { return gameplay_service; }
 
 	void ServiceLocator::deleteServiceLocator() { delete(this); }
 }

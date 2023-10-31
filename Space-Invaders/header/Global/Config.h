@@ -10,6 +10,7 @@ namespace Global
 		static const sf::String background_texture_path;
 		static const sf::String player_texture_path;
 		static const sf::String enemy_texture_path;
+		static const sf::String bunker_texture_path;
 
 		static const sf::String play_button_texture_path;
 		static const sf::String instructions_button_texture_path;

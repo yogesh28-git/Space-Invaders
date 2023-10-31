@@ -19,6 +19,7 @@ namespace Enemy
     class EnemyModel
     {
     private:
+        sf::Vector2f reference_position = sf::Vector2f(50.f, 50.f);
         sf::Vector2f enemy_position;
         EnemyState enemy_state;
         MovementDirection movement_direction;
@@ -27,10 +28,13 @@ namespace Enemy
         EnemyModel();
         ~EnemyModel();
 
-        void initialize(sf::Vector2f position);
+        void initialize();
 
         sf::Vector2f getEnemyPosition();
         void setEnemyPosition(sf::Vector2f position);
+
+        sf::Vector2f getReferencePosition();
+        void setReferencePosition(sf::Vector2f position);
 
         EnemyState getEnemyState();
         void setEnemyState(EnemyState state);

@@ -134,11 +134,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
+    <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
+    <ClCompile Include="source\Elements\ElementService.cpp" />
     <ClCompile Include="source\Enemy\EnemyController.cpp" />
     <ClCompile Include="source\Enemy\EnemyModel.cpp" />
     <ClCompile Include="source\Enemy\EnemyService.cpp" />
     <ClCompile Include="source\Enemy\EnemyView.cpp" />
     <ClCompile Include="source\Event\EventService.cpp" />
+    <ClCompile Include="source\Gameplay\GameplayController.cpp" />
+    <ClCompile Include="source\Gameplay\GameplayService.cpp" />
+    <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
     <ClCompile Include="source\Sound\SoundService.cpp" />
@@ -154,11 +160,17 @@
     <ClCompile Include="source\UI\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\Elements\Bunker\BunkerController.h" />
+    <ClInclude Include="header\Elements\Bunker\BunkerView.h" />
+    <ClInclude Include="header\Elements\ElementService.h" />
     <ClInclude Include="header\Enemy\EnemyController.h" />
     <ClInclude Include="header\Enemy\EnemyModel.h" />
     <ClInclude Include="header\Enemy\EnemyService.h" />
     <ClInclude Include="header\Enemy\EnemyView.h" />
     <ClInclude Include="header\Event\EventService.h" />
+    <ClInclude Include="header\Gameplay\GameplayController.h" />
+    <ClInclude Include="header\Gameplay\GameplayService.h" />
+    <ClInclude Include="header\Gameplay\GameplayView.h" />
     <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
     <ClInclude Include="header\Sound\SoundService.h" />
