@@ -3,6 +3,7 @@
 #include "../../header/Main/GraphicService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Enemy/EnemyController.h"
+#include "../../header/Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
@@ -22,7 +23,7 @@ namespace Enemy
 
 	void EnemyView::initializeEnemySprite()
 	{
-		if (enemy_texture.loadFromFile(Config::enemy_texture_path))
+		if (enemy_texture.loadFromFile(getEnemyTexturePath()))
 		{
 			enemy_sprite.setTexture(enemy_texture);
 			scaleEnemySprite();
@@ -45,5 +46,20 @@ namespace Enemy
 	void EnemyView::render()
 	{
 		game_window->draw(enemy_sprite);
+	}
+
+	sf::String EnemyView::getEnemyTexturePath()
+	{
+		switch (enemy_controller->getEnemyType())
+		{
+		case::Enemy::EnemyType::ZAPPER:
+			return Config::zapper_texture_path;
+		case::Enemy::EnemyType::THUNDER_SNAKE:
+			return Config::thunder_snake_texture_path;
+		case::Enemy::EnemyType::SUBZERO:
+			return Config::subzero_texture_path;
+		case::Enemy::EnemyType::UFO:
+			return Config::ufo_texture_path;
+		}
 	}
 }

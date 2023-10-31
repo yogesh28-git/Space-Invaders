@@ -137,6 +137,10 @@
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
     <ClCompile Include="source\Elements\ElementService.cpp" />
+    <ClCompile Include="source\Enemy\Controller\SubzeroController.cpp" />
+    <ClCompile Include="source\Enemy\Controller\ThunderSnakeController.cpp" />
+    <ClCompile Include="source\Enemy\Controller\UFOController.cpp" />
+    <ClCompile Include="source\Enemy\Controller\ZapperController.cpp" />
     <ClCompile Include="source\Enemy\EnemyController.cpp" />
     <ClCompile Include="source\Enemy\EnemyModel.cpp" />
     <ClCompile Include="source\Enemy\EnemyService.cpp" />
@@ -163,10 +167,15 @@
     <ClInclude Include="header\Elements\Bunker\BunkerController.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerView.h" />
     <ClInclude Include="header\Elements\ElementService.h" />
+    <ClInclude Include="header\Enemy\Controller\SubzeroController.h" />
+    <ClInclude Include="header\Enemy\Controller\ThunderSnakeController.h" />
+    <ClInclude Include="header\Enemy\Controller\UFOController.h" />
     <ClInclude Include="header\Enemy\EnemyController.h" />
     <ClInclude Include="header\Enemy\EnemyModel.h" />
     <ClInclude Include="header\Enemy\EnemyService.h" />
+    <ClInclude Include="header\Enemy\EnemyConfig.h" />
     <ClInclude Include="header\Enemy\EnemyView.h" />
+    <ClInclude Include="header\Enemy\Controller\ZapperController.h" />
     <ClInclude Include="header\Event\EventService.h" />
     <ClInclude Include="header\Gameplay\GameplayController.h" />
     <ClInclude Include="header\Gameplay\GameplayService.h" />

@@ -19,6 +19,7 @@ namespace Enemy
 
         void initializeEnemySprite();
         void scaleEnemySprite();
+        sf::String getEnemyTexturePath();
 
     public:
         EnemyView();

@@ -8,7 +8,13 @@ namespace Global
 
 	const sf::String Config::player_texture_path = "assets/textures/player_ship.png";
 
-	const sf::String Config::enemy_texture_path = "assets/textures/enemy_ship.png";
+	const sf::String Config::zapper_texture_path = "assets/textures/zapper.png";
+
+	const sf::String Config::thunder_snake_texture_path = "assets/textures/thunder_snake.png";
+
+	const sf::String Config::subzero_texture_path = "assets/textures/subzero.png";
+
+	const sf::String Config::ufo_texture_path = "assets/textures/ufo.png";
 
 	const sf::String Config::bunker_texture_path = "assets/textures/bunker.png";
 
