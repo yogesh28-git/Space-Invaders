@@ -15,6 +15,8 @@ namespace Enemy
             void moveDiagonalLeft() override;
             void moveDiagonalRight() override;
 
+            void fireBullet() override;
+
             MovementDirection getInitialMovementDirection();
 
         public:

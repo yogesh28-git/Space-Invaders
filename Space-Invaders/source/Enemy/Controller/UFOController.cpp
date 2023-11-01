@@ -3,11 +3,13 @@
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -49,5 +51,7 @@ namespace Enemy
 		void UFOController::moveDiagonalLeft() { }
 
 		void UFOController::moveDiagonalRight() { }
+
+		void UFOController::fireBullet() { }
 	}
 }

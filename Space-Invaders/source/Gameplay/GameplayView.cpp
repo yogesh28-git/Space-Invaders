@@ -24,6 +24,7 @@ namespace Gameplay
 		{
 			background_sprite.setTexture(background_texture);
 			scaleBackgroundSprite();
+			setBackgroundSpriteAlpha();
 		}
 	}
 
@@ -33,6 +34,14 @@ namespace Gameplay
 			static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
 			static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
 		);
+	}
+
+	void GameplayView::setBackgroundSpriteAlpha()
+	{
+		sf::Color color = background_sprite.getColor();
+		color.a = background_alpha;
+
+		background_sprite.setColor(color);
 	}
 
 	void GameplayView::update() { }

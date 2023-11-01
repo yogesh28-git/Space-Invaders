@@ -8,6 +8,7 @@ namespace Global
 
 	const sf::String Config::player_texture_path = "assets/textures/player_ship.png";
 
+
 	const sf::String Config::zapper_texture_path = "assets/textures/zapper.png";
 
 	const sf::String Config::thunder_snake_texture_path = "assets/textures/thunder_snake.png";
@@ -18,6 +19,14 @@ namespace Global
 
 	const sf::String Config::bunker_texture_path = "assets/textures/bunker.png";
 
+
+	const sf::String Config::laser_bullet_texture_path = "assets/textures/laser_bullet.png";
+
+	const sf::String Config::torpedoe_texture_path = "assets/textures/torpedoe.png";
+
+	const sf::String Config::frost_beam_texture_path = "assets/textures/frost_beam.png";
+
+
 	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
 
 	const sf::String Config::instructions_button_texture_path = "assets/textures/instructions_button.png";
@@ -26,9 +35,11 @@ namespace Global
 
 	const sf::String Config::menu_button_texture_path = "assets/textures/menu_button.png";
 
+
 	const sf::String Config::bubble_bobble_font_path = "assets/fonts/bubbleBobble.ttf";
 
 	const sf::String Config::DS_DIGIB_font_path = "assets/fonts/DS_DIGIB.ttf";
+
 
 	const sf::String Config::background_music_path = "assets/sounds/background_music.mp3";
 

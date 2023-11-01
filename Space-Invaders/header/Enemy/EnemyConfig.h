@@ -12,7 +12,8 @@ namespace Enemy
 
     enum class EnemyState
     {
-        ALIVE,
+        PATROLLING,
+        ATTACK,
         DEAD,
     };
 

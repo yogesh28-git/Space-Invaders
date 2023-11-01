@@ -3,11 +3,13 @@
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -19,6 +21,7 @@ namespace Enemy
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			cooldown_fire_duration = 3.f;
 		}
 
 		void SubzeroController::moveLeft() { }
@@ -36,5 +39,12 @@ namespace Enemy
 		void SubzeroController::moveDiagonalLeft() { }
 
 		void SubzeroController::moveDiagonalRight() { }
+
+		void SubzeroController::fireBullet()
+		{
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDOE,
+				enemy_model->getEnemyPosition() + barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
+		}
 	}
 }

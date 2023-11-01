@@ -14,6 +14,8 @@ namespace Enemy
             void moveDiagonalLeft() override;
             void moveDiagonalRight() override;
 
+            void fireBullet() override;
+
         public:
             UFOController(EnemyType type);
             ~UFOController();

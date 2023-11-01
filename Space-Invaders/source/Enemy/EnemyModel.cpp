@@ -12,7 +12,7 @@ namespace Enemy
 
 	void EnemyModel::initialize()
 	{
-		enemy_state = EnemyState::ALIVE;
+		enemy_state = EnemyState::PATROLLING;
 		movement_direction = MovementDirection::RIGHT;
 		enemy_position = reference_position;
 	}

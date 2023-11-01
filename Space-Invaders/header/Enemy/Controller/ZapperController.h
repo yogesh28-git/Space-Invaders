@@ -16,6 +16,8 @@ namespace Enemy
             void moveDiagonalLeft() override;
             void moveDiagonalRight() override;
 
+            void fireBullet() override;
+
         public:
             ZapperController(EnemyType type);
             ~ZapperController();

@@ -2,9 +2,15 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Enemy/EnemyConfig.h"
+#include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
+	using namespace Global;
+	using namespace Time;
+	using namespace Bullet;
+
 	EnemyController::EnemyController(EnemyType type)
 	{
 		enemy_view = new EnemyView();
@@ -27,12 +33,28 @@ namespace Enemy
 	void EnemyController::update()
 	{
 		updateEnemyPosition();
+		updateFireTimer();
+		processBulletFire();
 		enemy_view->update();
 	}
 
 	void EnemyController::render()
 	{
 		enemy_view->render();
+	}
+
+	void EnemyController::updateFireTimer()
+	{
+		elapsed_fire_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	void EnemyController::processBulletFire()
+	{
+		if (elapsed_fire_duration >= cooldown_fire_duration)
+		{
+			fireBullet();
+			elapsed_fire_duration = 0.f;
+		}
 	}
 
 	void EnemyController::updateEnemyPosition()

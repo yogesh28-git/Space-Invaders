@@ -2,11 +2,13 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -87,6 +89,13 @@ namespace Enemy
 				enemy_model->setMovementDirection(MovementDirection::LEFT);
 			}
 			else enemy_model->setEnemyPosition(currentPosition);
+		}
+
+		void ThunderSnakeController::fireBullet()
+		{
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
+				enemy_model->getEnemyPosition() + barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
 		}
 	}
 }

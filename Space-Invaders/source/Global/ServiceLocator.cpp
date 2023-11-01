@@ -12,6 +12,7 @@ namespace Global
 	using namespace Player;
 	using namespace Enemy;
 	using namespace Element;
+	using namespace Bullet;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -23,6 +24,7 @@ namespace Global
 		player_service = nullptr;
 		enemy_service = nullptr;
 		element_service = nullptr;
+		bullet_service = nullptr;
 		ui_service = nullptr;
 
 		createServices();
@@ -40,6 +42,7 @@ namespace Global
 		player_service = new PlayerService();
 		enemy_service = new EnemyService();
 		element_service = new ElementService();
+		bullet_service = new BulletService();
 		ui_service = new UIService();
 	}
 
@@ -53,6 +56,7 @@ namespace Global
 		player_service->initialize();
 		enemy_service->initialize();
 		element_service->initialize();
+		bullet_service->initialize();
 		ui_service->initialize();
 	}
 
@@ -68,6 +72,7 @@ namespace Global
 			player_service->update();
 			enemy_service->update();
 			element_service->update();
+			bullet_service->update();
 		}
 
 		ui_service->update();
@@ -83,6 +88,7 @@ namespace Global
 			player_service->render();
 			enemy_service->render();
 			element_service->render();
+			bullet_service->render();
 		}
 
 		ui_service->render();
@@ -91,6 +97,7 @@ namespace Global
 	void ServiceLocator::clearAllServices()
 	{
 		delete(ui_service);
+		delete(bullet_service);
 		delete(player_service);
 		delete(enemy_service);
 		delete(gameplay_service);
@@ -118,6 +125,8 @@ namespace Global
 	Enemy::EnemyService* ServiceLocator::getEnemyService() { return enemy_service; }
 
 	Element::ElementService* ServiceLocator::getElementService() { return element_service; }
+
+	Bullet::BulletService* ServiceLocator::getBulletService() { return bullet_service; }
 
 	Time::TimeService* ServiceLocator::getTimeService() { return time_service; }
 

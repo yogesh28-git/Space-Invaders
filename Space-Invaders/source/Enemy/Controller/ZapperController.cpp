@@ -3,11 +3,13 @@
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -62,5 +64,12 @@ namespace Enemy
 		void ZapperController::moveDiagonalLeft() { }
 
 		void ZapperController::moveDiagonalRight() { }
+
+		void ZapperController::fireBullet()
+		{
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+				enemy_model->getEnemyPosition() + barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
+		}
 	}
 }
