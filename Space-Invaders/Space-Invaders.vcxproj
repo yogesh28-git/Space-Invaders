@@ -158,6 +158,10 @@
     <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
+    <ClCompile Include="source\Powerup\PowerupController.cpp" />
+    <ClCompile Include="source\Powerup\PowerupModel.cpp" />
+    <ClCompile Include="source\Powerup\PowerupService.cpp" />
+    <ClCompile Include="source\Powerup\PowerupView.cpp" />
     <ClCompile Include="source\Sound\SoundService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\Main\GameService.cpp" />
@@ -198,6 +202,12 @@
     <ClInclude Include="header\Gameplay\GameplayView.h" />
     <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
+    <ClInclude Include="header\Powerup\IPowerup.h" />
+    <ClInclude Include="header\Powerup\PowerupConfig.h" />
+    <ClInclude Include="header\Powerup\PowerupController.h" />
+    <ClInclude Include="header\Powerup\PowerupModel.h" />
+    <ClInclude Include="header\Powerup\PowerupService.h" />
+    <ClInclude Include="header\Powerup\PowerupView.h" />
     <ClInclude Include="header\Sound\SoundService.h" />
     <ClInclude Include="header\Time\TimeService.h" />
     <ClInclude Include="header\Main\GameService.h" />

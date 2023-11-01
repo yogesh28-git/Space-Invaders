@@ -1,7 +1,6 @@
 #include "../../header/Bullet/BulletView.h"
 #include "../../header/Bullet/BulletController.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Bullet/BulletConfig.h"
 
