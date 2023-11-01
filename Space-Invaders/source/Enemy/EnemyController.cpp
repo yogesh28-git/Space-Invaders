@@ -20,6 +20,7 @@ namespace Enemy
 	void EnemyController::initialize()
 	{
 		enemy_model->initialize();
+		enemy_model->setEnemyPosition(getRandomInitialPosition());
 		enemy_view->initialize(this);
 	}
 
@@ -58,6 +59,14 @@ namespace Enemy
 			moveDiagonalRight();
 			break;
 		}
+	}
+
+	sf::Vector2f EnemyController::getRandomInitialPosition()
+	{
+		float x_position = left_most_position.x + (std::rand() % static_cast<int>(right_most_position.x - left_most_position.x));
+		float y_position = left_most_position.y;
+
+		return sf::Vector2f(x_position, y_position);
 	}
 
 	sf::Vector2f EnemyController::getEnemyPosition()

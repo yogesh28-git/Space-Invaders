@@ -1,5 +1,6 @@
 #pragma once
 #include "../../header/Enemy/EnemyController.h"
+#include "../../header/Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
@@ -8,13 +9,13 @@ namespace Enemy
         class ThunderSnakeController : public EnemyController
         {
         private:
-            const sf::Vector2f initial_position = sf::Vector2f(50.f, 50.f);
-
             void moveLeft() override;
             void moveRight() override;
             void moveDown() override;
             void moveDiagonalLeft() override;
             void moveDiagonalRight() override;
+
+            MovementDirection getInitialMovementDirection();
 
         public:
             ThunderSnakeController(EnemyType type);

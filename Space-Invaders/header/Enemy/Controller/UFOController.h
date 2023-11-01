@@ -8,8 +8,6 @@ namespace Enemy
         class UFOController : public EnemyController
         {
         private:
-            const sf::Vector2f initial_position = sf::Vector2f(50.f, 50.f);
-
             void moveLeft() override;
             void moveRight() override;
             void moveDown() override;

@@ -8,7 +8,7 @@ namespace Enemy
         class ZapperController : public EnemyController
         {
         private:
-            const sf::Vector2f initial_position = sf::Vector2f(50.f, 50.f);
+            float vertical_travel_distance = 100.f;
 
             void moveLeft() override;
             void moveRight() override;

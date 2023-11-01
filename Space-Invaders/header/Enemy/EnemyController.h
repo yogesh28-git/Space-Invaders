@@ -12,11 +12,11 @@ namespace Enemy
     class EnemyController
     {
     protected:
-        const sf::Vector2f left_most_position = sf::Vector2f(50.f, 950.f);
-        const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 950.f);
+        const sf::Vector2f left_most_position = sf::Vector2f(50.f, 50.f);
+        const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 50.f);
 
-        float vertical_travel_distance = 100.f;
-        float enemy_movement_speed = 250.0f;
+        float vertical_movement_speed = 30.f;
+        float horizontal_movement_speed = 200.0f;
 
         EnemyView* enemy_view;
         EnemyModel* enemy_model;
@@ -28,6 +28,8 @@ namespace Enemy
         virtual void moveDiagonalLeft() = 0;
         virtual void moveDiagonalRight() = 0;
 
+        sf::Vector2f getRandomInitialPosition();
+       
     public:
         EnemyController(EnemyType type);
         virtual ~EnemyController();

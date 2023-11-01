@@ -18,13 +18,12 @@ namespace Enemy
 		void UFOController::initialize()
 		{
 			EnemyController::initialize();
-			enemy_model->setEnemyPosition(initial_position);
 		}
 
 		void UFOController::moveLeft()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.x -= enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.x <= left_most_position.x)
 			{
@@ -36,7 +35,7 @@ namespace Enemy
 		void UFOController::moveRight()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.x += enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.x >= right_most_position.x)
 			{
