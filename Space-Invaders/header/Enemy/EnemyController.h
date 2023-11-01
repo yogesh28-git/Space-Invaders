@@ -19,7 +19,7 @@ namespace Enemy
         float vertical_movement_speed = 30.f;
         float horizontal_movement_speed = 200.0f;
 
-        float cooldown_fire_duration = 2.f;
+        float cooldown_fire_duration = 3.f;
         float elapsed_fire_duration = 0.f;
 
         EnemyView* enemy_view;

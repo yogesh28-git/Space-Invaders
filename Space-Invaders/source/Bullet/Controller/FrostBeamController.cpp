@@ -11,7 +11,7 @@ namespace Bullet
 		void FrostBeamController::initialize(sf::Vector2f position, MovementDirection direction)
 		{
 			BulletController::initialize(position, direction);
-			movement_speed = 200.f;
+			movement_speed = 250.f;
 		}
 	}
 }

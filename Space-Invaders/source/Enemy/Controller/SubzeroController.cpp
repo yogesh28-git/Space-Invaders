@@ -21,7 +21,7 @@ namespace Enemy
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
-			cooldown_fire_duration = 3.f;
+			cooldown_fire_duration = 5.f;
 		}
 
 		void SubzeroController::moveLeft() { }
