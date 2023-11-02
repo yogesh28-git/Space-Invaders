@@ -1,79 +1,77 @@
 #include "../../header/UI/UIService.h"
 #include "../../header/Main/GameService.h"
 
-namespace UI
+UIService::UIService()
 {
-	using namespace Main;
-	using namespace MainMenu;
-	using namespace SplashScreen;
-	using namespace Interface;
+	splash_screen_controller = nullptr;
+	main_menu_controller = nullptr;
 
-	UIService::UIService()
+	createControllers();
+}
+
+void UIService::createControllers()
+{
+	splash_screen_controller = new SplashScreenUIController();
+	main_menu_controller = new MainMenuUIController();
+}
+
+UIService::~UIService()
+{
+	destroy();
+}
+
+void UIService::initialize()
+{
+	initializeControllers();
+}
+
+void UIService::update()
+{
+	switch (GameService::getGameState())
 	{
-		splash_screen_controller = nullptr;
-		main_menu_controller = nullptr;
+	case GameState::SPLASH_SCREEN:
+		splash_screen_controller->update();
+		break;
 
-		createControllers();
+	case GameState::MAIN_MENU:
+		main_menu_controller->update();
 	}
+}
 
-	void UIService::createControllers()
+void UIService::render()
+{
+	switch (GameService::getGameState())
 	{
-		splash_screen_controller = new SplashScreenUIController();
-		main_menu_controller = new MainMenuUIController();
-	}
+	case GameState::SPLASH_SCREEN:
+		splash_screen_controller->render();
+		break;
 
-	UIService::~UIService()
+	case GameState::MAIN_MENU:
+		main_menu_controller->render();
+	}
+}
+
+void UIService::showScreen()
+{
+	switch (GameService::getGameState())
 	{
-		destroy();
+	case GameState::SPLASH_SCREEN:
+		splash_screen_controller->show();
+		break;
+
+	case GameState::MAIN_MENU:
+		main_menu_controller->show();
 	}
+}
 
-	void UIService::initialize()
-	{
-		initializeControllers();
-	}
+void UIService::initializeControllers()
+{
+	splash_screen_controller->initialize();
+	main_menu_controller->initialize();
+}
 
-	void UIService::update()
-	{
-		IUIController* ui_controller = getCurrentUIController();
-		if (ui_controller) ui_controller->update();
-	}
-
-	void UIService::render()
-	{
-		IUIController* ui_controller = getCurrentUIController();
-		if (ui_controller) ui_controller->render();
-	}
-
-	void UIService::showScreen()
-	{
-		IUIController* ui_controller = getCurrentUIController();
-		if (ui_controller) ui_controller->show();
-	}
-
-	void UIService::initializeControllers()
-	{
-		splash_screen_controller->initialize();
-		main_menu_controller->initialize();
-	}
-
-	IUIController* UIService::getCurrentUIController()
-	{
-		switch (GameService::getGameState())
-		{
-		case GameState::SPLASH_SCREEN:
-			return splash_screen_controller;
-
-		case GameState::MAIN_MENU:
-			return main_menu_controller;
-
-		default:
-			return nullptr;
-		}
-	}
-
-	void UIService::destroy()
-	{
-		delete(splash_screen_controller);
-		delete(main_menu_controller);
-	}
+void UIService::destroy()
+{
+	delete(splash_screen_controller);
+	delete(main_menu_controller);
 }

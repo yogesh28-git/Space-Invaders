@@ -1,36 +1,33 @@
 #pragma once
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/UI/UIService.h"
 #include "../../header/Gameplay/GameplayService.h"
 
-namespace Global
+class ServiceLocator
 {
-    class ServiceLocator
-    {
-    private:
-        Event::EventService* event_service;
-        Main::GraphicService* graphic_service;
-        UI::UIService* ui_service;
-        Gameplay::GameplayService* gameplay_service;
+private:
+    EventService* event_service;
+    GraphicService* graphic_service;
+    UIService* ui_service;
+    GameplayService* gameplay_service;
 
-        ServiceLocator();
-        ~ServiceLocator();
+    ServiceLocator();
+    ~ServiceLocator();
 
-        void createServices();
-        void clearAllServices();
+    void createServices();
+    void clearAllServices();
 
-    public:
-        static ServiceLocator* getInstance();
+public:
+    static ServiceLocator* getInstance();
 
-        void initialize();
-        void update();
-        void render();
+    void initialize();
+    void update();
+    void render();
 
-        Event::EventService* getEventService();
-        Main::GraphicService* getGraphicService();
-        UI::UIService* getUIService();
-        Gameplay::GameplayService* getGameplayService();
-        void deleteServiceLocator();
-    };
-}
+    EventService* getEventService();
+    GraphicService* getGraphicService();
+    UIService* getUIService();
+    GameplayService* getGameplayService();
+    void deleteServiceLocator();
+};

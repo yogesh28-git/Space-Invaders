@@ -1,18 +1,34 @@
 #include "../../header/Gameplay/GameplayService.h"
-#include "../../header/Gameplay/AnimationTest.h"
-#include "../../header/Gameplay/CollisionDetectionTest.h"
-#include "../../header/Gameplay/SFMLTest.h"
 
-
-namespace Gameplay
+GameplayService::GameplayService() 
 {
-	GameplayService::GameplayService() { test = new AnimationTest(); }
+	collision_test = new CollisionDetectionTest();
+	animation_test = new AnimationTest();
+	sfml_test = new SFMLTest();
+}
 
-	GameplayService::~GameplayService() { delete (test); }
+GameplayService::~GameplayService() 
+{
+	delete (collision_test);
+	delete (animation_test);
+	delete (sfml_test);
+}
 
-	void GameplayService::initialize() { test->initialize(); }
+void GameplayService::initialize() 
+{
+	collision_test->initialize();
+	animation_test->initialize();
+	sfml_test->initialize();
+}
 
-	void GameplayService::update() { test->update(); }
+void GameplayService::update() 
+{
+	collision_test->update();
+	animation_test->update();
+	sfml_test->update();
+}
 
-	void GameplayService::render() { test->render(); }
+void GameplayService::render() 
+{
+	collision_test->render();
 }

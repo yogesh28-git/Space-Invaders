@@ -1,19 +1,20 @@
 #pragma once
-#include "../../header/Gameplay/Interface/ITest.h"
+#include "AnimationTest.h"
+#include "CollisionDetectionTest.h"
+#include "SFMLTest.h"
 
-namespace Gameplay
+class GameplayService
 {
-	class GameplayService
-	{
-	private:
-		Gameplay::Interface::ITest* test;
+private:
+	AnimationTest* animation_test;
+	CollisionDetectionTest* collision_test;
+	SFMLTest* sfml_test;
 
-	public:
-		GameplayService();
-		~GameplayService();
+public:
+	GameplayService();
+	~GameplayService();
 
-		void initialize();
-		void update();
-		void render();
-	};
-}
+	void initialize();
+	void update();
+	void render();
+};
