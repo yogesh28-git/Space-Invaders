@@ -46,4 +46,9 @@ namespace Player
 	{
 		game_window->draw(player_sprite);
 	}
+
+	const sf::Sprite& PlayerView::getPlayerSprite()
+	{
+		return player_sprite;
+	}
 }

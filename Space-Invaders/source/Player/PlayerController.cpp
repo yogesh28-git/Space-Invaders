@@ -56,6 +56,15 @@ namespace Player
 		return player_model->getPlayerState();
 	}
 
+	const sf::Sprite& PlayerController::getColliderSprite()
+	{
+		return player_view->getPlayerSprite();
+	}
+
+	void PlayerController::onCollision(ICollider* other_collider)
+	{
+	}
+
 	void PlayerController::processPlayerInput()
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();

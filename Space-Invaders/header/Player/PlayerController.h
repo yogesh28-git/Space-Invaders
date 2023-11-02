@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../Collision/ICollider.h"
 
 namespace Player
 {
@@ -8,7 +9,7 @@ namespace Player
 
     enum class PlayerState;
 
-    class PlayerController
+    class PlayerController : public Collision::ICollider
     {
     private:
         const float player_movement_speed = 350.0f;
@@ -37,5 +38,8 @@ namespace Player
         sf::Vector2f getPlayerPosition();
         int getPlayerScore();
         PlayerState getPlayerState();
+
+        const sf::Sprite& getColliderSprite() override;
+        void onCollision(ICollider* other_collider) override;
     };
 }
