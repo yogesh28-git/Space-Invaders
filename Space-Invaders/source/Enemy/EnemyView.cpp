@@ -1,13 +1,13 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Enemy/EnemyController.h"
 
 namespace Enemy
 {
 	using namespace Global;
-	using namespace Main;
+	using namespace Graphics;
 
 	EnemyView::EnemyView() { }
 

@@ -1,11 +1,12 @@
 #include "../../header/Main/GameService.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/UI/UIService.h"
 
 namespace Main
 {
 	using namespace Global;
+	using namespace Graphics;
 	using namespace Event;
 	using namespace UI;
 

@@ -1,12 +1,12 @@
 #include "../../header/Gameplay/GameplayView.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
 
 namespace Gameplay
 {
 	using namespace Global;
-	using namespace Main;
+	using namespace Graphics;
 
 	GameplayView::GameplayView() { }
 
