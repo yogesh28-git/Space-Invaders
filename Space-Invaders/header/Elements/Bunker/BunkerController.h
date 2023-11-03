@@ -23,6 +23,7 @@ namespace Element
             void render();
 
             sf::Vector2f getBunkerPosition();
+
             const sf::Sprite& getColliderSprite() override;
             void onCollision(ICollider* other_collider) override;
         };

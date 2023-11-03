@@ -7,6 +7,7 @@
 #include "../../header/Entity/EntityConfig.h"
 #include "../../header/Bullet/BulletController.h"
 #include "../../header/Enemy/EnemyController.h"
+#include "../../header/Powerup/PowerupController.h"
 
 namespace Player
 {
@@ -16,6 +17,7 @@ namespace Player
 	using namespace Bullet;
 	using namespace Entity;
 	using namespace Enemy;
+	using namespace Powerup;
 
 	PlayerController::PlayerController()
 	{
@@ -73,8 +75,16 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
-		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
+		if (powerup_controller)
+		{
+			processPowerup(powerup_controller->getPowerupType());
+			return;
+		}
 
+		if (player_model->isShieldEnabled()) return;
+
+		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
 			ServiceLocator::getInstance()->getGameplayService()->restart();
@@ -82,12 +92,87 @@ namespace Player
 		}
 
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
-
 		if (enemy_controller)
 		{
 			ServiceLocator::getInstance()->getGameplayService()->restart();
 			return;
 		}
+	}
+
+	void PlayerController::updatePowerupDuration()
+	{
+		if (elapsed_shield_duration > 0)
+		{
+			elapsed_shield_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			if (elapsed_shield_duration <= 0) disableShield();
+		}
+
+		if (elapsed_rapid_fire_duration > 0)
+		{
+			elapsed_rapid_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			if (elapsed_rapid_fire_duration <= 0) disableRapidFire();
+		}
+
+		if (elapsed_tripple_laser_duration > 0)
+		{
+			elapsed_tripple_laser_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			if (elapsed_tripple_laser_duration <= 0) disableTrippleLaser();
+		}
+	}
+
+	void PlayerController::processPowerup(Powerup::PowerupType power_type)
+	{
+		switch (power_type)
+		{
+		case Powerup::PowerupType::SHIELD:
+			enableShield();
+			break;
+
+		case Powerup::PowerupType::RAPID_FIRE:
+			enableRapidFire();
+			break;
+
+		case Powerup::PowerupType::TRIPPLE_LASER:
+			enableTrippleLaser();
+			break;
+
+		case Powerup::PowerupType::OUTSCAL_BOMB:
+			ServiceLocator::getInstance()->getEnemyService()->reset();
+			break;
+		}
+	}
+
+	void PlayerController::enableShield()
+	{
+		elapsed_shield_duration = player_model->shiled_powerup_duration;
+		player_model->setShieldState(true);
+	}
+
+	void PlayerController::disableShield()
+	{
+		player_model->setShieldState(false);
+	}
+
+	void PlayerController::enableRapidFire()
+	{
+		elapsed_rapid_fire_duration = player_model->rapid_fire_powerup_duration;
+		player_model->setRapidFireState(true);
+	}
+
+	void PlayerController::disableRapidFire()
+	{
+		player_model->setRapidFireState(false);
+	}
+
+	void PlayerController::enableTrippleLaser()
+	{
+		elapsed_tripple_laser_duration = player_model->tripple_laser_powerup_duration;
+		player_model->setTrippleFireState(true);
+	}
+
+	void PlayerController::disableTrippleLaser()
+	{
+		player_model->setTrippleFireState(false);
 	}
 
 	void PlayerController::processPlayerInput()
@@ -102,18 +187,18 @@ namespace Player
 	void PlayerController::moveLeft()
 	{
 		sf::Vector2f currentPosition = player_model->getPlayerPosition();
-		currentPosition.x -= player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		currentPosition.x -= player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-		currentPosition.x = std::max(currentPosition.x, left_most_position.x);
+		currentPosition.x = std::max(currentPosition.x, player_model->left_most_position.x);
 		player_model->setPlayerPosition(currentPosition);
 	}
 
 	void PlayerController::moveRight()
 	{
 		sf::Vector2f currentPosition = player_model->getPlayerPosition();
-		currentPosition.x += player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		currentPosition.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-		currentPosition.x = std::min(currentPosition.x, right_most_position.x);
+		currentPosition.x = std::min(currentPosition.x, player_model->right_most_position.x);
 		player_model->setPlayerPosition(currentPosition);
 	}
 
@@ -121,7 +206,7 @@ namespace Player
 	{
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
 			player_model->getEntityType(),
-			player_model->getPlayerPosition() + barrel_position_offset,
+			player_model->getPlayerPosition() + player_model->barrel_position_offset,
 			Bullet::MovementDirection::UP);
 	}
 }

@@ -52,6 +52,6 @@ namespace Enemy
         EnemyType getEnemyType();
 
         const sf::Sprite& getColliderSprite() override;
-        void onCollision(ICollider* other_collider) override;
+        virtual void onCollision(ICollider* other_collider) override;
     };
 }

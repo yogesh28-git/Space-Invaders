@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Collision/ICollider.h"
+#include "../../header/Powerup/PowerupConfig.h"
 
 namespace Player
 {
@@ -12,11 +13,9 @@ namespace Player
     class PlayerController : public Collision::ICollider
     {
     private:
-        const float player_movement_speed = 350.0f;
-
-        const sf::Vector2f left_most_position = sf::Vector2f(50.f, 950.f);
-        const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 950.f);
-        const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 5.f);
+        float elapsed_shield_duration;
+        float elapsed_rapid_fire_duration;
+        float elapsed_tripple_laser_duration;
 
         PlayerView* player_view;
         PlayerModel* player_model;
@@ -26,6 +25,15 @@ namespace Player
         void moveRight();
 
         void FireBullet();
+        
+        void updatePowerupDuration();
+        void processPowerup(Powerup::PowerupType power_type);
+        void enableShield();
+        void disableShield();
+        void enableRapidFire();
+        void disableRapidFire();
+        void enableTrippleLaser();
+        void disableTrippleLaser();
 
     public:
         PlayerController();

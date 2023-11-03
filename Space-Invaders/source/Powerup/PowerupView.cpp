@@ -59,4 +59,6 @@ namespace Powerup
 	void PowerupView::update() { powerup_sprite.setPosition(powerup_controller->getPowerupPosition()); }
 
 	void PowerupView::render() { game_window->draw(powerup_sprite); }
+
+	const sf::Sprite& PowerupView::getPowerupSprite() { return powerup_sprite; }
 }
