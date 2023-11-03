@@ -185,6 +185,7 @@
     <ClInclude Include="header\Bullet\Controller\LaserBulletController.h" />
     <ClInclude Include="header\Bullet\Controller\TorpedoeController.h" />
     <ClInclude Include="header\Bullet\IBullet.h" />
+    <ClInclude Include="header\Entity\EntityConfig.h" />
     <ClInclude Include="header\Collision\CollisionService.h" />
     <ClInclude Include="header\Collision\ICollider.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerController.h" />

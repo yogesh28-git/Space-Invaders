@@ -4,14 +4,16 @@ namespace Bullet
 {
 	namespace Controller
 	{
-		TorpedoeController::TorpedoeController(BulletType type) : BulletController(type) { }
+		using namespace Entity;
+
+		TorpedoeController::TorpedoeController(BulletType bullet_type, Entity::EntityType owner_type) : BulletController(bullet_type, owner_type) { }
 
 		TorpedoeController::~TorpedoeController() { }
 
 		void TorpedoeController::initialize(sf::Vector2f position, MovementDirection direction)
 		{
 			BulletController::initialize(position, direction);
-			movement_speed = 100.f;
+			movement_speed = 200.f;
 		}
 	}
 }

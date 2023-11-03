@@ -43,5 +43,7 @@ namespace Element
 		void BunkerView::update() { }
 
 		void BunkerView::render() { game_window->draw(bunker_sprite); }
+
+		const sf::Sprite& BunkerView::getBunkerSprite() { return bunker_sprite; }
 	}
 }

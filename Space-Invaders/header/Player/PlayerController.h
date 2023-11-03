@@ -35,6 +35,8 @@ namespace Player
         void update();
         void render();
 
+        void reset();
+
         sf::Vector2f getPlayerPosition();
         int getPlayerScore();
         PlayerState getPlayerState();

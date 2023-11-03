@@ -3,15 +3,22 @@
 #include "../../header/Bullet/BulletModel.h"
 #include "../../header/Bullet/BulletConfig.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Player/PlayerController.h"
+#include "../../header/Enemy/EnemyController.h"
+#include "../../header/Elements/Bunker/BunkerController.h"
 
 namespace Bullet
 {
 	using namespace Global;
+	using namespace Entity;
+	using namespace Player;
+	using namespace Enemy;
+	using namespace Element::Bunker;
 
-	BulletController::BulletController(BulletType type)
+	BulletController::BulletController(BulletType bullet_type, EntityType owner_type)
 	{
 		bullet_view = new BulletView();
-		bullet_model = new BulletModel(type);
+		bullet_model = new BulletModel(bullet_type, owner_type);
 	}
 
 	BulletController::~BulletController()
@@ -75,5 +82,50 @@ namespace Bullet
 	BulletType BulletController::getBulletType()
 	{
 		return bullet_model->getBulletType();
+	}
+
+	Entity::EntityType BulletController::getOwnerEntityType()
+	{
+		return bullet_model->getOwnerEntityType();
+	}
+
+	const sf::Sprite& BulletController::getColliderSprite()
+	{
+		return bullet_view->getBulletSprite();
+	}
+
+	void BulletController::onCollision(ICollider* other_collider)
+	{
+		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
+
+		if (player_controller && getOwnerEntityType() != EntityType::PLAYER)
+		{
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+			return;
+		}
+
+		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
+
+		if (enemy_controller && getOwnerEntityType() != EntityType::ENEMY)
+		{
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+			return;
+		}
+
+		BunkerController* bunker_controller = dynamic_cast<BunkerController*>(other_collider);
+
+		if (bunker_controller)
+		{
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+			return;
+		}
+
+		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+
+		if (bullet_controller)
+		{
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+			return;
+		}
 	}
 }

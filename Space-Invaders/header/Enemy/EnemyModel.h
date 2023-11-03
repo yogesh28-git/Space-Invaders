@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -13,6 +14,7 @@ namespace Enemy
         sf::Vector2f reference_position = sf::Vector2f(50.f, 50.f);
         sf::Vector2f enemy_position;
 
+        Entity::EntityType entity_type;
         EnemyType enemy_type;
         EnemyState enemy_state;
         MovementDirection movement_direction;
@@ -37,5 +39,7 @@ namespace Enemy
 
         MovementDirection getMovementDirection();
         void setMovementDirection(MovementDirection direction);
+
+        Entity::EntityType getEntityType();
     };
 }

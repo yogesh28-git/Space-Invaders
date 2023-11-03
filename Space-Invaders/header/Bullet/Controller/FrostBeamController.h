@@ -8,7 +8,7 @@ namespace Bullet
         class FrostBeamController : public BulletController
         {
         public:
-            FrostBeamController(BulletType type);
+            FrostBeamController(BulletType bullet_type, Entity::EntityType owner_type);
             ~FrostBeamController();
 
             void initialize(sf::Vector2f position, MovementDirection direction) override;

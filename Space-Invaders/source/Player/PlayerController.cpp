@@ -4,6 +4,9 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/Bullet/BulletConfig.h"
+#include "../../header/Entity/EntityConfig.h"
+#include "../../header/Bullet/BulletController.h"
+#include "../../header/Enemy/EnemyController.h"
 
 namespace Player
 {
@@ -11,6 +14,8 @@ namespace Player
 	using namespace Event;
 	using namespace Time;
 	using namespace Bullet;
+	using namespace Entity;
+	using namespace Enemy;
 
 	PlayerController::PlayerController()
 	{
@@ -41,6 +46,11 @@ namespace Player
 		player_view->render();
 	}
 
+	void PlayerController::reset()
+	{
+		player_model->reset();
+	}
+
 	sf::Vector2f PlayerController::getPlayerPosition()
 	{
 		return player_model->getPlayerPosition();
@@ -63,6 +73,21 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
+		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+
+		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
+		{
+			ServiceLocator::getInstance()->getGameplayService()->restart();
+			return;
+		}
+
+		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
+
+		if (enemy_controller)
+		{
+			ServiceLocator::getInstance()->getGameplayService()->restart();
+			return;
+		}
 	}
 
 	void PlayerController::processPlayerInput()
@@ -95,6 +120,7 @@ namespace Player
 	void PlayerController::FireBullet()
 	{
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
+			player_model->getEntityType(),
 			player_model->getPlayerPosition() + barrel_position_offset,
 			Bullet::MovementDirection::UP);
 	}

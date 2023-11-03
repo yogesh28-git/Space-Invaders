@@ -24,6 +24,8 @@ namespace Bullet
 
 	void BulletView::render() { game_window->draw(bullet_sprite); }
 
+	const sf::Sprite& BulletView::getBulletSprite() { return bullet_sprite; }
+
 	void BulletView::initializeBulletSprite()
 	{
 		if (bullet_texture.loadFromFile(getBulletTexturePath()))

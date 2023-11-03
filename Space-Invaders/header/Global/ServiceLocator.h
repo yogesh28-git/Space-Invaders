@@ -10,6 +10,7 @@
 #include "../../header/Elements/ElementService.h"
 #include "../../header/Bullet/BulletService.h"
 #include "../../header/Powerup/PowerupService.h"
+#include "../../header/Collision/CollisionService.h"
 
 namespace Global
 {
@@ -27,6 +28,7 @@ namespace Global
         Element::ElementService* element_service;
         Bullet::BulletService* bullet_service;
         Powerup::PowerupService* powerup_service;
+        Collision::CollisionService* collision_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -52,6 +54,7 @@ namespace Global
         Element::ElementService* getElementService();
         Bullet::BulletService* getBulletService();
         Powerup::PowerupService* getPowerupService();
+        Collision::CollisionService* getCollisionService();
         void deleteServiceLocator();
     };
 }

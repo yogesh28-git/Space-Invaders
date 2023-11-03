@@ -8,7 +8,7 @@ namespace Bullet
         class TorpedoeController : public BulletController
         {
         public:
-            TorpedoeController(BulletType type);
+            TorpedoeController(BulletType bullet_type, Entity::EntityType owner_type);
             ~TorpedoeController();
 
             void initialize(sf::Vector2f position, MovementDirection direction) override;

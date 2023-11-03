@@ -12,9 +12,8 @@ namespace Collision
 	void CollisionService::update()
 	{
 		processCollision();
+		b_reset = false;
 	}
-
-	void CollisionService::render() { }
 
 	void CollisionService::processCollision()
 	{
@@ -27,11 +26,17 @@ namespace Collision
 
 				if (collider_one_sprite.getGlobalBounds().intersects(collider_two_sprite.getGlobalBounds()))
 				{
-					collider_list[i]->onCollision(collider_list[j]);
-					collider_list[j]->onCollision(collider_list[i]);
+					if (isValidCollision(i, j)) collider_list[i]->onCollision(collider_list[j]);
+					if (isValidCollision(i, j)) collider_list[j]->onCollision(collider_list[i]);
 				}
 			}
 		}
+	}
+
+	bool CollisionService::isValidCollision(int index_i, int index_j)
+	{
+		return (index_i < collider_list.size() && index_j < collider_list.size() &&
+			collider_list[index_i] != nullptr && collider_list[index_j] != nullptr);
 	}
 
 	void CollisionService::addCollider(ICollider* collider)
@@ -41,6 +46,6 @@ namespace Collision
 
 	void CollisionService::removeCollider(ICollider* collider)
 	{
-		// TODO
+		collider_list.erase(std::remove(collider_list.begin(), collider_list.end(), collider), collider_list.end());
 	}
 }

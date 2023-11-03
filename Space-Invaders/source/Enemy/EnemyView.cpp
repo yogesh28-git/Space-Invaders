@@ -48,6 +48,11 @@ namespace Enemy
 		game_window->draw(enemy_sprite);
 	}
 
+	const sf::Sprite& EnemyView::getEnemySprite()
+	{
+		return enemy_sprite;
+	}
+
 	sf::String EnemyView::getEnemyTexturePath()
 	{
 		switch (enemy_controller->getEnemyType())
