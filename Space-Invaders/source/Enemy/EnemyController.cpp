@@ -120,7 +120,6 @@ namespace Enemy
 	void EnemyController::onCollision(ICollider* other_collider)
 	{
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
-
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 		{
 			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
@@ -128,7 +127,6 @@ namespace Enemy
 		}
 
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
-
 		if (player_controller)
 		{
 			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);

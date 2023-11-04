@@ -20,6 +20,11 @@ namespace Bullet
 
         void updateBulletPosition();
 
+        void processBulletCollision(ICollider* other_collider);
+        void processEnemyCollision(ICollider* other_collider);
+        void processPlayerCollision(ICollider* other_collider);
+        void processBunkerCollision(ICollider* other_collider);
+
         void moveUp();
         void moveDown();
 

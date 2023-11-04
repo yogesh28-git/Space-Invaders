@@ -18,6 +18,7 @@ namespace Player
         float elapsed_tripple_laser_duration;
 
         float elapsed_fire_duration;
+        float elapsed_freez_duration;
 
         PlayerView* player_view;
         PlayerModel* player_model;
@@ -25,6 +26,11 @@ namespace Player
         void processPlayerInput();
         void moveLeft();
         void moveRight();
+
+        void processBulletCollision(ICollider* other_collider);
+        void processPowerupCollision(ICollider* other_collider);
+        void processEnemyCollision(ICollider* other_collider);
+        void updateFreezDuration();
 
         void updateFireDuration();
         void processBulletFire();

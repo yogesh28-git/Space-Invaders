@@ -39,9 +39,19 @@ namespace Player
 
 	void PlayerController::update()
 	{
+		switch (player_model->getPlayerState())
+		{
+		case::Player::PlayerState::ALIVE:
+			processPlayerInput();
+			break;
+
+		case::Player::PlayerState::FROZEN:
+			updateFreezDuration();
+			break;
+		}
+
 		updatePowerupDuration();
 		updateFireDuration();
-		processPlayerInput();
 		player_view->update();
 	}
 
@@ -77,28 +87,38 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
-		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
-		if (powerup_controller)
-		{
-			processPowerup(powerup_controller->getPowerupType());
-			return;
-		}
+		processPowerupCollision(other_collider);
+		processBulletCollision(other_collider);
+		processEnemyCollision(other_collider);
+	}
 
+	void PlayerController::processBulletCollision(ICollider* other_collider)
+	{
 		if (player_model->isShieldEnabled()) return;
-
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
-			ServiceLocator::getInstance()->getGameplayService()->restart();
-			return;
+			if (bullet_controller->getBulletType() == BulletType::FROST_BEAM)
+			{
+				player_model->setPlayerState(PlayerState::FROZEN);
+				elapsed_freez_duration = player_model->freez_duration;
+			}
+			else ServiceLocator::getInstance()->getGameplayService()->restart();
 		}
+	}
 
+	void PlayerController::processEnemyCollision(ICollider* other_collider)
+	{
+		if (player_model->isShieldEnabled()) return;
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
-		if (enemy_controller)
-		{
-			ServiceLocator::getInstance()->getGameplayService()->restart();
-			return;
-		}
+		if (enemy_controller) ServiceLocator::getInstance()->getGameplayService()->restart();
+	}
+
+	void PlayerController::processPowerupCollision(ICollider* other_collider)
+	{
+		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
+		if (powerup_controller) processPowerup(powerup_controller->getPowerupType());
 	}
 
 	void PlayerController::updatePowerupDuration()
@@ -212,6 +232,15 @@ namespace Player
 		}
 	}
 
+	void PlayerController::updateFreezDuration()
+	{
+		if (elapsed_freez_duration > 0)
+		{
+			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			if (elapsed_freez_duration <= 0) player_model->setPlayerState(PlayerState::ALIVE);
+		}
+	}
+
 	void PlayerController::processBulletFire()
 	{
 		if (elapsed_fire_duration > 0) return;
@@ -236,7 +265,7 @@ namespace Player
 
 	void PlayerController::FireBullet(sf::Vector2f position)
 	{
-		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM, 
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, 
 				player_model->getEntityType(), position, Bullet::MovementDirection::UP);
 	}
 }

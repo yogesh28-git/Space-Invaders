@@ -36,6 +36,8 @@ namespace Player
         const float rapid_fire_powerup_duration = 10.f;
         const float tripple_laser_powerup_duration = 10.f;
 
+        const float freez_duration = 2.f;
+
         const float fire_cooldown_duration = 1.f;
         const float rapid_fire_cooldown_duration = 0.2f;
 
