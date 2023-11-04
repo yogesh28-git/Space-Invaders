@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Bullet\BulletConfig.cpp" />
     <ClCompile Include="source\Bullet\BulletController.cpp" />
     <ClCompile Include="source\Bullet\BulletModel.cpp" />
     <ClCompile Include="source\Bullet\BulletService.cpp" />

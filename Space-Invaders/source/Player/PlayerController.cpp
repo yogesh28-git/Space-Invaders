@@ -87,38 +87,48 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
-		processPowerupCollision(other_collider);
-		processBulletCollision(other_collider);
+		if(processPowerupCollision(other_collider)) return;
+		if(processBulletCollision(other_collider)) return;
 		processEnemyCollision(other_collider);
 	}
 
-	void PlayerController::processBulletCollision(ICollider* other_collider)
+	bool PlayerController::processBulletCollision(ICollider* other_collider)
 	{
-		if (player_model->isShieldEnabled()) return;
+		if (player_model->isShieldEnabled()) return false;
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
-			if (bullet_controller->getBulletType() == BulletType::FROST_BEAM)
-			{
-				player_model->setPlayerState(PlayerState::FROZEN);
-				elapsed_freez_duration = player_model->freez_duration;
-			}
+			if (bullet_controller->getBulletType() == BulletType::FROST_BEAM) freezPlayer();
 			else ServiceLocator::getInstance()->getGameplayService()->restart();
+
+			return true;
 		}
+		return false;
 	}
 
-	void PlayerController::processEnemyCollision(ICollider* other_collider)
+	bool PlayerController::processEnemyCollision(ICollider* other_collider)
 	{
-		if (player_model->isShieldEnabled()) return;
+		if (player_model->isShieldEnabled()) return false;
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
-		if (enemy_controller) ServiceLocator::getInstance()->getGameplayService()->restart();
+
+		if (enemy_controller)
+		{
+			ServiceLocator::getInstance()->getGameplayService()->restart();
+			return true;
+		}
+		return false;
 	}
 
-	void PlayerController::processPowerupCollision(ICollider* other_collider)
+	bool PlayerController::processPowerupCollision(ICollider* other_collider)
 	{
 		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
-		if (powerup_controller) processPowerup(powerup_controller->getPowerupType());
+		if (powerup_controller)
+		{
+			processPowerup(powerup_controller->getPowerupType());
+			return true;
+		}
+		return false;
 	}
 
 	void PlayerController::updatePowerupDuration()
@@ -164,15 +174,24 @@ namespace Player
 		}
 	}
 
+	void PlayerController::freezPlayer()
+	{
+		player_model->setPlayerState(PlayerState::FROZEN);
+		elapsed_freez_duration = player_model->freez_duration;
+		player_view->setPlayerHighlight(true);
+	}
+
 	void PlayerController::enableShield()
 	{
 		elapsed_shield_duration = player_model->shiled_powerup_duration;
 		player_model->setShieldState(true);
+		player_view->setPlayerHighlight(true);
 	}
 
 	void PlayerController::disableShield()
 	{
 		player_model->setShieldState(false);
+		player_view->setPlayerHighlight(false);
 	}
 
 	void PlayerController::enableRapidFire()
@@ -234,10 +253,15 @@ namespace Player
 
 	void PlayerController::updateFreezDuration()
 	{
-		if (elapsed_freez_duration > 0)
+		if (elapsed_freez_duration >= 0)
 		{
 			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			if (elapsed_freez_duration <= 0) player_model->setPlayerState(PlayerState::ALIVE);
+
+			if (elapsed_freez_duration <= 0)
+			{
+				player_model->setPlayerState(PlayerState::ALIVE);
+				player_view->setPlayerHighlight(false);
+			}
 		}
 	}
 

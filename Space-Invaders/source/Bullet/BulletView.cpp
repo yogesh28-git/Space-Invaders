@@ -28,7 +28,7 @@ namespace Bullet
 
 	void BulletView::initializeBulletSprite()
 	{
-		if (bullet_texture.loadFromFile(getBulletTexturePath()))
+		if (bullet_texture.loadFromFile(BulletConfig::getBulletTexturePath(bullet_controller->getBulletType())))
 		{
 			bullet_sprite.setTexture(bullet_texture);
 			scaleBulletSprite();
@@ -41,20 +41,5 @@ namespace Bullet
 			static_cast<float>(bullet_sprite_width) / bullet_sprite.getTexture()->getSize().x,
 			static_cast<float>(bullet_sprite_height) / bullet_sprite.getTexture()->getSize().y
 		);
-	}
-
-	sf::String BulletView::getBulletTexturePath()
-	{
-		switch (bullet_controller->getBulletType())
-		{
-		case::Bullet::BulletType::LASER_BULLET:
-			return Config::laser_bullet_texture_path;
-
-		case::Bullet::BulletType::FROST_BEAM:
-			return Config::frost_beam_texture_path;
-
-		case::Bullet::BulletType::TORPEDOE:
-			return Config::torpedoe_texture_path;
-		}
 	}
 }

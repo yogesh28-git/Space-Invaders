@@ -27,10 +27,11 @@ namespace Player
         void moveLeft();
         void moveRight();
 
-        void processBulletCollision(ICollider* other_collider);
-        void processPowerupCollision(ICollider* other_collider);
-        void processEnemyCollision(ICollider* other_collider);
+        bool processBulletCollision(ICollider* other_collider);
+        bool processPowerupCollision(ICollider* other_collider);
+        bool processEnemyCollision(ICollider* other_collider);
         void updateFreezDuration();
+        void freezPlayer();
 
         void updateFireDuration();
         void processBulletFire();

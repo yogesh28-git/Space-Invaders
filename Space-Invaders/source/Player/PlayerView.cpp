@@ -47,6 +47,16 @@ namespace Player
 		game_window->draw(player_sprite);
 	}
 
+	void PlayerView::setPlayerHighlight(bool b_highlight)
+	{
+		sf::Color player_color = player_sprite.getColor();
+
+		if (b_highlight) player_color.a = invincible_player_alpha;
+		else player_color.a = 255;
+		
+		player_sprite.setColor(player_color);
+	}
+
 	const sf::Sprite& PlayerView::getPlayerSprite()
 	{
 		return player_sprite;

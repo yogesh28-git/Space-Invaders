@@ -19,7 +19,6 @@ namespace Bullet
 
         void initializeBulletSprite();
         void scaleBulletSprite();
-        sf::String getBulletTexturePath();
 
     public:
         BulletView();

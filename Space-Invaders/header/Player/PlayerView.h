@@ -10,9 +10,9 @@ namespace Player
     private:
         const float player_sprite_width = 60.f;
         const float player_sprite_height = 60.f;
+        const float invincible_player_alpha = 170.f;
 
         PlayerController* player_controller;
-
         sf::RenderWindow* game_window;
         sf::Texture player_texture;
         sf::Sprite player_sprite;
@@ -28,6 +28,7 @@ namespace Player
         void update();
         void render();
 
+        void setPlayerHighlight(bool b_highlight);
         const sf::Sprite& getPlayerSprite();
     };
 }
