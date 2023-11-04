@@ -39,15 +39,17 @@ namespace Element
 
 	void ElementService::destroyBunker(Bunker::BunkerController* bunker_controller)
 	{
-		ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(bunker_controller));
-
 		flagged_bunker_list.push_back(bunker_controller);
 		bunker_list.erase(std::remove(bunker_list.begin(), bunker_list.end(), bunker_controller), bunker_list.end());
 	}
 
 	void ElementService::destroyFlaggedBunkers()
 	{
-		for (int i = 0; i < flagged_bunker_list.size(); i++) delete (flagged_bunker_list[i]);
+		for (int i = 0; i < flagged_bunker_list.size(); i++)
+		{
+			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(flagged_bunker_list[i]));
+			delete (flagged_bunker_list[i]);
+		}
 		flagged_bunker_list.clear();
 	}
 

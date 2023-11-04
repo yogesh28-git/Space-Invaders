@@ -97,7 +97,6 @@ namespace Bullet
 	void BulletController::onCollision(ICollider* other_collider)
 	{
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
-
 		if (player_controller && getOwnerEntityType() != EntityType::PLAYER)
 		{
 			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
@@ -105,7 +104,6 @@ namespace Bullet
 		}
 
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
-
 		if (enemy_controller && getOwnerEntityType() != EntityType::ENEMY)
 		{
 			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
@@ -113,7 +111,6 @@ namespace Bullet
 		}
 
 		BunkerController* bunker_controller = dynamic_cast<BunkerController*>(other_collider);
-
 		if (bunker_controller)
 		{
 			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
@@ -121,7 +118,6 @@ namespace Bullet
 		}
 
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
-
 		if (bullet_controller)
 		{
 			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);

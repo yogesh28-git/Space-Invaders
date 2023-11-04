@@ -16,6 +16,8 @@ namespace Bullet
 		std::vector<BulletController*> flagged_bullet_list;
 
 		BulletController* createBullet(BulletType bullet_type, Entity::EntityType owner_type);
+
+		bool isValidBullet(int index_i, std::vector<BulletController*>& bullet_list);
 		void destroyFlaggedBullets();
 		void destroy();
 

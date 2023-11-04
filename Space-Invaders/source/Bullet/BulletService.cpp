@@ -18,7 +18,11 @@ namespace Bullet
 
 	BulletService::~BulletService() { destroy(); }
 
-	void BulletService::initialize() { }
+	void BulletService::initialize() 
+	{
+		bullet_list.clear();
+		flagged_bullet_list.clear();
+	}
 
 	void BulletService::update()
 	{
@@ -46,10 +50,17 @@ namespace Bullet
 		}
 	}
 
+	bool BulletService::isValidBullet(int index, std::vector<BulletController*>& bullet_list)
+	{
+		return index >= 0 && index < bullet_list.size() && bullet_list[index] != nullptr;
+	}
+
 	void BulletService::destroyFlaggedBullets()
 	{
 		for (int i = 0; i < flagged_bullet_list.size(); i++)
 		{
+			if (!isValidBullet(i, flagged_bullet_list)) continue;
+
 			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(flagged_bullet_list[i]));
 			delete (flagged_bullet_list[i]);
 		}
@@ -60,6 +71,8 @@ namespace Bullet
 	{
 		for (int i = 0; i < bullet_list.size(); i++)
 		{
+			if (!isValidBullet(i, bullet_list)) continue;
+
 			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(bullet_list[i]));
 			delete (bullet_list[i]);
 		}

@@ -17,6 +17,8 @@ namespace Player
         float elapsed_rapid_fire_duration;
         float elapsed_tripple_laser_duration;
 
+        float elapsed_fire_duration;
+
         PlayerView* player_view;
         PlayerModel* player_model;
 
@@ -24,7 +26,10 @@ namespace Player
         void moveLeft();
         void moveRight();
 
-        void FireBullet();
+        void updateFireDuration();
+        void processBulletFire();
+        void FireBullets(int number_of_bullets);
+        void FireBullet(sf::Vector2f position);
         
         void updatePowerupDuration();
         void processPowerup(Powerup::PowerupType power_type);

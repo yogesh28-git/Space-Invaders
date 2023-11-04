@@ -39,6 +39,8 @@ namespace Player
 
 	void PlayerController::update()
 	{
+		updatePowerupDuration();
+		updateFireDuration();
 		processPlayerInput();
 		player_view->update();
 	}
@@ -181,7 +183,7 @@ namespace Player
 
 		if (event_service->pressedLeftArrowKey()) moveLeft();	
 		if (event_service->pressedRightArrowKey()) moveRight();
-		if (event_service->pressedLeftMouseButton()) FireBullet();
+		if (event_service->pressedLeftMouseButton()) processBulletFire();
 	}
 
 	void PlayerController::moveLeft()
@@ -202,11 +204,39 @@ namespace Player
 		player_model->setPlayerPosition(currentPosition);
 	}
 
-	void PlayerController::FireBullet()
+	void PlayerController::updateFireDuration()
 	{
-		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
-			player_model->getEntityType(),
-			player_model->getPlayerPosition() + player_model->barrel_position_offset,
-			Bullet::MovementDirection::UP);
+		if (elapsed_fire_duration >= 0)
+		{
+			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		}
+	}
+
+	void PlayerController::processBulletFire()
+	{
+		if (elapsed_fire_duration > 0) return;
+		
+		if (player_model->isTrippleLaserEnabled()) FireBullets(player_model->tripple_laser_bullet_fire_count);
+		else FireBullets(1);
+
+		if (player_model->isRapidFireEnabled()) elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
+		else elapsed_fire_duration = player_model->fire_cooldown_duration;
+	}
+
+	void PlayerController::FireBullets(int number_of_bullets)
+	{
+		for (int i = 0; i < number_of_bullets; i++)
+		{
+			sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
+			sf::Vector2f bullet_offset = sf::Vector2f(0, (player_model->tripple_laser_position_offset * i));
+
+			FireBullet(bullet_position - bullet_offset);
+		}
+	}
+
+	void PlayerController::FireBullet(sf::Vector2f position)
+	{
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM, 
+				player_model->getEntityType(), position, Bullet::MovementDirection::UP);
 	}
 }

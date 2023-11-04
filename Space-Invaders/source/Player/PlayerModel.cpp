@@ -13,6 +13,10 @@ namespace Player
 		player_state = PlayerState::ALIVE;
 		player_position = initial_player_position;
 		player_score = 0;
+
+		b_shield = false;
+		b_rapid_fire = false;
+		b_tripple_laser = false;
 	}
 
 	sf::Vector2f PlayerModel::getPlayerPosition()
