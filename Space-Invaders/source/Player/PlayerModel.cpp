@@ -2,9 +2,10 @@
 
 namespace Player
 {
-	int PlayerModel::player_score = 0;
-	int PlayerModel::enemies_killed = 0;
-	int PlayerModel::bullets_fired = 0;
+	int PlayerModel::player_lives;
+	int PlayerModel::player_score;
+	int PlayerModel::enemies_killed;
+	int PlayerModel::bullets_fired;
 
 	PlayerModel::PlayerModel() { entity_type = Entity::EntityType::PLAYER; }
 
@@ -16,7 +17,10 @@ namespace Player
 	{
 		player_state = PlayerState::ALIVE;
 		player_position = initial_player_position;
+		player_lives = max_player_lives;
 		player_score = 0;
+		enemies_killed = 0;
+		bullets_fired = 0;
 
 		b_shield = false;
 		b_rapid_fire = false;

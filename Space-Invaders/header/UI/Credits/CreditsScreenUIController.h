@@ -11,11 +11,11 @@ namespace UI
 		private:
 			const sf::String game_title = "Outscal Presents - Space Invaders";
 
-			const float text_top_offset = 140.f;
-			const int font_size = 50;
+			const float text_top_offset = 200.f;
+			const int font_size = 80;
 
-			const float menu_button_top_offset = 400.f;
-			const float quit_button_top_offset = 600.f;
+			const float menu_button_top_offset = 500.f;
+			const float quit_button_top_offset = 700.f;
 			const sf::Color text_color = sf::Color::White;
 
 			const float button_width = 400.f;

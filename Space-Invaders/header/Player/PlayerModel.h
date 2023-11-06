@@ -19,11 +19,13 @@ namespace Player
         friend class PlayerController;
 
         const sf::Vector2f initial_player_position = sf::Vector2f(950.f, 950.f);
+        const int max_player_lives = 3;
 
         sf::Vector2f player_position;
         Entity::EntityType entity_type;
         PlayerState player_state;
 
+        static int player_lives;
         static int player_score;
         static int enemies_killed;
         static int bullets_fired;

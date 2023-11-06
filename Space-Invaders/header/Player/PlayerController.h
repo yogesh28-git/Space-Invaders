@@ -57,6 +57,7 @@ namespace Player
 
         void reset();
 
+        void decreasePlayerLive();
         void increaseScore(int val);
         void decreaseScore(int val);
         void increaseEnemiesKilled(int val);

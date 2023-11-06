@@ -19,7 +19,28 @@ namespace UI
 
         GameplayUIController::~GameplayUIController() = default;
 
-        void GameplayUIController::initialize() { initializeTexts(); }
+        void GameplayUIController::initialize() 
+        {
+            initializeTexts();
+            initializePlayerSprite();
+        }
+
+        void GameplayUIController::initializePlayerSprite()
+        {
+            if (player_texture.loadFromFile(Config::player_texture_path))
+            {
+                player_sprite.setTexture(player_texture);
+                scalePlayerSprite();
+            }
+        }
+
+        void GameplayUIController::scalePlayerSprite()
+        {
+            player_sprite.setScale(
+                static_cast<float>(player_sprite_width) / player_sprite.getTexture()->getSize().x,
+                static_cast<float>(player_sprite_height) / player_sprite.getTexture()->getSize().y
+            );
+        }
 
         void GameplayUIController::initializeTexts()
         {
@@ -27,7 +48,6 @@ namespace UI
             {
                 initializeText(score_text, "Score : 0", sf::Vector2f(score_text_x_position, text_y_position));
                 initializeText(enemies_killed_text, "Enemies Killed : 0", sf::Vector2f(enemies_killed_text_x_position, text_y_position));
-                initializeText(bullets_fired_text, "Bullets Fired : 0", sf::Vector2f(bullets_fired_text_x_position, text_y_position));
             }
         }
 
@@ -44,7 +64,6 @@ namespace UI
         {
             updateScoreText();
             updateEnemiesKilledText();
-            updateBulletsFiredText();
         }
 
         void GameplayUIController::render()
@@ -53,7 +72,7 @@ namespace UI
 
             game_window->draw(score_text);
             game_window->draw(enemies_killed_text);
-            game_window->draw(bullets_fired_text);
+            drawPlayerLives();
         }
 
         void GameplayUIController::show() { }
@@ -70,10 +89,15 @@ namespace UI
             enemies_killed_text.setString(enemies_killed_string);
         }
 
-        void GameplayUIController::updateBulletsFiredText()
+        void GameplayUIController::drawPlayerLives()
         {
-            sf::String bullets_fired_string = "Bullets Fired  :  " + std::to_string(PlayerModel::bullets_fired);
-            bullets_fired_text.setString(bullets_fired_string);
+            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+            for (int i = 0; i < PlayerModel::player_lives; i++)
+            {
+                player_sprite.setPosition(sf::Vector2f(player_lives_x_offset - (i * player_lives_spacing), player_lives_y_offset));
+                game_window->draw(player_sprite);
+            }
         }
     }
 }

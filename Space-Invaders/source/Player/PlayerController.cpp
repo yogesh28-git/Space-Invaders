@@ -9,6 +9,7 @@
 #include "../../header/Enemy/EnemyController.h"
 #include "../../header/Powerup/PowerupController.h"
 #include "../../header/Sound/SoundService.h"
+#include "../../header/Main/GameService.h"
 
 namespace Player
 {
@@ -20,6 +21,7 @@ namespace Player
 	using namespace Enemy;
 	using namespace Powerup;
 	using namespace Sound;
+	using namespace Main;
 
 	PlayerController::PlayerController()
 	{
@@ -97,7 +99,7 @@ namespace Player
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
 			if (bullet_controller->getBulletType() == BulletType::FROST_BEAM) freezPlayer();
-			else ServiceLocator::getInstance()->getGameplayService()->restart();
+			else decreasePlayerLive();
 
 			return true;
 		}
@@ -111,7 +113,7 @@ namespace Player
 
 		if (enemy_controller)
 		{
-			ServiceLocator::getInstance()->getGameplayService()->restart();
+			decreasePlayerLive();
 			return true;
 		}
 		return false;
@@ -297,6 +299,12 @@ namespace Player
 		increaseBulletsFired(1);
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, 
 				player_model->getEntityType(), position, Bullet::MovementDirection::UP);
+	}
+
+	void PlayerController::decreasePlayerLive()
+	{
+		PlayerModel::player_lives -= 1;
+		if (PlayerModel::player_lives <= 0) GameService::setGameState(GameState::CREDITS);
 	}
 
 	void PlayerController::increaseScore(int val) { PlayerModel::player_score += val; }
