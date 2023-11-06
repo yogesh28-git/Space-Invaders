@@ -72,11 +72,6 @@ namespace Player
 		return player_model->getPlayerPosition();
 	}
 
-	int PlayerController::getPlayerScore()
-	{
-		return player_model->getPlayerScore();
-	}
-
 	PlayerState PlayerController::getPlayerState()
 	{
 		return player_model->getPlayerState();
@@ -263,7 +258,7 @@ namespace Player
 	{
 		if (elapsed_freez_duration >= 0)
 		{
-			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			elapsed_freez_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (elapsed_freez_duration <= 0)
 			{
@@ -299,7 +294,16 @@ namespace Player
 
 	void PlayerController::FireBullet(sf::Vector2f position)
 	{
+		increaseBulletsFired(1);
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, 
 				player_model->getEntityType(), position, Bullet::MovementDirection::UP);
 	}
+
+	void PlayerController::increaseScore(int val) { PlayerModel::player_score += val; }
+
+	void PlayerController::decreaseScore(int val) { PlayerModel::player_score -= val; }
+
+	void PlayerController::increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
+
+	void PlayerController::increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
 }

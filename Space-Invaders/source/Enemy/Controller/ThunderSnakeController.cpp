@@ -21,6 +21,7 @@ namespace Enemy
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(getInitialMovementDirection());
 			horizontal_movement_speed = 190.f;
+			enemy_weight = 3;
 		}
 
 		MovementDirection ThunderSnakeController::getInitialMovementDirection()
@@ -44,7 +45,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x <= left_most_position.x)
+			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
 			}
@@ -56,7 +57,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x >= right_most_position.x)
+			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::LEFT_DOWN);
 			}
@@ -71,7 +72,7 @@ namespace Enemy
 			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x <= left_most_position.x)
+			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::RIGHT);
 			}
@@ -84,7 +85,7 @@ namespace Enemy
 			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x >= right_most_position.x)
+			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::LEFT);
 			}
@@ -95,8 +96,14 @@ namespace Enemy
 		{
 			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDOE,
 				enemy_model->getEntityType(),
-				enemy_model->getEnemyPosition() + barrel_position_offset,
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
+		}
+
+		void ThunderSnakeController::destroy()
+		{
+			ServiceLocator::getInstance()->getPlayerService()->increaseScore(enemy_weight);
+			EnemyController::destroy();
 		}
 	}
 }

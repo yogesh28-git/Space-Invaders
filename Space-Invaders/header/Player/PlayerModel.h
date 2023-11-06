@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../header/Entity/EntityConfig.h"
+#include "../../header/UI/GameplayUI/GameplayUIController.h"
 
 namespace Player
 {
@@ -14,12 +15,18 @@ namespace Player
     class PlayerModel
     {
     private:
+        friend class UI::GameplayUI::GameplayUIController;
+        friend class PlayerController;
+
         const sf::Vector2f initial_player_position = sf::Vector2f(950.f, 950.f);
 
         sf::Vector2f player_position;
         Entity::EntityType entity_type;
         PlayerState player_state;
-        int player_score;
+
+        static int player_score;
+        static int enemies_killed;
+        static int bullets_fired;
 
         bool b_shield;
         bool b_rapid_fire;
@@ -52,9 +59,6 @@ namespace Player
 
         sf::Vector2f getPlayerPosition();
         void setPlayerPosition(sf::Vector2f position);
-
-        int getPlayerScore();
-        void setPlayerScore(int score);
 
         PlayerState getPlayerState();
         void setPlayerState(PlayerState state);

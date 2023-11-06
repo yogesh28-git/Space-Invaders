@@ -15,6 +15,7 @@ namespace Enemy
             void moveDiagonalRight() override;
 
             void fireBullet() override;
+            void destroy() override;
 
         public:
             SubzeroController(EnemyType type);

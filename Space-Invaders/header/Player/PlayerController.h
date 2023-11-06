@@ -57,8 +57,12 @@ namespace Player
 
         void reset();
 
+        void increaseScore(int val);
+        void decreaseScore(int val);
+        void increaseEnemiesKilled(int val);
+        void increaseBulletsFired(int val);
+
         sf::Vector2f getPlayerPosition();
-        int getPlayerScore();
         PlayerState getPlayerState();
 
         const sf::Sprite& getColliderSprite() override;

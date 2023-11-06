@@ -22,6 +22,7 @@ namespace Enemy
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
 			cooldown_fire_duration = 5.f;
+			enemy_weight = 2;
 		}
 
 		void SubzeroController::moveLeft() { }
@@ -44,8 +45,14 @@ namespace Enemy
 		{
 			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
 				enemy_model->getEntityType(),
-				enemy_model->getEnemyPosition() + barrel_position_offset,
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
+		}
+
+		void SubzeroController::destroy()
+		{
+			ServiceLocator::getInstance()->getPlayerService()->increaseScore(enemy_weight);
+			EnemyController::destroy();
 		}
 	}
 }

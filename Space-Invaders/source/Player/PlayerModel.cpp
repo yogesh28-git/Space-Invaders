@@ -2,6 +2,10 @@
 
 namespace Player
 {
+	int PlayerModel::player_score = 0;
+	int PlayerModel::enemies_killed = 0;
+	int PlayerModel::bullets_fired = 0;
+
 	PlayerModel::PlayerModel() { entity_type = Entity::EntityType::PLAYER; }
 
 	PlayerModel::~PlayerModel() { }
@@ -27,16 +31,6 @@ namespace Player
 	void PlayerModel::setPlayerPosition(sf::Vector2f position)
 	{
 		player_position = position;
-	}
-
-	int PlayerModel::getPlayerScore()
-	{
-		return player_score;
-	}
-
-	void PlayerModel::setPlayerScore(int score)
-	{
-		player_score = score;
 	}
 
 	PlayerState PlayerModel::getPlayerState()

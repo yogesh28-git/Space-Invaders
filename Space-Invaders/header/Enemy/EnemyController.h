@@ -13,15 +13,13 @@ namespace Enemy
     class EnemyController : public Collision::ICollider
     {
     protected:
-        const sf::Vector2f left_most_position = sf::Vector2f(50.f, 50.f);
-        const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 50.f);
-        const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 50.f);
-
         float vertical_movement_speed = 30.f;
         float horizontal_movement_speed = 200.0f;
 
         float cooldown_fire_duration = 3.f;
         float elapsed_fire_duration = 0.f;
+
+        int enemy_weight = 1;
 
         EnemyView* enemy_view;
         EnemyModel* enemy_model;
@@ -38,7 +36,7 @@ namespace Enemy
         virtual void moveDiagonalRight() = 0;
 
         sf::Vector2f getRandomInitialPosition();
-        void destroy();
+        virtual void destroy();
        
     public:
         EnemyController(EnemyType type);

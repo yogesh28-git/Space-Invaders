@@ -35,6 +35,21 @@ namespace Player
 		player_controller->render();
 	}
 
+	void PlayerService::increaseScore(int val)
+	{
+		player_controller->increaseScore(val);
+	}
+
+	void PlayerService::decreaseScore(int val)
+	{
+		player_controller->decreaseScore(val);
+	}
+
+	void PlayerService::increaseEnemiesKilled(int val)
+	{
+		player_controller->increaseEnemiesKilled(val);
+	}
+
 	void PlayerService::reset()
 	{
 		player_controller->reset();
