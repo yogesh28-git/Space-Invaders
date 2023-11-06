@@ -44,7 +44,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x <= left_most_position.x)
+			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::RIGHT_DOWN);
 			}
@@ -56,7 +56,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x >= right_most_position.x)
+			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::LEFT_DOWN);
 			}
@@ -71,7 +71,7 @@ namespace Enemy
 			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x <= left_most_position.x)
+			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::RIGHT);
 			}
@@ -84,7 +84,7 @@ namespace Enemy
 			currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x >= right_most_position.x)
+			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::LEFT);
 			}
@@ -94,7 +94,7 @@ namespace Enemy
 		void ThunderSnakeController::fireBullet()
 		{
 			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
-				enemy_model->getEnemyPosition() + barrel_position_offset,
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}
 	}

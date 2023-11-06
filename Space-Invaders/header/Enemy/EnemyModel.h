@@ -18,6 +18,10 @@ namespace Enemy
         MovementDirection movement_direction;
 
     public:
+        const sf::Vector2f left_most_position = sf::Vector2f(50.f, 50.f);
+        const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 50.f);
+        const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 50.f);
+
         EnemyModel(EnemyType type);
         ~EnemyModel();
 

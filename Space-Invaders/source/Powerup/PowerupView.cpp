@@ -8,7 +8,6 @@
 namespace Powerup
 {
 	using namespace Global;
-	using namespace Main;
 
 	PowerupView::PowerupView() { }
 

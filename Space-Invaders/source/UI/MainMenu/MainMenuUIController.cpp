@@ -82,9 +82,9 @@ namespace UI
         {
             float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
 
-            play_button_sprite.setPosition({ x_position, 500.f });
-            instructions_button_sprite.setPosition({ x_position, 700.f });
-            quit_button_sprite.setPosition({ x_position, 900.f });
+            play_button_sprite.setPosition({ x_position, play_button_top_offset });
+            instructions_button_sprite.setPosition({ x_position, instructions_button_top_offset });
+            quit_button_sprite.setPosition({ x_position, quit_button_top_offset });
         }
 
         void MainMenuUIController::update()

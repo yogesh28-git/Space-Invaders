@@ -27,7 +27,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x <= left_most_position.x)
+			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::RIGHT);
 			}
@@ -39,7 +39,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x >= right_most_position.x)
+			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::LEFT);
 			}

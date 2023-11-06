@@ -85,8 +85,9 @@ namespace Enemy
 
 	sf::Vector2f EnemyController::getRandomInitialPosition()
 	{
-		float x_position = left_most_position.x + (std::rand() % static_cast<int>(right_most_position.x - left_most_position.x));
-		float y_position = left_most_position.y;
+		float x_offset_distance = (std::rand() % static_cast<int>(enemy_model->right_most_position.x - enemy_model->left_most_position.x));
+		float x_position = enemy_model->left_most_position.x + x_offset_distance;
+		float y_position = enemy_model->left_most_position.y;
 
 		return sf::Vector2f(x_position, y_position);
 	}

@@ -27,7 +27,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x <= left_most_position.x)
+			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::DOWN);
 				enemy_model->setReferencePosition(currentPosition);
@@ -40,7 +40,7 @@ namespace Enemy
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (currentPosition.x >= right_most_position.x)
+			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
 				enemy_model->setMovementDirection(MovementDirection::DOWN);
 				enemy_model->setReferencePosition(currentPosition);
@@ -55,7 +55,7 @@ namespace Enemy
 
 			if (currentPosition.y >= enemy_model->getReferencePosition().y + vertical_travel_distance)
 			{
-				if (enemy_model->getReferencePosition().x <= left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
+				if (enemy_model->getReferencePosition().x <= enemy_model->left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
 				else enemy_model->setMovementDirection(MovementDirection::LEFT);
 			}
 			else enemy_model->setEnemyPosition(currentPosition);
@@ -68,7 +68,7 @@ namespace Enemy
 		void ZapperController::fireBullet()
 		{
 			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
-				enemy_model->getEnemyPosition() + barrel_position_offset,
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}
 	}

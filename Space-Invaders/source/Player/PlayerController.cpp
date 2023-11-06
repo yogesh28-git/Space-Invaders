@@ -86,7 +86,7 @@ namespace Player
 	void PlayerController::FireBullet()
 	{
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
-			player_model->getPlayerPosition() + barrel_position_offset,
+			player_model->getPlayerPosition() + player_model->barrel_position_offset,
 			Bullet::MovementDirection::UP);
 	}
 }
