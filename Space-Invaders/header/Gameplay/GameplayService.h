@@ -11,7 +11,7 @@ namespace Gameplay
 
 	public:
 		GameplayService();
-		virtual ~GameplayService();
+		~GameplayService();
 
 		void initialize();
 		void update();
