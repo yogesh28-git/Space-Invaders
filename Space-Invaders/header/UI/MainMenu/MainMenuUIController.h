@@ -9,12 +9,12 @@ namespace UI
 		class MainMenuUIController : public Interface::IUIController
 		{
 		private:
+			const float play_button_top_offset = 400.f;
+			const float instructions_button_top_offset = 600.f;
+			const float quit_button_top_offset = 800.f;
 
-			// Constants:
 			const float button_width = 400.f;
 			const float button_height = 140.f;
-
-			bool mouse_button_pressed = false;
 
 			sf::RenderWindow* game_window;
 
@@ -42,8 +42,7 @@ namespace UI
 			void scaleButton(sf::Sprite* button_to_scale);
 			void positionButtons();
 
-			bool pressedMouseButton();
-			void handleButtonInteractions();
+			void processButtonInteractions();
 			bool clickedButton(sf::Sprite*, sf::Vector2f);
 
 		public:

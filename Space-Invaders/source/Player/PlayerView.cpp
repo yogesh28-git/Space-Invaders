@@ -1,13 +1,13 @@
 #include "../../header/Player/PlayerView.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Player/PlayerController.h"
 
 namespace Player
 {
 	using namespace Global;
-	using namespace Main;
+	using namespace Graphics;
 
 	PlayerView::PlayerView() { }
 

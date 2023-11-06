@@ -1,6 +1,6 @@
 #include "../../header/Elements/Bunker/BunkerView.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Elements/Bunker/BunkerController.h"
 
@@ -9,7 +9,7 @@ namespace Element
 	namespace Bunker
 	{
 		using namespace Global;
-		using namespace Main;
+		using namespace Graphics;
 
 		BunkerView::BunkerView() { }
 
