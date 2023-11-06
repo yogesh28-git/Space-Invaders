@@ -125,7 +125,7 @@ namespace UI
             if (clickedButton(&instructions_button_sprite, mouse_position))
             {
                 ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
-                printf("Clicked Instruction Button \n");
+                GameService::setGameState(GameState::INSTRUCTIONS);
             }
 
             if (clickedButton(&quit_button_sprite, mouse_position))
