@@ -38,6 +38,7 @@ namespace Enemy
         virtual void moveDiagonalRight() = 0;
 
         sf::Vector2f getRandomInitialPosition();
+        void destroy();
        
     public:
         EnemyController(EnemyType type);

@@ -21,6 +21,9 @@ namespace Collision
 		{
 			for (int j = i + 1; j < collider_list.size(); j++)
 			{
+				if (collider_list[i]->getCollisionState() == CollisionState::DISABLED ||
+					collider_list[j]->getCollisionState() == CollisionState::DISABLED) continue;
+
 				const sf::Sprite& collider_one_sprite = collider_list[i]->getColliderSprite();
 				const sf::Sprite& collider_two_sprite = collider_list[j]->getColliderSprite();
 

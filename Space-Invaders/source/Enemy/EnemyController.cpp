@@ -7,6 +7,8 @@
 #include "../../header/Entity/EntityConfig.h"
 #include "../../header/Bullet/BulletController.h"
 #include "../../header/Player/PlayerController.h"
+#include "../../header/Particle/ParticleSystem.h"
+#include "../../header/Sound/SoundService.h"
 
 namespace Enemy
 {
@@ -16,6 +18,7 @@ namespace Enemy
 	using namespace Collision;
 	using namespace Entity;
 	using namespace Player;
+	using namespace Sound;
 
 	EnemyController::EnemyController(EnemyType type)
 	{
@@ -122,15 +125,23 @@ namespace Enemy
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 		{
-			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
+			destroy();
 			return;
 		}
 
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
 		if (player_controller)
 		{
-			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
+			destroy();
 			return;
 		}
+	}
+
+	void EnemyController::destroy()
+	{
+		ServiceLocator::getInstance()->getParticleService()->spawnParticleSystem(enemy_model->getEnemyPosition(),
+																				Particle::ParticlesType::EXPLOSION);
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
+		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 	}
 }

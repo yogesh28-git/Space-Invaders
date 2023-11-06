@@ -8,6 +8,7 @@
 #include "../../header/Bullet/BulletController.h"
 #include "../../header/Enemy/EnemyController.h"
 #include "../../header/Powerup/PowerupController.h"
+#include "../../header/Sound/SoundService.h"
 
 namespace Player
 {
@@ -18,6 +19,7 @@ namespace Player
 	using namespace Entity;
 	using namespace Enemy;
 	using namespace Powerup;
+	using namespace Sound;
 
 	PlayerController::PlayerController()
 	{
@@ -183,6 +185,7 @@ namespace Player
 
 	void PlayerController::enableShield()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_ENABLED);
 		elapsed_shield_duration = player_model->shiled_powerup_duration;
 		player_model->setShieldState(true);
 		player_view->setPlayerHighlight(true);
@@ -190,29 +193,34 @@ namespace Player
 
 	void PlayerController::disableShield()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_DISABLED);
 		player_model->setShieldState(false);
 		player_view->setPlayerHighlight(false);
 	}
 
 	void PlayerController::enableRapidFire()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_ENABLED);
 		elapsed_rapid_fire_duration = player_model->rapid_fire_powerup_duration;
 		player_model->setRapidFireState(true);
 	}
 
 	void PlayerController::disableRapidFire()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_DISABLED);
 		player_model->setRapidFireState(false);
 	}
 
 	void PlayerController::enableTrippleLaser()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_ENABLED);
 		elapsed_tripple_laser_duration = player_model->tripple_laser_powerup_duration;
 		player_model->setTrippleFireState(true);
 	}
 
 	void PlayerController::disableTrippleLaser()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_DISABLED);
 		player_model->setTrippleFireState(false);
 	}
 
@@ -285,6 +293,8 @@ namespace Player
 
 			FireBullet(bullet_position - bullet_offset);
 		}
+
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 	}
 
 	void PlayerController::FireBullet(sf::Vector2f position)

@@ -11,6 +11,7 @@
 #include "../../header/Bullet/BulletService.h"
 #include "../../header/Powerup/PowerupService.h"
 #include "../../header/Collision/CollisionService.h"
+#include "../../header/Particle/ParticleService.h"
 
 namespace Global
 {
@@ -29,6 +30,7 @@ namespace Global
         Bullet::BulletService* bullet_service;
         Powerup::PowerupService* powerup_service;
         Collision::CollisionService* collision_service;
+        Particle::ParticleService* particle_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -55,6 +57,7 @@ namespace Global
         Bullet::BulletService* getBulletService();
         Powerup::PowerupService* getPowerupService();
         Collision::CollisionService* getCollisionService();
+        Particle::ParticleService* getParticleService();
         void deleteServiceLocator();
     };
 }
