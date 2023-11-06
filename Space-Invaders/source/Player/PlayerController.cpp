@@ -256,8 +256,10 @@ namespace Player
 	{
 		for (int i = 0; i < number_of_bullets; i++)
 		{
+			int bullet_index = i - (number_of_bullets / 2);
+
 			sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
-			sf::Vector2f bullet_offset = sf::Vector2f(0, (player_model->tripple_laser_position_offset * i));
+			sf::Vector2f bullet_offset = sf::Vector2f((player_model->tripple_laser_position_offset * bullet_index), 0);
 
 			FireBullet(bullet_position - bullet_offset);
 		}

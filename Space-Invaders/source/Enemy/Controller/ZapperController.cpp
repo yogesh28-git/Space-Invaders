@@ -69,7 +69,7 @@ namespace Enemy
 		{
 			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
 				enemy_model->getEntityType(),
-				enemy_model->getEnemyPosition() + barrel_position_offset,
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}
 	}
