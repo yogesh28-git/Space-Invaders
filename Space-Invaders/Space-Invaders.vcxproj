@@ -171,7 +171,7 @@
     <ClCompile Include="source\Sound\SoundService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\Main\GameService.cpp" />
-    <ClCompile Include="source\Main\GraphicService.cpp" />
+    <ClCompile Include="source\Graphics\GraphicService.cpp" />
     <ClCompile Include="source\Player\PlayerController.cpp" />
     <ClCompile Include="source\Player\PlayerModel.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
@@ -226,7 +226,7 @@
     <ClInclude Include="header\Sound\SoundService.h" />
     <ClInclude Include="header\Time\TimeService.h" />
     <ClInclude Include="header\Main\GameService.h" />
-    <ClInclude Include="header\Main\GraphicService.h" />
+    <ClInclude Include="header\Graphics\GraphicService.h" />
     <ClInclude Include="header\Player\PlayerController.h" />
     <ClInclude Include="header\Player\PlayerModel.h" />
     <ClInclude Include="header\Player\PlayerService.h" />

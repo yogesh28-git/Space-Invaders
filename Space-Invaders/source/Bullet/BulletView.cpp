@@ -7,7 +7,6 @@
 namespace Bullet
 {
 	using namespace Global;
-	using namespace Main;
 
 	BulletView::BulletView() { }
 

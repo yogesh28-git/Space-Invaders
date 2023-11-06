@@ -4,6 +4,7 @@
 namespace Global
 {
 	using namespace Main;
+	using namespace Graphics;
 	using namespace Event;
 	using namespace UI;
 	using namespace Time;

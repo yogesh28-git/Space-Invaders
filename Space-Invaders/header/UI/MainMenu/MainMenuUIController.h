@@ -51,8 +51,7 @@ namespace UI
 			void scaleButton(sf::Sprite* button_to_scale);
 			void positionButtons();
 
-			bool pressedMouseButton();
-			void handleButtonInteractions();
+			void processButtonInteractions();
 			bool clickedButton(sf::Sprite*, sf::Vector2f);
 
 			void setTextPosition(float y_position);
