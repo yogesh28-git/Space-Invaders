@@ -10,6 +10,7 @@
 #include "../../header/Powerup/PowerupController.h"
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Main/GameService.h"
+#include "../../header/Player/HighScore.h"
 
 namespace Player
 {
@@ -86,8 +87,8 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
-		if(processPowerupCollision(other_collider)) return;
-		if(processBulletCollision(other_collider)) return;
+		if (processPowerupCollision(other_collider)) return;
+		if (processBulletCollision(other_collider)) return;
 		processEnemyCollision(other_collider);
 	}
 
@@ -225,7 +226,7 @@ namespace Player
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-		if (event_service->pressedLeftArrowKey()) moveLeft();	
+		if (event_service->pressedLeftArrowKey()) moveLeft();
 		if (event_service->pressedRightArrowKey()) moveRight();
 		if (event_service->pressedLeftMouseButton()) processBulletFire();
 	}
@@ -273,7 +274,7 @@ namespace Player
 	void PlayerController::processBulletFire()
 	{
 		if (elapsed_fire_duration > 0) return;
-		
+
 		if (player_model->isTrippleLaserEnabled()) FireBullets(player_model->tripple_laser_bullet_fire_count);
 		else FireBullets(1);
 
@@ -297,14 +298,18 @@ namespace Player
 	void PlayerController::FireBullet(sf::Vector2f position)
 	{
 		increaseBulletsFired(1);
-		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, 
-				player_model->getEntityType(), position, Bullet::MovementDirection::UP);
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+			player_model->getEntityType(), position, Bullet::MovementDirection::UP);
 	}
 
 	void PlayerController::decreasePlayerLive()
 	{
 		PlayerModel::player_lives -= 1;
-		if (PlayerModel::player_lives <= 0) GameService::setGameState(GameState::CREDITS);
+		if (PlayerModel::player_lives <= 0)
+		{
+			saveHighScore();
+			GameService::setGameState(GameState::CREDITS);
+		}
 	}
 
 	void PlayerController::increaseScore(int val) { PlayerModel::player_score += val; }
@@ -314,4 +319,16 @@ namespace Player
 	void PlayerController::increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
 
 	void PlayerController::increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
+
+	void PlayerController::saveHighScore()
+	{
+		HighScoreData current_high_score = HighScore::loadHighScore();
+
+		if (PlayerModel::player_score > current_high_score.score)
+		{
+			current_high_score.player_name = "Outscal";
+			current_high_score.score = PlayerModel::player_score;
+			HighScore::saveHighScore(current_high_score);
+		}
+	}
 }

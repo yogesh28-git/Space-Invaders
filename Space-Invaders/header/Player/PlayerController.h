@@ -47,6 +47,8 @@ namespace Player
         void enableTrippleLaser();
         void disableTrippleLaser();
 
+        void saveHighScore();
+
     public:
         PlayerController();
         ~PlayerController();

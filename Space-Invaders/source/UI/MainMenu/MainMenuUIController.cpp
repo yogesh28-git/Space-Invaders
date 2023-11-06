@@ -3,6 +3,7 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Main/GraphicService.h"
 #include "../../header/Global/Config.h"
+#include "../../header/Player/HighScore.h"
 
 namespace UI
 {
@@ -10,6 +11,7 @@ namespace UI
     {
         using namespace Global;
         using namespace Main;
+        using namespace Player;
 
         MainMenuUIController::MainMenuUIController() { game_window = nullptr; }
 
@@ -17,6 +19,7 @@ namespace UI
         {
             game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
             initializeBackgroundImage();
+            initializeTexts();
             initializeButtons();
         }
 
@@ -35,6 +38,18 @@ namespace UI
                 static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
                 static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
             );
+        }
+
+        void MainMenuUIController::initializeTexts()
+        {
+            if (font.loadFromFile(Config::bubble_bobble_font_path))
+            {
+                high_score_text.setFont(font);
+                high_score_text.setCharacterSize(font_size);
+                high_score_text.setFillColor(text_color);
+                high_score_text.setString("HighScore : " + std::to_string(HighScore::loadHighScore().score));
+                setTextPosition(text_top_offset);
+            }
         }
 
         void MainMenuUIController::initializeButtons()
@@ -80,13 +95,15 @@ namespace UI
         {
             float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
 
-            play_button_sprite.setPosition({ x_position, 500.f });
-            instructions_button_sprite.setPosition({ x_position, 700.f });
-            quit_button_sprite.setPosition({ x_position, 900.f });
+            play_button_sprite.setPosition({ x_position, play_button_top_offset });
+            instructions_button_sprite.setPosition({ x_position, instructions_button_top_offset });
+            quit_button_sprite.setPosition({ x_position, quit_button_top_offset });
         }
 
         void MainMenuUIController::update()
         {
+            updateHighScoreText();
+
             if (pressedMouseButton())
             {
                 handleButtonInteractions();
@@ -104,6 +121,12 @@ namespace UI
             game_window->draw(play_button_sprite);
             game_window->draw(instructions_button_sprite);
             game_window->draw(quit_button_sprite);
+            game_window->draw(high_score_text);
+        }
+
+        void MainMenuUIController::updateHighScoreText()
+        {
+            high_score_text.setString("HighScore : " + std::to_string(HighScore::loadHighScore().score));
         }
 
         void MainMenuUIController::show() { }
@@ -136,6 +159,14 @@ namespace UI
         bool MainMenuUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
         {
             return button_sprite->getGlobalBounds().contains(mouse_position);
+        }
+
+        void MainMenuUIController::setTextPosition(float y_position)
+        {
+            sf::FloatRect textBounds = high_score_text.getLocalBounds();
+
+            float x_position = (game_window->getSize().x - textBounds.width) / 2;
+            high_score_text.setPosition(x_position, y_position);
         }
     }
 }
