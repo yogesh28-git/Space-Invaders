@@ -1,8 +1,13 @@
 #pragma once
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/UI/UIService.h"
+#include "../../header/Player/PlayerService.h"
+#include "../../header/Time/TimeService.h"
+#include "../../header/Sound/SoundService.h"
+#include "../../header/Enemy/EnemyService.h"
 #include "../../header/Gameplay/GameplayService.h"
+#include "../../header/Elements/ElementService.h"
 
 namespace Global
 {
@@ -10,9 +15,14 @@ namespace Global
     {
     private:
         Event::EventService* event_service;
-        Main::GraphicService* graphic_service;
+        Graphics::GraphicService* graphic_service;
         UI::UIService* ui_service;
+        Time::TimeService* time_service;
+        Sound::SoundService* sound_service;
         Gameplay::GameplayService* gameplay_service;
+        Player::PlayerService* player_service;
+        Enemy::EnemyService* enemy_service;
+        Element::ElementService* element_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -28,9 +38,14 @@ namespace Global
         void render();
 
         Event::EventService* getEventService();
-        Main::GraphicService* getGraphicService();
+        Graphics::GraphicService* getGraphicService();
         UI::UIService* getUIService();
+        Time::TimeService* getTimeService();
+        Sound::SoundService* getSoundService();
         Gameplay::GameplayService* getGameplayService();
+        Player::PlayerService* getPlayerService();
+        Enemy::EnemyService* getEnemyService();
+        Element::ElementService* getElementService();
         void deleteServiceLocator();
     };
 }

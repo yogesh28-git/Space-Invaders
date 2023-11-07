@@ -1,12 +1,13 @@
 #pragma once
-#include "../../header/Gameplay/Interface/ITest.h"
 
 namespace Gameplay
 {
+	class GameplayController;
+
 	class GameplayService
 	{
 	private:
-		Gameplay::Interface::ITest* test;
+		GameplayController* gameplay_controller;
 
 	public:
 		GameplayService();

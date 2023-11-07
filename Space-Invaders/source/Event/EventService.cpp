@@ -1,12 +1,12 @@
 #include "../../header/Event/EventService.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 #include <iostream>
 
 namespace Event
 {
     using namespace Global;
-    using namespace Main;
+    using namespace Graphics;
 
     EventService::EventService() { game_window = nullptr; }
 
@@ -19,8 +19,8 @@ namespace Event
 
     void EventService::update()
     {
-        updateButtonsState(left_mouse_button_state, sf::Mouse::Left);
-        updateButtonsState(right_mouse_button_state, sf::Mouse::Right);
+        updateMouseButtonsState(left_mouse_button_state, sf::Mouse::Left);
+        updateMouseButtonsState(right_mouse_button_state, sf::Mouse::Right);
     }
 
     void EventService::processEvents()
@@ -36,23 +36,23 @@ namespace Event
         }
     }
 
-    void EventService::updateButtonsState(ButtonState& button_state, sf::Mouse::Button mouse_button)
+    void EventService::updateMouseButtonsState(ButtonState& current_button_state, sf::Mouse::Button mouse_button)
     {
         if (sf::Mouse::isButtonPressed(mouse_button))
         {
-            switch (button_state)
+            switch (current_button_state)
             {
             case ButtonState::RELEASED:
-                button_state = ButtonState::PRESSED;
+                current_button_state = ButtonState::PRESSED;
                 break;
             case ButtonState::PRESSED:
-                button_state = ButtonState::HELD;
+                current_button_state = ButtonState::HELD;
                 break;
             }
         }
         else
         {
-            button_state = ButtonState::RELEASED;
+            current_button_state = ButtonState::RELEASED;
         }
     }
 
@@ -65,6 +65,10 @@ namespace Event
     bool EventService::isKeyboardEvent() { return game_event.type == sf::Event::KeyPressed; }
 
     bool EventService::pressedEscapeKey() { return game_event.key.code == sf::Keyboard::Escape; }
+
+    bool EventService::pressedLeftArrowKey() { return (isKeyboardEvent() && game_event.key.code == sf::Keyboard::Left); }
+
+    bool EventService::pressedRightArrowKey() { return  (isKeyboardEvent() && game_event.key.code == sf::Keyboard::Right); }
 
     bool EventService::pressedLeftMouseButton() { return left_mouse_button_state == ButtonState::PRESSED; }
 

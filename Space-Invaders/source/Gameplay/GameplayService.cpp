@@ -1,18 +1,15 @@
 #include "../../header/Gameplay/GameplayService.h"
-#include "../../header/Gameplay/AnimationTest.h"
-#include "../../header/Gameplay/CollisionDetectionTest.h"
-#include "../../header/Gameplay/SFMLTest.h"
-
+#include "../../header/Gameplay/GameplayController.h"
 
 namespace Gameplay
 {
-	GameplayService::GameplayService() { test = new AnimationTest(); }
+	GameplayService::GameplayService() { gameplay_controller = new GameplayController(); }
 
-	GameplayService::~GameplayService() { delete (test); }
+	GameplayService::~GameplayService() { delete (gameplay_controller); }
 
-	void GameplayService::initialize() { test->initialize(); }
+	void GameplayService::initialize() { gameplay_controller->initialize(); }
 
-	void GameplayService::update() { test->update(); }
+	void GameplayService::update() { gameplay_controller->update(); }
 
-	void GameplayService::render() { test->render(); }
+	void GameplayService::render() { gameplay_controller->render(); }
 }

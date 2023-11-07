@@ -1,7 +1,8 @@
 #include "../../header/UI/MainMenu/MainMenuUIController.h"
 #include "../../header/Main/GameService.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Main/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
+#include "../../header/Global/Config.h"
 
 namespace UI
 {
@@ -9,6 +10,8 @@ namespace UI
     {
         using namespace Global;
         using namespace Main;
+        using namespace Graphics;
+        using namespace Event;
 
         MainMenuUIController::MainMenuUIController() { game_window = nullptr; }
 
@@ -21,7 +24,7 @@ namespace UI
 
         void MainMenuUIController::initializeBackgroundImage()
         {
-            if (background_texture.loadFromFile("assets/textures/space_invaders_bg.png"))
+            if (background_texture.loadFromFile(Config::background_texture_path))
             {
                 background_sprite.setTexture(background_texture);
                 scaleBackgroundImage();
@@ -48,9 +51,9 @@ namespace UI
 
         bool MainMenuUIController::loadButtonTexturesFromFile()
         {
-            return play_button_texture.loadFromFile("assets/textures/play_button.png") &&
-                instructions_button_texture.loadFromFile("assets/textures/instructions_button.png") &&
-                quit_button_texture.loadFromFile("assets/textures/quit_button.png");
+            return play_button_texture.loadFromFile(Config::play_button_texture_path) &&
+                instructions_button_texture.loadFromFile(Config::instructions_button_texture_path) &&
+                quit_button_texture.loadFromFile(Config::quit_button_texture_path);
         }
 
         void MainMenuUIController::setButtonSprites()
@@ -86,15 +89,7 @@ namespace UI
 
         void MainMenuUIController::update()
         {
-            if (pressedMouseButton())
-            {
-                handleButtonInteractions();
-                mouse_button_pressed = true;
-            }
-            else
-            {
-                mouse_button_pressed = false;
-            }
+            processButtonInteractions();
         }
 
         void MainMenuUIController::render()
@@ -107,21 +102,19 @@ namespace UI
 
         void MainMenuUIController::show() { }
 
-        bool MainMenuUIController::pressedMouseButton() { return sf::Mouse::isButtonPressed(sf::Mouse::Left); }
-
-        void MainMenuUIController::handleButtonInteractions()
+        void MainMenuUIController::processButtonInteractions()
         {
-            if (mouse_button_pressed) return;
-
             sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
 
             if (clickedButton(&play_button_sprite, mouse_position))
             {
+                ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
                 GameService::setGameState(GameState::GAMEPLAY);
             }
 
             if (clickedButton(&instructions_button_sprite, mouse_position))
             {
+                ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
                 printf("Clicked Instruction Button \n");
             }
 
@@ -131,7 +124,8 @@ namespace UI
 
         bool MainMenuUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
         {
-            return button_sprite->getGlobalBounds().contains(mouse_position);
+            EventService* event_service = ServiceLocator::getInstance()->getEventService();
+            return event_service->pressedLeftMouseButton() && button_sprite->getGlobalBounds().contains(mouse_position);
         }
     }
 }
