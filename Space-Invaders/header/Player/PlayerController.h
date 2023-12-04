@@ -27,14 +27,14 @@ namespace Player
         void moveLeft();
         void moveRight();
 
-        void processBulletCollision(ICollider* other_collider);
-        void processPowerupCollision(ICollider* other_collider);
-        void processEnemyCollision(ICollider* other_collider);
+        bool processBulletCollision(ICollider* other_collider);
+        bool processPowerupCollision(ICollider* other_collider);
+        bool processEnemyCollision(ICollider* other_collider);
         void updateFreezDuration();
 
         void updateFireDuration();
         void processBulletFire();
-        void FireBullets(int number_of_bullets);
+        void FireBullet(bool b_tripple_laser = false);
         void FireBullet(sf::Vector2f position);
         
         void updatePowerupDuration();

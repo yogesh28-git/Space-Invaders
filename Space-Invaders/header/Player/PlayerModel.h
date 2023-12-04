@@ -29,6 +29,8 @@ namespace Player
         const sf::Vector2f left_most_position = sf::Vector2f(50.f, 950.f);
         const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 950.f);
         const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 5.f);
+        const sf::Vector2f second_weapon_position_offset = sf::Vector2f(45.f, 0.f);
+        const sf::Vector2f third_weapon_position_offset = sf::Vector2f(-45.f, 0.f);
 
         const float shiled_powerup_duration = 10.f;
         const float rapid_fire_powerup_duration = 10.f;
@@ -38,9 +40,7 @@ namespace Player
 
         const float fire_cooldown_duration = 1.f;
         const float rapid_fire_cooldown_duration = 0.2f;
-
         const float tripple_laser_position_offset = 30.f;
-        const int tripple_laser_bullet_fire_count = 3;
 
         const float player_movement_speed = 350.0f;
 

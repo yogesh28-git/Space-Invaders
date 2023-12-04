@@ -87,14 +87,14 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
-		processPowerupCollision(other_collider);
-		processBulletCollision(other_collider);
+		if(processPowerupCollision(other_collider)) return;
+		if(processBulletCollision(other_collider)) return;
 		processEnemyCollision(other_collider);
 	}
 
-	void PlayerController::processBulletCollision(ICollider* other_collider)
+	bool PlayerController::processBulletCollision(ICollider* other_collider)
 	{
-		if (player_model->isShieldEnabled()) return;
+		if (player_model->isShieldEnabled()) return false;
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
@@ -105,20 +105,34 @@ namespace Player
 				elapsed_freez_duration = player_model->freez_duration;
 			}
 			else ServiceLocator::getInstance()->getGameplayService()->restart();
+			return true;
 		}
+
+		return false;
 	}
 
-	void PlayerController::processEnemyCollision(ICollider* other_collider)
+	bool PlayerController::processEnemyCollision(ICollider* other_collider)
 	{
-		if (player_model->isShieldEnabled()) return;
+		if (player_model->isShieldEnabled()) return false;
+
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
-		if (enemy_controller) ServiceLocator::getInstance()->getGameplayService()->restart();
+		if (enemy_controller)
+		{
+			ServiceLocator::getInstance()->getGameplayService()->restart();
+			return true;
+		}
+		return false;
 	}
 
-	void PlayerController::processPowerupCollision(ICollider* other_collider)
+	bool PlayerController::processPowerupCollision(ICollider* other_collider)
 	{
 		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
-		if (powerup_controller) processPowerup(powerup_controller->getPowerupType());
+		if (powerup_controller)
+		{
+			processPowerup(powerup_controller->getPowerupType());
+			return true;
+		}
+		return false;
 	}
 
 	void PlayerController::updatePowerupDuration()
@@ -245,23 +259,22 @@ namespace Player
 	{
 		if (elapsed_fire_duration > 0) return;
 		
-		if (player_model->isTrippleLaserEnabled()) FireBullets(player_model->tripple_laser_bullet_fire_count);
-		else FireBullets(1);
+		if (player_model->isTrippleLaserEnabled()) FireBullet(true);
+		else FireBullet();
 
 		if (player_model->isRapidFireEnabled()) elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
 		else elapsed_fire_duration = player_model->fire_cooldown_duration;
 	}
 
-	void PlayerController::FireBullets(int number_of_bullets)
+	void PlayerController::FireBullet(bool b_tripple_laser)
 	{
-		for (int i = 0; i < number_of_bullets; i++)
+		sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
+		FireBullet(bullet_position);
+
+		if (b_tripple_laser)
 		{
-			int bullet_index = i - (number_of_bullets / 2);
-
-			sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
-			sf::Vector2f bullet_offset = sf::Vector2f((player_model->tripple_laser_position_offset * bullet_index), 0);
-
-			FireBullet(bullet_position - bullet_offset);
+			FireBullet(bullet_position + player_model->second_weapon_position_offset);
+			FireBullet(bullet_position + player_model->third_weapon_position_offset);
 		}
 	}
 
