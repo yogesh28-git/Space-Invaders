@@ -8,6 +8,8 @@ namespace Enemy
         class SubzeroController : public EnemyController
         {
         private:
+            const float subzero_rate_of_fire = 5.f;
+
             void moveLeft() override;
             void moveRight() override;
             void moveDown() override;

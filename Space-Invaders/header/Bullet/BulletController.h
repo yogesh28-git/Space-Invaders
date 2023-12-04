@@ -11,8 +11,6 @@ namespace Bullet
     class BulletController : public IBullet
     {
     protected:
-        float movement_speed = 300.f;
-
         BulletView* bullet_view;
         BulletModel* bullet_model;
 

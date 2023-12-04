@@ -7,6 +7,9 @@ namespace Bullet
     {
         class TorpedoeController : public BulletController
         {
+        private:
+            const float torpedo_movement_speed = 100.f;
+
         public:
             TorpedoeController(BulletType type);
             ~TorpedoeController();

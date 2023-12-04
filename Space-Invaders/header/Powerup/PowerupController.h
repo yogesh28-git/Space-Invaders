@@ -11,8 +11,6 @@ namespace Powerup
     class PowerupController : public IPowerup
     {
     protected:
-        float movement_speed = 300.f;
-
         PowerupView* powerup_view;
         PowerupModel* powerup_model;
 

@@ -50,7 +50,7 @@ namespace Enemy
 
 	void EnemyController::processBulletFire()
 	{
-		if (elapsed_fire_duration >= cooldown_fire_duration)
+		if (elapsed_fire_duration >= rate_of_fire)
 		{
 			fireBullet();
 			elapsed_fire_duration = 0.f;

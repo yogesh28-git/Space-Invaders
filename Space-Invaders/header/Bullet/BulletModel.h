@@ -9,12 +9,14 @@ namespace Bullet
     class BulletModel
     {
     private:
+        float movement_speed = 300.f;
         sf::Vector2f bullet_position;
         
         BulletType bullet_type;
         MovementDirection movement_direction;
 
     public:
+
         BulletModel(BulletType type);
         ~BulletModel();
 
@@ -28,5 +30,8 @@ namespace Bullet
 
         MovementDirection getMovementDirection();
         void setMovementDirection(MovementDirection direction);
+
+        float getMovementSpeed();
+        void setMovementSpeed(float speed);
     };
 }

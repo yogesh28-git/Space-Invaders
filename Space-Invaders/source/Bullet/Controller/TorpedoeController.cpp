@@ -1,4 +1,5 @@
 #include "../../header/Bullet/Controller/TorpedoeController.h"
+#include "../../header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
@@ -11,7 +12,7 @@ namespace Bullet
 		void TorpedoeController::initialize(sf::Vector2f position, MovementDirection direction)
 		{
 			BulletController::initialize(position, direction);
-			movement_speed = 100.f;
+			bullet_model->setMovementSpeed(torpedo_movement_speed);
 		}
 	}
 }

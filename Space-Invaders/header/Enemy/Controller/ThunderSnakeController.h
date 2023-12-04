@@ -9,6 +9,8 @@ namespace Enemy
         class ThunderSnakeController : public EnemyController
         {
         private:
+            const float thunder_snake_horizontal_movement_speed = 190.f;
+
             void moveLeft() override;
             void moveRight() override;
             void moveDown() override;

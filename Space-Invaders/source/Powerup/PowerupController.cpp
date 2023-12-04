@@ -39,7 +39,7 @@ namespace Powerup
 	void PowerupController::updatePowerupPosition()
 	{
 		sf::Vector2f currentPosition = powerup_model->getPowerupPosition();
-		currentPosition.y += movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		currentPosition.y += powerup_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		powerup_model->setPowerupPosition(currentPosition);
 	}

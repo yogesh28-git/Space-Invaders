@@ -54,7 +54,7 @@ namespace Bullet
 	void BulletController::moveUp()
 	{
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
-		currentPosition.y -= movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		currentPosition.y -= bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		bullet_model->setBulletPosition(currentPosition);
 	}
@@ -62,7 +62,7 @@ namespace Bullet
 	void BulletController::moveDown()
 	{
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
-		currentPosition.y += movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		currentPosition.y += bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		bullet_model->setBulletPosition(currentPosition);
 	}

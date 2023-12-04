@@ -44,4 +44,14 @@ namespace Bullet
 	{
 		movement_direction = direction;
 	}
+
+	float BulletModel::getMovementSpeed()
+	{
+		return movement_speed;
+	}
+
+	void BulletModel::setMovementSpeed(float speed)
+	{
+		movement_speed = speed;
+	}
 }
