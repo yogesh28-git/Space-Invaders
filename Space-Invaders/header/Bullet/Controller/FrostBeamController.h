@@ -7,6 +7,9 @@ namespace Bullet
     {
         class FrostBeamController : public BulletController
         {
+        private:
+            const float frost_beam_movement_speed = 250.f;
+
         public:
             FrostBeamController(BulletType bullet_type, Entity::EntityType owner_type);
             ~FrostBeamController();

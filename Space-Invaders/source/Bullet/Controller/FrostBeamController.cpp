@@ -1,4 +1,5 @@
 #include "../../header/Bullet/Controller/FrostBeamController.h"
+#include "../../header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
@@ -11,7 +12,7 @@ namespace Bullet
 		void FrostBeamController::initialize(sf::Vector2f position, MovementDirection direction)
 		{
 			BulletController::initialize(position, direction);
-			movement_speed = 400.f;
+			bullet_model->setMovementSpeed(frost_beam_movement_speed);
 		}
 	}
 }

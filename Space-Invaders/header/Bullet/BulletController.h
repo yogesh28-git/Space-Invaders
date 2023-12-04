@@ -13,8 +13,6 @@ namespace Bullet
     class BulletController : public IBullet, public Collision::ICollider
     {
     protected:
-        float movement_speed = 500.f;
-
         BulletView* bullet_view;
         BulletModel* bullet_model;
 
