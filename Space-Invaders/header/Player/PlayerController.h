@@ -35,7 +35,7 @@ namespace Player
 
         void updateFireDuration();
         void processBulletFire();
-        void FireBullets(int number_of_bullets);
+        void FireBullet(bool b_tripple_laser = false);
         void FireBullet(sf::Vector2f position);
         
         void updatePowerupDuration();

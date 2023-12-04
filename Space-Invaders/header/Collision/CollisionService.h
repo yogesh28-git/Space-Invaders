@@ -9,7 +9,6 @@ namespace Collision
 	{
 	private:
 		std::vector<ICollider*> collider_list;
-		bool b_reset = false;
 
 		void processCollision();
 		bool isValidCollision(int index_i, int index_j);

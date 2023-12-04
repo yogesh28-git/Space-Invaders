@@ -33,4 +33,14 @@ namespace Powerup
 	{
 		powerup_type = type;
 	}
+
+	float PowerupModel::getMovementSpeed()
+	{
+		return movement_speed;
+	}
+
+	void PowerupModel::setMovementSpeed(float speed)
+	{
+		movement_speed = speed;
+	}
 }

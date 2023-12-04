@@ -8,6 +8,8 @@ namespace Powerup
     class PowerupModel
     {
     private:
+        float movement_speed = 300.f;
+
         sf::Vector2f powerup_position;
         PowerupType powerup_type;
 
@@ -22,5 +24,8 @@ namespace Powerup
 
         PowerupType getPowerupType();
         void setPowerupType(PowerupType type);
+
+        float getMovementSpeed();
+        void setMovementSpeed(float speed);
     };
 }

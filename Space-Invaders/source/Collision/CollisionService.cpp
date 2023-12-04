@@ -12,7 +12,6 @@ namespace Collision
 	void CollisionService::update()
 	{
 		processCollision();
-		b_reset = false;
 	}
 
 	void CollisionService::processCollision()

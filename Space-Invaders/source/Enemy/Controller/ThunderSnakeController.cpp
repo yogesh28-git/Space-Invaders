@@ -20,8 +20,8 @@ namespace Enemy
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(getInitialMovementDirection());
-			horizontal_movement_speed = 190.f;
 			enemy_weight = 3;
+			horizontal_movement_speed = thunder_snake_horizontal_movement_speed;
 		}
 
 		MovementDirection ThunderSnakeController::getInitialMovementDirection()
