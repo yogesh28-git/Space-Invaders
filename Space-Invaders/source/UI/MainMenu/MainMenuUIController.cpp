@@ -3,7 +3,7 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
-#include "../../header/Player/HighScore.h"
+#include "../../header/Gameplay/HighScore.h"
 
 namespace UI
 {
@@ -11,7 +11,7 @@ namespace UI
     {
         using namespace Global;
         using namespace Main;
-        using namespace Player;
+        using namespace Gameplay;
         using namespace Graphics;
         using namespace Event;
 

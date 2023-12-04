@@ -163,7 +163,7 @@
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
     <ClCompile Include="source\Particle\ParticleService.cpp" />
     <ClCompile Include="source\Particle\ParticleSystem.cpp" />
-    <ClCompile Include="source\Player\HighScore.cpp" />
+    <ClCompile Include="source\Gameplay\HighScore.cpp" />
     <ClCompile Include="source\Powerup\PowerupController.cpp" />
     <ClCompile Include="source\Powerup\PowerupModel.cpp" />
     <ClCompile Include="source\Powerup\PowerupService.cpp" />
@@ -216,7 +216,7 @@
     <ClInclude Include="header\Global\ServiceLocator.h" />
     <ClInclude Include="header\Particle\ParticleService.h" />
     <ClInclude Include="header\Particle\ParticleSystem.h" />
-    <ClInclude Include="header\Player\HighScore.h" />
+    <ClInclude Include="header\Gameplay\HighScore.h" />
     <ClInclude Include="header\Powerup\IPowerup.h" />
     <ClInclude Include="header\Powerup\PowerupConfig.h" />
     <ClInclude Include="header\Powerup\PowerupController.h" />

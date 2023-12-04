@@ -1,7 +1,7 @@
-#include "../../header/Player/HighScore.h"
+#include "../../header/Gameplay/HighScore.h"
 #include <fstream>
 
-namespace Player
+namespace Gameplay
 {
 	void HighScore::saveHighScore(const HighScoreData& highScore)
 	{

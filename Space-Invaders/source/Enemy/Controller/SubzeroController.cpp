@@ -21,7 +21,7 @@ namespace Enemy
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
-			enemy_weight = 2;
+			reward = subzero_reward;
 			rate_of_fire = subzero_rate_of_fire;
 		}
 
@@ -51,7 +51,7 @@ namespace Enemy
 
 		void SubzeroController::destroy()
 		{
-			ServiceLocator::getInstance()->getPlayerService()->increaseScore(enemy_weight);
+			ServiceLocator::getInstance()->getPlayerService()->increaseScore(reward);
 			EnemyController::destroy();
 		}
 	}

@@ -10,6 +10,7 @@ namespace Enemy
         {
         private:
             const float thunder_snake_horizontal_movement_speed = 190.f;
+            const int thunder_snake_reward = 3;
 
             void moveLeft() override;
             void moveRight() override;

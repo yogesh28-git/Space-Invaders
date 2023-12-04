@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Graphics/Text.hpp"
 
-namespace Player
+namespace Gameplay
 {
     struct HighScoreData
     {

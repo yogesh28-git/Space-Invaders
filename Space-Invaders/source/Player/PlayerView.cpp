@@ -3,6 +3,7 @@
 #include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Player/PlayerController.h"
+#include "../../header/Player/PlayerModel.h"
 
 namespace Player
 {
@@ -51,7 +52,7 @@ namespace Player
 	{
 		sf::Color player_color = player_sprite.getColor();
 
-		if (b_highlight) player_color.a = invincible_player_alpha;
+		if (b_highlight) player_color.a = PlayerModel::invincible_player_alpha;
 		else player_color.a = 255;
 		
 		player_sprite.setColor(player_color);

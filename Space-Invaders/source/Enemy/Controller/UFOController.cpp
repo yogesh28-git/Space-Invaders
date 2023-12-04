@@ -24,7 +24,7 @@ namespace Enemy
 		void UFOController::initialize()
 		{
 			EnemyController::initialize();
-			enemy_weight = 0;
+			reward = ufo_reward;
 		}
 
 		void UFOController::moveLeft()
@@ -81,7 +81,7 @@ namespace Enemy
 
 		void UFOController::destroy()
 		{
-			ServiceLocator::getInstance()->getPlayerService()->increaseScore(enemy_weight);
+			ServiceLocator::getInstance()->getPlayerService()->increaseScore(ufo_reward);
 			EnemyController::destroy();
 		}
 	}

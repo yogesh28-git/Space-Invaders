@@ -9,6 +9,8 @@ namespace Enemy
         class UFOController : public EnemyController
         {
         private:
+            const int ufo_reward = 0;
+
             void moveLeft() override;
             void moveRight() override;
             void moveDown() override;

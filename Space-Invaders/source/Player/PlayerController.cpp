@@ -10,7 +10,7 @@
 #include "../../header/Powerup/PowerupController.h"
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Main/GameService.h"
-#include "../../header/Player/HighScore.h"
+#include "../../header/Gameplay/HighScore.h"
 
 namespace Player
 {
@@ -23,6 +23,7 @@ namespace Player
 	using namespace Powerup;
 	using namespace Sound;
 	using namespace Main;
+	using namespace Gameplay;
 
 	PlayerController::PlayerController()
 	{

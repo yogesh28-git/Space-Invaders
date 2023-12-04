@@ -75,7 +75,7 @@ namespace Enemy
 
 		void ZapperController::destroy()
 		{
-			ServiceLocator::getInstance()->getPlayerService()->increaseScore(enemy_weight);
+			ServiceLocator::getInstance()->getPlayerService()->increaseScore(reward);
 			EnemyController::destroy();
 		}
 	}
