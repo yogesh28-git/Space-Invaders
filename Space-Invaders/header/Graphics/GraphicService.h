@@ -6,7 +6,7 @@ class GraphicService
 private:
 	const int frame_rate = 60;
 
-	const std::string game_window_title = "Outscal Presents - Minesweeper";
+	const std::string game_window_title = "Outscal Presents - Space Invaders";
 
 	const int game_window_width = 1920;
 	const int game_window_height = 1080;
