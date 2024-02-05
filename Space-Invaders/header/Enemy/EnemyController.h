@@ -25,7 +25,7 @@ namespace Enemy
         void processBulletFire();
         virtual void fireBullet() = 0;
 
-        void updateEnemyPosition();
+        void move();
         virtual void moveLeft() = 0;
         virtual void moveRight() = 0;
         virtual void moveDown() = 0;

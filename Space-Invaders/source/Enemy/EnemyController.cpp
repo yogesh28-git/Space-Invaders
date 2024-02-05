@@ -32,7 +32,7 @@ namespace Enemy
 
 	void EnemyController::update()
 	{
-		updateEnemyPosition();
+		move();
 		updateFireTimer();
 		processBulletFire();
 		enemy_view->update();
@@ -57,7 +57,7 @@ namespace Enemy
 		}
 	}
 
-	void EnemyController::updateEnemyPosition()
+	void EnemyController::move()
 	{
 		switch (enemy_model->getMovementDirection())
 		{
