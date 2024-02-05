@@ -181,7 +181,6 @@
     <ClInclude Include="header\Player\PlayerModel.h" />
     <ClInclude Include="header\Player\PlayerService.h" />
     <ClInclude Include="header\Player\PlayerView.h" />
-    <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
     <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
     <ClInclude Include="header\UI\UIService.h" />
