@@ -9,9 +9,9 @@ namespace Element
 
 		BunkerController::~BunkerController() { delete(bunker_view); }
 
-		void BunkerController::initialize(sf::Vector2f position) 
+		void BunkerController::initialize(BunkerData data)
 		{
-			bunker_position = position;
+			bunker_data = data;
 			bunker_view->initialize(this); 
 		}
 
@@ -19,6 +19,6 @@ namespace Element
 
 		void BunkerController::render() { bunker_view->render(); }
 
-		sf::Vector2f BunkerController::getBunkerPosition() { return bunker_position; }
+		sf::Vector2f BunkerController::getBunkerPosition() { return bunker_data.position; }
 	}
 }
