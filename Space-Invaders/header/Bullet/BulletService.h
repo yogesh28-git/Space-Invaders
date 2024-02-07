@@ -4,6 +4,7 @@
 
 namespace Bullet
 {
+	class IBullet;
 	class BulletController;
 	enum class BulletType;
 	enum class MovementDirection;
@@ -11,7 +12,7 @@ namespace Bullet
 	class BulletService
 	{
 	private:
-		std::vector<BulletController*> bullet_list;
+		std::vector<IBullet*> bullet_list;
 
 		BulletController* createBullet(BulletType bullet_type);
 		void destroy();
