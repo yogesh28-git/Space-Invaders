@@ -81,7 +81,7 @@ namespace Enemy
 
 			if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 			{
-				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(Powerup::PowerupType::TRIPPLE_LASER, enemy_model->getEnemyPosition());
+				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(getRandomPowerupType(), enemy_model->getEnemyPosition());
 				return;
 			}
 		}

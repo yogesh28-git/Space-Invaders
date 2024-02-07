@@ -26,11 +26,11 @@ namespace Element
 
 	void ElementService::spawnBunkers()
 	{
-		for (int i = 0; i < bunker_position_list.size(); i++)
+		for (int i = 0; i < bunker_data_list.size(); i++)
 		{
 			Bunker::BunkerController* bunker_controller = new Bunker::BunkerController();
 
-			bunker_controller->initialize(bunker_position_list[i]);
+			bunker_controller->initialize(bunker_data_list[i]);
 			bunker_list.push_back(bunker_controller);
 
 			ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bunker_controller));

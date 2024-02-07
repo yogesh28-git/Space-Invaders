@@ -50,7 +50,7 @@ namespace Bullet
 		}
 	}
 
-	bool BulletService::isValidBullet(int index, std::vector<BulletController*>& bullet_list)
+	bool BulletService::isValidBullet(int index, std::vector<IBullet*>& bullet_list)
 	{
 		return index >= 0 && index < bullet_list.size() && bullet_list[index] != nullptr;
 	}
