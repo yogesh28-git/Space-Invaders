@@ -11,11 +11,11 @@ namespace Enemy
         private:
             const float thunder_snake_horizontal_movement_speed = 190.f;
 
-            void moveLeft() override;
-            void moveRight() override;
-            void moveDown() override;
-            void moveDiagonalLeft() override;
-            void moveDiagonalRight() override;
+            void move() override;
+            void moveLeft();
+            void moveRight();
+            void moveDiagonalLeft();
+            void moveDiagonalRight();
 
             void fireBullet() override;
 

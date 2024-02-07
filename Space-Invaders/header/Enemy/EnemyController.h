@@ -25,12 +25,7 @@ namespace Enemy
         void processBulletFire();
         virtual void fireBullet() = 0;
 
-        void move();
-        virtual void moveLeft() = 0;
-        virtual void moveRight() = 0;
-        virtual void moveDown() = 0;
-        virtual void moveDiagonalLeft() = 0;
-        virtual void moveDiagonalRight() = 0;
+        virtual void move() = 0;
 
         sf::Vector2f getRandomInitialPosition();
        

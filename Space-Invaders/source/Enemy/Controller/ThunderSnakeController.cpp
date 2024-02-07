@@ -39,6 +39,28 @@ namespace Enemy
 			}
 		}
 
+		void ThunderSnakeController::move()
+		{
+			switch (enemy_model->getMovementDirection())
+			{
+			case::Enemy::MovementDirection::LEFT:
+				moveLeft();
+				break;
+
+			case::Enemy::MovementDirection::RIGHT:
+				moveRight();
+				break;
+
+			case::Enemy::MovementDirection::LEFT_DOWN:
+				moveDiagonalLeft();
+				break;
+
+			case::Enemy::MovementDirection::RIGHT_DOWN:
+				moveDiagonalRight();
+				break;
+			}
+		}
+
 		void ThunderSnakeController::moveLeft()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
@@ -62,8 +84,6 @@ namespace Enemy
 			}
 			else enemy_model->setEnemyPosition(currentPosition);
 		}
-
-		void ThunderSnakeController::moveDown() { }
 
 		void ThunderSnakeController::moveDiagonalLeft() 
 		{

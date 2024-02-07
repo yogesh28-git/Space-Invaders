@@ -24,9 +24,15 @@ namespace Enemy
 			rate_of_fire = subzero_rate_of_fire;
 		}
 
-		void SubzeroController::moveLeft() { }
-
-		void SubzeroController::moveRight() { }
+		void SubzeroController::move()
+		{
+			switch (enemy_model->getMovementDirection())
+			{
+			case::Enemy::MovementDirection::DOWN:
+				moveDown();
+				break;
+			}
+		}
 
 		void SubzeroController::moveDown()
 		{
@@ -35,10 +41,6 @@ namespace Enemy
 
 			enemy_model->setEnemyPosition(currentPosition);
 		}
-
-		void SubzeroController::moveDiagonalLeft() { }
-
-		void SubzeroController::moveDiagonalRight() { }
 
 		void SubzeroController::fireBullet()
 		{

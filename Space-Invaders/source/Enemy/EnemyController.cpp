@@ -57,32 +57,6 @@ namespace Enemy
 		}
 	}
 
-	void EnemyController::move()
-	{
-		switch (enemy_model->getMovementDirection())
-		{
-		case::Enemy::MovementDirection::LEFT:
-			moveLeft();
-			break;
-
-		case::Enemy::MovementDirection::RIGHT:
-			moveRight();
-			break;
-
-		case::Enemy::MovementDirection::DOWN:
-			moveDown();
-			break;
-
-		case::Enemy::MovementDirection::LEFT_DOWN:
-			moveDiagonalLeft();
-			break;
-
-		case::Enemy::MovementDirection::RIGHT_DOWN:
-			moveDiagonalRight();
-			break;
-		}
-	}
-
 	sf::Vector2f EnemyController::getRandomInitialPosition()
 	{
 		float x_offset_distance = (std::rand() % static_cast<int>(enemy_model->right_most_position.x - enemy_model->left_most_position.x));
