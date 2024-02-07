@@ -9,11 +9,10 @@ namespace Enemy
         class UFOController : public EnemyController
         {
         private:
-            void moveLeft() override;
-            void moveRight() override;
-            void moveDown() override;
-            void moveDiagonalLeft() override;
-            void moveDiagonalRight() override;
+
+            void move() override;
+            void moveLeft();
+            void moveRight();
 
             void fireBullet() override;
             Powerup::PowerupType getRandomPowerupType();

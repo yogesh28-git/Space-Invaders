@@ -26,6 +26,20 @@ namespace Enemy
 			EnemyController::initialize();
 		}
 
+		void UFOController::move()
+		{
+			switch (enemy_model->getMovementDirection())
+			{
+			case::Enemy::MovementDirection::LEFT:
+				moveLeft();
+				break;
+
+			case::Enemy::MovementDirection::RIGHT:
+				moveRight();
+				break;
+			}
+		}
+
 		void UFOController::moveLeft()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
@@ -49,12 +63,6 @@ namespace Enemy
 			}
 			else enemy_model->setEnemyPosition(currentPosition);
 		}
-
-		void UFOController::moveDown() { }
-
-		void UFOController::moveDiagonalLeft() { }
-
-		void UFOController::moveDiagonalRight() { }
 
 		void UFOController::fireBullet() { }
 

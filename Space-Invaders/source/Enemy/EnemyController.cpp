@@ -38,7 +38,7 @@ namespace Enemy
 
 	void EnemyController::update()
 	{
-		updateEnemyPosition();
+		move();
 		updateFireTimer();
 		processBulletFire();
 		enemy_view->update();
@@ -60,32 +60,6 @@ namespace Enemy
 		{
 			fireBullet();
 			elapsed_fire_duration = 0.f;
-		}
-	}
-
-	void EnemyController::updateEnemyPosition()
-	{
-		switch (enemy_model->getMovementDirection())
-		{
-		case::Enemy::MovementDirection::LEFT:
-			moveLeft();
-			break;
-
-		case::Enemy::MovementDirection::RIGHT:
-			moveRight();
-			break;
-
-		case::Enemy::MovementDirection::DOWN:
-			moveDown();
-			break;
-
-		case::Enemy::MovementDirection::LEFT_DOWN:
-			moveDiagonalLeft();
-			break;
-
-		case::Enemy::MovementDirection::RIGHT_DOWN:
-			moveDiagonalRight();
-			break;
 		}
 	}
 

@@ -4,6 +4,7 @@
 
 namespace Powerup
 {
+	class IPowerup;
 	class PowerupController;
 	enum class PowerupType;
 	enum class MovementDirection;
@@ -11,8 +12,8 @@ namespace Powerup
 	class PowerupService
 	{
 	private:
-		std::vector<PowerupController*> powerup_list;
-		std::vector<PowerupController*> flagged_powerup_list;
+		std::vector<IPowerup*> flagged_powerup_list;
+		std::vector<IPowerup*> powerup_list;
 
 		PowerupController* createPowerup(PowerupType powerup_type);
 		void destroyFlaggedPowerup();

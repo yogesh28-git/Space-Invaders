@@ -5,6 +5,7 @@
 
 namespace Bullet
 {
+	class IBullet;
 	class BulletController;
 	enum class BulletType;
 	enum class MovementDirection;
@@ -12,12 +13,12 @@ namespace Bullet
 	class BulletService
 	{
 	private:
-		std::vector<BulletController*> bullet_list;
-		std::vector<BulletController*> flagged_bullet_list;
+		std::vector<IBullet*> flagged_bullet_list;
+		std::vector<IBullet*> bullet_list;
 
 		BulletController* createBullet(BulletType bullet_type, Entity::EntityType owner_type);
 
-		bool isValidBullet(int index_i, std::vector<BulletController*>& bullet_list);
+		bool isValidBullet(int index_i, std::vector<IBullet*>& bullet_list);
 		void destroyFlaggedBullets();
 		void destroy();
 
