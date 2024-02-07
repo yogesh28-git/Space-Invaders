@@ -129,7 +129,6 @@ namespace Player
 		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
 		if (powerup_controller)
 		{
-			processPowerup(powerup_controller->getPowerupType());
 			return true;
 		}
 		return false;
@@ -153,28 +152,6 @@ namespace Player
 		{
 			elapsed_tripple_laser_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 			if (elapsed_tripple_laser_duration <= 0) disableTrippleLaser();
-		}
-	}
-
-	void PlayerController::processPowerup(Powerup::PowerupType power_type)
-	{
-		switch (power_type)
-		{
-		case Powerup::PowerupType::SHIELD:
-			enableShield();
-			break;
-
-		case Powerup::PowerupType::RAPID_FIRE:
-			enableRapidFire();
-			break;
-
-		case Powerup::PowerupType::TRIPPLE_LASER:
-			enableTrippleLaser();
-			break;
-
-		case Powerup::PowerupType::OUTSCAL_BOMB:
-			ServiceLocator::getInstance()->getEnemyService()->reset();
-			break;
 		}
 	}
 
