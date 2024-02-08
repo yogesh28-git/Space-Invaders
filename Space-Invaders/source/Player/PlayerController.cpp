@@ -87,14 +87,20 @@ namespace Player
 
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
-		if(processPowerupCollision(other_collider)) return;
-		if(processBulletCollision(other_collider)) return;
+		if(processPowerupCollision(other_collider)) 
+			return;
+
+		if(processBulletCollision(other_collider)) 
+			return;
+
 		processEnemyCollision(other_collider);
 	}
 
 	bool PlayerController::processBulletCollision(ICollider* other_collider)
 	{
-		if (player_model->isShieldEnabled()) return false;
+		if (player_model->isShieldEnabled())
+			return false;
+
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
@@ -113,7 +119,8 @@ namespace Player
 
 	bool PlayerController::processEnemyCollision(ICollider* other_collider)
 	{
-		if (player_model->isShieldEnabled()) return false;
+		if (player_model->isShieldEnabled()) 
+			return false;
 
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
 		if (enemy_controller)
@@ -139,19 +146,25 @@ namespace Player
 		if (elapsed_shield_duration > 0)
 		{
 			elapsed_shield_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			if (elapsed_shield_duration <= 0) disableShield();
+			
+			if (elapsed_shield_duration <= 0) 
+				disableShield();
 		}
 
 		if (elapsed_rapid_fire_duration > 0)
 		{
 			elapsed_rapid_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			if (elapsed_rapid_fire_duration <= 0) disableRapidFire();
+			
+			if (elapsed_rapid_fire_duration <= 0) 
+				disableRapidFire();
 		}
 
 		if (elapsed_tripple_laser_duration > 0)
 		{
 			elapsed_tripple_laser_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			if (elapsed_tripple_laser_duration <= 0) disableTrippleLaser();
+			
+			if (elapsed_tripple_laser_duration <= 0) 
+				disableTrippleLaser();
 		}
 	}
 
@@ -192,9 +205,14 @@ namespace Player
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey()) moveLeft();	
-		if (event_service->pressedRightArrowKey() || event_service->pressedDKey()) moveRight();
-		if (event_service->pressedLeftMouseButton()) processBulletFire();
+		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey()) 
+			moveLeft();	
+
+		if (event_service->pressedRightArrowKey() || event_service->pressedDKey()) 
+			moveRight();
+
+		if (event_service->pressedLeftMouseButton()) 
+			processBulletFire();
 	}
 
 	void PlayerController::moveLeft()
@@ -228,7 +246,9 @@ namespace Player
 		if (elapsed_freez_duration > 0)
 		{
 			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-			if (elapsed_freez_duration <= 0) player_model->setPlayerState(PlayerState::ALIVE);
+
+			if (elapsed_freez_duration <= 0) 
+				player_model->setPlayerState(PlayerState::ALIVE);
 		}
 	}
 
@@ -236,10 +256,14 @@ namespace Player
 	{
 		if (elapsed_fire_duration > 0) return;
 		
-		if (player_model->isTrippleLaserEnabled()) FireBullet(true);
+		if (player_model->isTrippleLaserEnabled()) 
+			FireBullet(true);
+
 		else FireBullet();
 
-		if (player_model->isRapidFireEnabled()) elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
+		if (player_model->isRapidFireEnabled()) 
+			elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
+
 		else elapsed_fire_duration = player_model->fire_cooldown_duration;
 	}
 

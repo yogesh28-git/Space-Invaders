@@ -15,13 +15,16 @@ namespace Element
 
 	void ElementService::update()
 	{
-		for (int i = 0; i < bunker_list.size(); i++) bunker_list[i]->update();
+		for (Bunker::BunkerController* bunker : bunker_list)
+			bunker->update();
+
 		destroyFlaggedBunkers();
 	}
 
 	void ElementService::render()
 	{
-		for (int i = 0; i < bunker_list.size(); i++) bunker_list[i]->render();
+		for (Bunker::BunkerController* bunker : bunker_list)
+			bunker->render();
 	}
 
 	void ElementService::spawnBunkers()

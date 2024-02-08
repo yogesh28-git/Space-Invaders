@@ -22,18 +22,16 @@ namespace Powerup
 
 	void PowerupService::update()
 	{
-		for (int i = 0; i < powerup_list.size(); i++) powerup_list[i]->update();
+		for (IPowerup* powerup : powerup_list) 
+			powerup->update();
 
-		if (ServiceLocator::getInstance()->getEventService()->pressedRightMouseButton())
-		{
-			spawnPowerup(PowerupType::SHIELD, sf::Vector2f(100.f, 50.f));
-		}
 		destroyFlaggedPowerup();
 	}
 
 	void PowerupService::render()
 	{
-		for (int i = 0; i < powerup_list.size(); i++) powerup_list[i]->render();
+		for (IPowerup* powerup : powerup_list)
+			powerup->render();
 	}
 
 	PowerupController* PowerupService::createPowerup(PowerupType powerup_type)
@@ -66,7 +64,9 @@ namespace Powerup
 
 	void PowerupService::destroyFlaggedPowerup()
 	{
-		for (int i = 0; i < flagged_powerup_list.size(); i++) delete (flagged_powerup_list[i]);
+		for (IPowerup* powerup : flagged_powerup_list) 
+			delete (powerup);
+
 		flagged_powerup_list.clear();
 	}
 
@@ -80,6 +80,7 @@ namespace Powerup
 
 	void PowerupService::destroy()
 	{
-		for (int i = 0; i < powerup_list.size(); i++) delete (powerup_list[i]);
+		for (IPowerup* powerup : powerup_list)
+			delete (powerup);
 	}
 }

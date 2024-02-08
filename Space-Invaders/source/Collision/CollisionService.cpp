@@ -29,8 +29,11 @@ namespace Collision
 	{
 		if (hasCollisionOccurred(index_i, index_j))
 		{
-			if (areActiveColliders(index_i, index_j)) collider_list[index_i]->onCollision(collider_list[index_j]);
-			if (areActiveColliders(index_i, index_j)) collider_list[index_j]->onCollision(collider_list[index_i]);
+			if (areActiveColliders(index_i, index_j)) 
+				collider_list[index_i]->onCollision(collider_list[index_j]);
+
+			if (areActiveColliders(index_i, index_j)) 
+				collider_list[index_j]->onCollision(collider_list[index_i]);
 		}
 	}
 

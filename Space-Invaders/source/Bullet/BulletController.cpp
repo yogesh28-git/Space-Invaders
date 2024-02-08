@@ -105,7 +105,9 @@ namespace Bullet
 	void BulletController::processBulletCollision(ICollider* other_collider)
 	{
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
-		if (bullet_controller) ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+
+		if (bullet_controller) 
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
 	}
 
 	void BulletController::processEnemyCollision(ICollider* other_collider)
@@ -131,6 +133,8 @@ namespace Bullet
 	void BulletController::processBunkerCollision(ICollider* other_collider)
 	{
 		BunkerController* bunker_controller = dynamic_cast<BunkerController*>(other_collider);
-		if (bunker_controller) ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+
+		if (bunker_controller) 
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
 	}
 }

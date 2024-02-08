@@ -26,13 +26,16 @@ namespace Bullet
 
 	void BulletService::update()
 	{
-		for (int i = 0; i < bullet_list.size(); i++) bullet_list[i]->update();
+		for (IBullet* bullet : bullet_list)
+			bullet->update();
+
 		destroyFlaggedBullets();
 	}
 
 	void BulletService::render()
 	{
-		for (int i = 0; i < bullet_list.size(); i++) bullet_list[i]->render();
+		for (IBullet* bullet : bullet_list)
+			bullet->render();
 	}
 
 	BulletController* BulletService::createBullet(BulletType bullet_type, EntityType owner_type)
