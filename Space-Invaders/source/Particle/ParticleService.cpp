@@ -1,4 +1,5 @@
 #include "../../header/Particle/ParticleService.h"
+#include "../../header/Particle/ParticleSystemConfigData.h"
 
 namespace Particle
 {
@@ -10,18 +11,21 @@ namespace Particle
 
 	void ParticleService::update()
 	{
-		for (int i = 0; i < particle_system_list.size(); i++) particle_system_list[i]->update();
+		for (ParticleSystem* particle_system : particle_system_list) 
+			particle_system->update();
+
 		destroyFlaggedParticleSystem();
 	}
 
 	void ParticleService::render()
 	{
-		for (int i = 0; i < particle_system_list.size(); i++) particle_system_list[i]->render();
+		for (ParticleSystem* particle_system : particle_system_list)
+			particle_system->render();
 	}
 
-	void ParticleService::spawnParticleSystem(sf::Vector2f position, Particle::ParticlesType partcles_type)
+	void ParticleService::spawnParticleSystem(sf::Vector2f position, ParticlesType particles_type)
 	{
-		ParticleSystem* particle_system = new ParticleSystem(partcles_type);
+		ParticleSystem* particle_system = new ParticleSystem(getParticleSystemConfig(particles_type));
 		particle_system->initialize(position);
 		particle_system_list.push_back(particle_system);
 	}
@@ -32,9 +36,20 @@ namespace Particle
 		particle_system_list.erase(std::remove(particle_system_list.begin(), particle_system_list.end(), particle_system), particle_system_list.end());
 	}
 
+	ParticleSystemConfig ParticleService::getParticleSystemConfig(ParticlesType particles_type)
+	{
+		switch (particles_type)
+		{
+			case Particle::ParticlesType::EXPLOSION:
+				return explosion_particle_system_config;
+		}
+	}
+
 	void ParticleService::destroyFlaggedParticleSystem()
 	{
-		for (int i = 0; i < flagged_particle_system_list.size(); i++) delete (flagged_particle_system_list[i]);
+		for (ParticleSystem* particle_system : flagged_particle_system_list)
+			delete (particle_system);
+
 		flagged_particle_system_list.clear();
 	}
 
@@ -42,7 +57,7 @@ namespace Particle
 
 	void ParticleService::destroy()
 	{
-		for (int i = 0; i < particle_system_list.size(); i++) delete (particle_system_list[i]);
-		particle_system_list.clear();
+		for (ParticleSystem* particle_system : particle_system_list)
+			delete (particle_system);
 	}
 }

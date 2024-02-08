@@ -1,27 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../header/Particle/ParticleSystemConfig.h"
 
 namespace Particle
 {
-	enum class ParticlesType
-	{
-		EXPLOSION,
-	};
-
     class ParticleSystem
     {
-    private:
-        const float particles_sprite_width = 70.f;
-        const float particles_sprite_height = 80.f;
-
-        const float tile_width = 14.28f;
-        const float tile_height = 20.0f;
-
-        const int number_of_animation_frames = 7;
-        const float frame_duration = 0.03f;
-
+    private:    
+        ParticleSystemConfig particle_system_config;
+        
         sf::Vector2f particles_position;
-        ParticlesType particles_type;
 
         sf::Texture particles_texture;
         sf::Sprite particles_sprite;
@@ -32,10 +20,9 @@ namespace Particle
 
         void initializeParticlesSprite();
         void scaleParticlesSprite();
-        sf::String getTexturePath(ParticlesType type);
       
     public:
-        ParticleSystem(ParticlesType type);
+        ParticleSystem(ParticleSystemConfig config);
         ~ParticleSystem();
 
         void initialize(sf::Vector2f position);

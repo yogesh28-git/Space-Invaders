@@ -7,7 +7,7 @@ namespace Particle
 {
 	using namespace Global;
 
-	ParticleSystem::ParticleSystem(ParticlesType type) { particles_type = type;  }
+	ParticleSystem::ParticleSystem(ParticleSystemConfig config) { particle_system_config = config; }
 
 	ParticleSystem::~ParticleSystem() { }
 
@@ -15,18 +15,18 @@ namespace Particle
 	{
 		particles_position = position;
 		current_frame = 0;
-		frame_time = sf::seconds(frame_duration);
+		frame_time = sf::seconds(particle_system_config.frame_duration);
 
 		initializeParticlesSprite();
 	}
 
 	void ParticleSystem::initializeParticlesSprite()
 	{
-		if (particles_texture.loadFromFile(getTexturePath(particles_type)))
+		if (particles_texture.loadFromFile(particle_system_config.particles_texture_path))
 		{
 			particles_sprite.setPosition(particles_position);
 			particles_sprite.setTexture(particles_texture);
-			particles_sprite.setTextureRect(sf::IntRect(0, 0, tile_width, tile_height));
+			particles_sprite.setTextureRect(sf::IntRect(0, 0, particle_system_config.tile_width, particle_system_config.tile_height));
 
 			scaleParticlesSprite();
 		}
@@ -35,29 +35,26 @@ namespace Particle
 	void ParticleSystem::scaleParticlesSprite()
 	{
 		particles_sprite.setScale(
-			static_cast<float>(particles_sprite_width) / tile_width,
-			static_cast<float>(particles_sprite_height) / tile_height
+			static_cast<float>(particle_system_config.particles_sprite_width) / particle_system_config.tile_width,
+			static_cast<float>(particle_system_config.particles_sprite_height) / particle_system_config.tile_height
 		);
-	}
-
-	sf::String ParticleSystem::getTexturePath(ParticlesType type)
-	{
-		switch (type)
-		{
-		case Particle::ParticlesType::EXPLOSION:
-			return Config::explosion_texture_path;
-		}
 	}
 
 	void ParticleSystem::update()
 	{
 		if (clock.getElapsedTime() >= frame_time)
 		{
-			if (current_frame + 1 >= number_of_animation_frames) destroy();
+			if (current_frame + 1 >= particle_system_config.number_of_animation_frames) 
+				destroy();
 
-			current_frame = (current_frame + 1) % number_of_animation_frames;
-			particles_sprite.setTextureRect(sf::IntRect(current_frame * tile_width, 0, tile_width, tile_height));
+			current_frame = (current_frame + 1) % particle_system_config.number_of_animation_frames;
 			clock.restart();
+
+			particles_sprite.setTextureRect(sf::IntRect(
+				current_frame * particle_system_config.tile_width, 
+				0, 
+				particle_system_config.tile_width,
+				particle_system_config.tile_height));
 		}
 	}
 

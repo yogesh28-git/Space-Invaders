@@ -5,13 +5,18 @@
 
 namespace Particle
 {
+	enum class ParticlesType
+	{
+		EXPLOSION,
+	};
+
 	class ParticleService
 	{
 	private:
-
 		std::vector<ParticleSystem*> particle_system_list;
 		std::vector<ParticleSystem*> flagged_particle_system_list;
 
+		ParticleSystemConfig getParticleSystemConfig(ParticlesType particles_type);
 		void destroyFlaggedParticleSystem();
 		void destroy();
 
@@ -25,7 +30,7 @@ namespace Particle
 
 		void reset();
 
-		void spawnParticleSystem(sf::Vector2f position, Particle::ParticlesType partcles_type);
+		void spawnParticleSystem(sf::Vector2f position, ParticlesType particles_type);
 		void destroyParticleSystem(ParticleSystem* particle_system);
 	};
 }

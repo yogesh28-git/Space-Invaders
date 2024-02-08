@@ -223,6 +223,8 @@
     <ClInclude Include="header\Particle\ParticleService.h" />
     <ClInclude Include="header\Particle\ParticleSystem.h" />
     <ClInclude Include="header\Gameplay\HighScore.h" />
+    <ClInclude Include="header\Particle\ParticleSystemConfig.h" />
+    <ClInclude Include="header\Particle\ParticleSystemConfigData.h" />
     <ClInclude Include="header\Powerup\Controller\OutscalBombController.h" />
     <ClInclude Include="header\Powerup\Controller\RapidFireController.h" />
     <ClInclude Include="header\Powerup\Controller\ShieldController.h" />
