@@ -6,7 +6,6 @@ namespace UI
 	using namespace Main;
 	using namespace MainMenu;
 	using namespace SplashScreen;
-	using namespace Interface;
 	using namespace GameplayUI;
 	using namespace Instructions;
 	using namespace Credits;
@@ -52,6 +51,18 @@ namespace UI
 		case GameState::MAIN_MENU:
 			return main_menu_controller->update();;
 			break;
+
+		case GameState::GAMEPLAY:
+			return gameplay_ui_controller->update();;
+			break;
+
+		case GameState::INSTRUCTIONS:
+			return instructions_ui_controller->update();;
+			break;
+
+		case GameState::CREDITS:
+			return credits_ui_controller->update();;
+			break;
 		}
 	}
 
@@ -66,6 +77,18 @@ namespace UI
 		case GameState::MAIN_MENU:
 			return main_menu_controller->render();;
 			break;
+
+		case GameState::GAMEPLAY:
+			return gameplay_ui_controller->render();;
+			break;
+
+		case GameState::INSTRUCTIONS:
+			return instructions_ui_controller->render();;
+			break;
+
+		case GameState::CREDITS:
+			return credits_ui_controller->render();;
+			break;
 		}
 	}
 
@@ -79,6 +102,18 @@ namespace UI
 
 		case GameState::MAIN_MENU:
 			return main_menu_controller->show();;
+			break;
+
+		case GameState::GAMEPLAY:
+			return gameplay_ui_controller->show();;
+			break;
+
+		case GameState::INSTRUCTIONS:
+			return instructions_ui_controller->show();;
+			break;
+
+		case GameState::CREDITS:
+			return credits_ui_controller->show();;
 			break;
 		}
 	}

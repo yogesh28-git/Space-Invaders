@@ -1,12 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
 	namespace Credits
 	{
-		class CreditsScreenUIController : public Interface::IUIController
+		class CreditsScreenUIController
 		{
 		private:
 			const sf::String game_title = "Outscal Presents - Space Invaders";
@@ -54,10 +53,10 @@ namespace UI
 			void setTextPosition(float y_position);
 
 		public:
-			void initialize() override;
-			void update() override;
-			void render() override;
-			void show() override;
+			void initialize();
+			void update();
+			void render();
+			void show();
 		};
 	}
 }

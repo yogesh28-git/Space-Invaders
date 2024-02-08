@@ -1,12 +1,11 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
 	namespace GameplayUI
 	{
-		class GameplayUIController : public Interface::IUIController
+		class GameplayUIController
 		{
 		private:
 			// Constants:
@@ -46,10 +45,10 @@ namespace UI
 			GameplayUIController();
 			~GameplayUIController();
 
-			void initialize() override;
-			void update() override;
-			void render() override;
-			void show() override;
+			void initialize();
+			void update();
+			void render();
+			void show();
 		};
 	}
 }

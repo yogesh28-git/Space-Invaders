@@ -1,12 +1,11 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
-#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
 	namespace Instructions
 	{
-		class InstructionsScreenUIController : public Interface::IUIController
+		class InstructionsScreenUIController
 		{
 		private:
 			static const int number_of_instructions = 4;
@@ -59,10 +58,10 @@ namespace UI
 
 		public:
 
-			void initialize() override;
-			void update() override;
-			void render() override;
-			void show() override;
+			void initialize();
+			void update();
+			void render();
+			void show();
 		};
 	}
 }
