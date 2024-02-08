@@ -19,7 +19,6 @@ namespace UI
 
 		void createControllers();
 		void initializeControllers();
-		Interface::IUIController* getCurrentUIController();
 		void destroy();
 
 	public:

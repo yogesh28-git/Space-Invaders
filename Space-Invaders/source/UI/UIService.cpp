@@ -43,20 +43,44 @@ namespace UI
 
 	void UIService::update()
 	{
-		IUIController* ui_controller = getCurrentUIController();
-		if (ui_controller) ui_controller->update();
+		switch (GameService::getGameState())
+		{
+		case GameState::SPLASH_SCREEN:
+			splash_screen_controller->update();
+			break;
+
+		case GameState::MAIN_MENU:
+			return main_menu_controller->update();;
+			break;
+		}
 	}
 
 	void UIService::render()
 	{
-		IUIController* ui_controller = getCurrentUIController();
-		if (ui_controller) ui_controller->render();
+		switch (GameService::getGameState())
+		{
+		case GameState::SPLASH_SCREEN:
+			splash_screen_controller->render();
+			break;
+
+		case GameState::MAIN_MENU:
+			return main_menu_controller->render();;
+			break;
+		}
 	}
 
 	void UIService::showScreen()
 	{
-		IUIController* ui_controller = getCurrentUIController();
-		if (ui_controller) ui_controller->show();
+		switch (GameService::getGameState())
+		{
+		case GameState::SPLASH_SCREEN:
+			splash_screen_controller->show();
+			break;
+
+		case GameState::MAIN_MENU:
+			return main_menu_controller->show();;
+			break;
+		}
 	}
 
 	void UIService::initializeControllers()
@@ -66,30 +90,6 @@ namespace UI
 		gameplay_ui_controller->initialize();
 		instructions_ui_controller->initialize();
 		credits_ui_controller->initialize();
-	}
-
-	IUIController* UIService::getCurrentUIController()
-	{
-		switch (GameService::getGameState())
-		{
-		case GameState::SPLASH_SCREEN:
-			return splash_screen_controller;
-
-		case GameState::MAIN_MENU:
-			return main_menu_controller;
-
-		case GameState::GAMEPLAY:
-			return gameplay_ui_controller;
-
-		case GameState::INSTRUCTIONS:
-			return instructions_ui_controller;
-
-		case GameState::CREDITS:
-			return credits_ui_controller;
-
-		default:
-			return nullptr;
-		}
 	}
 
 	void UIService::destroy()

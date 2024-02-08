@@ -20,22 +20,35 @@ namespace Collision
 		{
 			for (int j = i + 1; j < collider_list.size(); j++)
 			{
-				if (collider_list[i]->getCollisionState() == CollisionState::DISABLED ||
-					collider_list[j]->getCollisionState() == CollisionState::DISABLED) continue;
-
-				const sf::Sprite& collider_one_sprite = collider_list[i]->getColliderSprite();
-				const sf::Sprite& collider_two_sprite = collider_list[j]->getColliderSprite();
-
-				if (collider_one_sprite.getGlobalBounds().intersects(collider_two_sprite.getGlobalBounds()))
-				{
-					if (isValidCollision(i, j)) collider_list[i]->onCollision(collider_list[j]);
-					if (isValidCollision(i, j)) collider_list[j]->onCollision(collider_list[i]);
-				}
+				doCollision(i, j);
 			}
 		}
 	}
 
-	bool CollisionService::isValidCollision(int index_i, int index_j)
+	void CollisionService::doCollision(int index_i, int index_j)
+	{
+		if (collider_list[i]->getCollisionState() == CollisionState::DISABLED ||
+			collider_list[j]->getCollisionState() == CollisionState::DISABLED) continue;
+
+		if (hasCollisionOccurred(index_i, index_j))
+		{
+			if (areActiveColliders(index_i, index_j)) 
+				collider_list[index_i]->onCollision(collider_list[index_j]);
+
+			if (areActiveColliders(index_i, index_j)) 
+				collider_list[index_j]->onCollision(collider_list[index_i]);
+		}
+	}
+
+	bool CollisionService::hasCollisionOccurred(int index_i, int index_j)
+	{
+		const sf::Sprite& collider_one_sprite = collider_list[index_i]->getColliderSprite();
+		const sf::Sprite& collider_two_sprite = collider_list[index_j]->getColliderSprite();
+
+		return collider_one_sprite.getGlobalBounds().intersects(collider_two_sprite.getGlobalBounds());
+	}
+
+	bool CollisionService::areActiveColliders(int index_i, int index_j)
 	{
 		return (index_i < collider_list.size() && index_j < collider_list.size() &&
 			collider_list[index_i] != nullptr && collider_list[index_j] != nullptr);

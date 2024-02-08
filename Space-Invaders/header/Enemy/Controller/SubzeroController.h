@@ -11,11 +11,8 @@ namespace Enemy
             const float subzero_rate_of_fire = 5.f;
             const int subzero_reward = 2;
 
-            void moveLeft() override;
-            void moveRight() override;
-            void moveDown() override;
-            void moveDiagonalLeft() override;
-            void moveDiagonalRight() override;
+            void move() override;
+            void moveDown();
 
             void fireBullet() override;
             void destroy() override;

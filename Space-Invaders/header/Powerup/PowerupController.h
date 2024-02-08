@@ -16,6 +16,7 @@ namespace Powerup
         PowerupModel* powerup_model;
 
         void updatePowerupPosition();
+        virtual void applyPowerup() = 0;
 
     public:
         PowerupController(PowerupType type);

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../Collision/ICollider.h"
+#include "../../header/Elements/Bunker/BunkerData.h"
 
 namespace Element
 {
@@ -12,13 +13,13 @@ namespace Element
         {
         private:
             BunkerView* bunker_view;
-            sf::Vector2f bunker_position;
+            BunkerData bunker_data;
 
         public:
             BunkerController();
             ~BunkerController();
 
-            void initialize(sf::Vector2f position);
+            void initialize(BunkerData data);
             void update();
             void render();
 

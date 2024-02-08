@@ -67,6 +67,7 @@ namespace Powerup
 
 		if (player_controller)
 		{
+			applyPowerup();
 			ServiceLocator::getInstance()->getPowerupService()->destroyPowerup(this);
 		}
 	}

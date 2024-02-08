@@ -11,7 +11,9 @@ namespace Collision
 		std::vector<ICollider*> collider_list;
 
 		void processCollision();
-		bool isValidCollision(int index_i, int index_j);
+		void doCollision(int index_i, int index_j);
+		bool hasCollisionOccurred(int index_i, int index_j);
+		bool areActiveColliders(int index_i, int index_j);
 
 	public:
 		CollisionService();

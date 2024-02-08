@@ -22,6 +22,24 @@ namespace Enemy
 			EnemyController::initialize();
 		}
 
+		void ZapperController::move()
+		{
+			switch (enemy_model->getMovementDirection())
+			{
+			case::Enemy::MovementDirection::LEFT:
+				moveLeft();
+				break;
+
+			case::Enemy::MovementDirection::RIGHT:
+				moveRight();
+				break;
+
+			case::Enemy::MovementDirection::DOWN:
+				moveDown();
+				break;
+			}
+		}
+
 		void ZapperController::moveLeft()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
@@ -60,10 +78,6 @@ namespace Enemy
 			}
 			else enemy_model->setEnemyPosition(currentPosition);
 		}
-
-		void ZapperController::moveDiagonalLeft() { }
-
-		void ZapperController::moveDiagonalRight() { }
 
 		void ZapperController::fireBullet()
 		{

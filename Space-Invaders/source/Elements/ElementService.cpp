@@ -15,22 +15,25 @@ namespace Element
 
 	void ElementService::update()
 	{
-		for (int i = 0; i < bunker_list.size(); i++) bunker_list[i]->update();
+		for (Bunker::BunkerController* bunker : bunker_list)
+			bunker->update();
+
 		destroyFlaggedBunkers();
 	}
 
 	void ElementService::render()
 	{
-		for (int i = 0; i < bunker_list.size(); i++) bunker_list[i]->render();
+		for (Bunker::BunkerController* bunker : bunker_list)
+			bunker->render();
 	}
 
 	void ElementService::spawnBunkers()
 	{
-		for (int i = 0; i < bunker_position_list.size(); i++)
+		for (int i = 0; i < bunker_data_list.size(); i++)
 		{
 			Bunker::BunkerController* bunker_controller = new Bunker::BunkerController();
 
-			bunker_controller->initialize(bunker_position_list[i]);
+			bunker_controller->initialize(bunker_data_list[i]);
 			bunker_list.push_back(bunker_controller);
 
 			ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(bunker_controller));

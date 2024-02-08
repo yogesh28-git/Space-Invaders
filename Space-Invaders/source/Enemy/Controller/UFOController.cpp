@@ -27,6 +27,20 @@ namespace Enemy
 			reward = ufo_reward;
 		}
 
+		void UFOController::move()
+		{
+			switch (enemy_model->getMovementDirection())
+			{
+			case::Enemy::MovementDirection::LEFT:
+				moveLeft();
+				break;
+
+			case::Enemy::MovementDirection::RIGHT:
+				moveRight();
+				break;
+			}
+		}
+
 		void UFOController::moveLeft()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
@@ -51,12 +65,6 @@ namespace Enemy
 			else enemy_model->setEnemyPosition(currentPosition);
 		}
 
-		void UFOController::moveDown() { }
-
-		void UFOController::moveDiagonalLeft() { }
-
-		void UFOController::moveDiagonalRight() { }
-
 		void UFOController::fireBullet() { }
 
 		Powerup::PowerupType UFOController::getRandomPowerupType()
@@ -74,7 +82,7 @@ namespace Enemy
 
 			if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 			{
-				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(Powerup::PowerupType::TRIPPLE_LASER, enemy_model->getEnemyPosition());
+				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(getRandomPowerupType(), enemy_model->getEnemyPosition());
 				return;
 			}
 		}

@@ -39,12 +39,9 @@ namespace Player
         void FireBullet(sf::Vector2f position);
         
         void updatePowerupDuration();
-        void processPowerup(Powerup::PowerupType power_type);
-        void enableShield();
-        void disableShield();
-        void enableRapidFire();
-        void disableRapidFire();
-        void enableTrippleLaser();
+       
+        void disableShield();   
+        void disableRapidFire();    
         void disableTrippleLaser();
 
         void saveHighScore();
@@ -64,6 +61,10 @@ namespace Player
         void decreaseScore(int val);
         void increaseEnemiesKilled(int val);
         void increaseBulletsFired(int val);
+        
+        void enableShield();
+        void enableRapidFire();
+        void enableTrippleLaser();
 
         sf::Vector2f getPlayerPosition();
         PlayerState getPlayerState();

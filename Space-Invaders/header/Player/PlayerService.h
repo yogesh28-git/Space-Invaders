@@ -20,6 +20,11 @@ namespace Player
 		void increaseScore(int val);
 		void decreaseScore(int val);
 		void increaseEnemiesKilled(int val);
+		
+		void enableShield();
+		void enableRapidFire();
+		void enableTrippleLaser();
+
 		void reset();
 	};
 }

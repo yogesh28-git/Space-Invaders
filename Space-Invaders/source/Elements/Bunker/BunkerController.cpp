@@ -17,17 +17,15 @@ namespace Element
 
 		BunkerController::~BunkerController() { delete(bunker_view); }
 
-		void BunkerController::initialize(sf::Vector2f position) 
+		void BunkerController::initialize(BunkerData data)
 		{
-			bunker_position = position;
+			bunker_data = data;
 			bunker_view->initialize(this); 
 		}
 
 		void BunkerController::update() { bunker_view->update(); }
 
 		void BunkerController::render() { bunker_view->render(); }
-
-		sf::Vector2f BunkerController::getBunkerPosition() { return bunker_position; }
 
 		const sf::Sprite& BunkerController::getColliderSprite() { return bunker_view->getBunkerSprite(); }
 
@@ -40,5 +38,6 @@ namespace Element
 				ServiceLocator::getInstance()->getElementService()->destroyBunker(this);
 			}
 		}
+		sf::Vector2f BunkerController::getBunkerPosition() { return bunker_data.position; }
 	}
 }

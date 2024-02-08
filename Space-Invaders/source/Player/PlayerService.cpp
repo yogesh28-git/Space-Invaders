@@ -49,6 +49,21 @@ namespace Player
 	{
 		player_controller->increaseEnemiesKilled(val);
 	}
+	
+	void PlayerService::enableShield()
+	{
+		player_controller->enableShield();
+	}
+
+	void PlayerService::enableRapidFire()
+	{
+		player_controller->enableRapidFire();
+	}
+
+	void PlayerService::enableTrippleLaser()
+	{
+		player_controller->enableTrippleLaser();
+	}
 
 	void PlayerService::reset()
 	{

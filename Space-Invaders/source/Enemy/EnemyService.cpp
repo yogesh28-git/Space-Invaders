@@ -30,13 +30,16 @@ namespace Enemy
 		updateSpawnTimer();
 		processEnemySpawn();
 
-		for (int i = 0; i < enemy_list.size(); i++) enemy_list[i]->update();
+		for (EnemyController* enemy : enemy_list)
+			enemy->update();
+
 		destroyFlaggedEnemies();
 	}
 
 	void EnemyService::render()
 	{
-		for (int i = 0; i < enemy_list.size(); i++) enemy_list[i]->render();
+		for (EnemyController* enemy : enemy_list)
+			enemy->render();
 	}
 
 	void EnemyService::updateSpawnTimer()

@@ -10,11 +10,10 @@ namespace Enemy
         private:
             float vertical_travel_distance = 100.f;
 
-            void moveLeft() override;
-            void moveRight() override;
-            void moveDown() override;
-            void moveDiagonalLeft() override;
-            void moveDiagonalRight() override;
+            void move() override;
+            void moveLeft();
+            void moveRight();
+            void moveDown();
 
             void fireBullet() override;
             void destroy() override;
