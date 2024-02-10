@@ -36,10 +36,6 @@ namespace UI
 
 			void initializeTexts();
 			void initializeText(sf::Text& text, sf::String initial_text, sf::Vector2f position);
-			void updateScoreText();
-			void updateEnemiesKilledText();
-
-			void drawPlayerLives();
 
 		public:
 			GameplayUIController();
@@ -49,6 +45,10 @@ namespace UI
 			void update();
 			void render();
 			void show();
+
+			void updateScoreText();
+			void updateEnemiesKilledText();
+			void drawPlayerLives();
 		};
 	}
 }

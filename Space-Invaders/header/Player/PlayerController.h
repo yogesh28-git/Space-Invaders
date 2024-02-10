@@ -2,11 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "../Collision/ICollider.h"
 #include "../../header/Powerup/PowerupConfig.h"
+#include "../../header/Player/PlayerModel.h"
 
 namespace Player
 {
     class PlayerView;
-    class PlayerModel;
 
     enum class PlayerState;
 
@@ -57,10 +57,10 @@ namespace Player
         void reset();
 
         void decreasePlayerLive();
-        void increaseScore(int val);
-        void decreaseScore(int val);
-        void increaseEnemiesKilled(int val);
-        void increaseBulletsFired(int val);
+        inline void increaseScore(int val) { PlayerModel::player_score += val; }
+        inline void decreaseScore(int val) { PlayerModel::player_score -= val; }
+        inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
+        inline void increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
         
         void enableShield();
         void enableRapidFire();

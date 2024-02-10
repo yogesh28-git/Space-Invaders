@@ -15,8 +15,10 @@ namespace Player
     class PlayerModel
     {
     private:
-        friend class UI::GameplayUI::GameplayUIController;
         friend class PlayerController;
+        friend void UI::GameplayUI::GameplayUIController::updateScoreText();
+        friend void UI::GameplayUI::GameplayUIController::updateEnemiesKilledText();
+        friend void UI::GameplayUI::GameplayUIController::drawPlayerLives();
 
         const sf::Vector2f initial_player_position = sf::Vector2f(950.f, 950.f);
         const int max_player_lives = 3;

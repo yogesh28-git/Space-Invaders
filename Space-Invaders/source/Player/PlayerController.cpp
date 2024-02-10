@@ -314,14 +314,6 @@ namespace Player
 		}
 	}
 
-	void PlayerController::increaseScore(int val) { PlayerModel::player_score += val; }
-
-	void PlayerController::decreaseScore(int val) { PlayerModel::player_score -= val; }
-
-	void PlayerController::increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
-
-	void PlayerController::increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
-
 	void PlayerController::saveHighScore()
 	{
 		HighScoreData current_high_score = HighScore::loadHighScore();
