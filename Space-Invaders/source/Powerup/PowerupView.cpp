@@ -8,33 +8,37 @@
 namespace Powerup
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
-	PowerupView::PowerupView() { }
+	PowerupView::PowerupView() { createUIElements(); }
 
-	PowerupView::~PowerupView() { }
+	PowerupView::~PowerupView() { destroy(); }
 
 	void PowerupView::initialize(PowerupController* controller)
 	{
 		powerup_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializePowerupSprite();
+		initializeImage();
 	}
 
-	void PowerupView::initializePowerupSprite()
+	void PowerupView::createUIElements()
 	{
-		if (powerup_texture.loadFromFile(getPowerupTexturePath()))
-		{
-			powerup_sprite.setTexture(powerup_texture);
-			scalePowerupSprite();
-		}
+		powerup_image = new ImageView();
 	}
 
-	void PowerupView::scalePowerupSprite()
+	void PowerupView::initializeImage()
 	{
-		powerup_sprite.setScale(
-			static_cast<float>(powerup_sprite_width) / powerup_sprite.getTexture()->getSize().x,
-			static_cast<float>(powerup_sprite_height) / powerup_sprite.getTexture()->getSize().y
-		);
+		powerup_image->initialize(getPowerupTexturePath(), powerup_sprite_width, powerup_sprite_height, powerup_controller->getPowerupPosition());
+	}
+
+	void PowerupView::update()
+	{
+		powerup_image->setPosition(powerup_controller->getPowerupPosition());
+		powerup_image->update();
+	}
+
+	void PowerupView::render()
+	{
+		powerup_image->render();
 	}
 
 	sf::String PowerupView::getPowerupTexturePath()
@@ -55,7 +59,8 @@ namespace Powerup
 		}
 	}
 
-	void PowerupView::update() { powerup_sprite.setPosition(powerup_controller->getPowerupPosition()); }
-
-	void PowerupView::render() { game_window->draw(powerup_sprite); }
+	void PowerupView::destroy()
+	{
+		delete(powerup_image);
+	}
 }

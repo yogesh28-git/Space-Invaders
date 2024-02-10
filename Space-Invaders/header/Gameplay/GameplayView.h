@@ -1,20 +1,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Gameplay
 {
+    class GameplayController;
+
     class GameplayView
     {
     private:
         const float background_alpha = 150.f;
 
-        sf::RenderWindow* game_window;
-        sf::Texture background_texture;
-        sf::Sprite background_sprite;
+        GameplayController* gameplay_controller;
+        UI::UIElement::ImageView* background_image;
 
-        void initializeBackgroundSprite();
-        void scaleBackgroundSprite();
-        void setBackgroundSpriteAlpha();
+        void initializeBackgroundImage();
 
     public:
         GameplayView();
