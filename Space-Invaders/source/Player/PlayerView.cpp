@@ -47,6 +47,6 @@ namespace Player
 
 	const sf::Sprite& PlayerView::getPlayerSprite()
 	{
-		return player_sprite;
+		return player_image->getSprite();
 	}
 }

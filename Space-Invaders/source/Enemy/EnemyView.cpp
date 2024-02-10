@@ -44,7 +44,7 @@ namespace Enemy
 
 	const sf::Sprite& EnemyView::getEnemySprite()
 	{
-		return enemy_sprite;
+		return enemy_image->getSprite();
 	}
 
 	sf::String EnemyView::getEnemyTexturePath()

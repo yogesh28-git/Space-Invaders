@@ -61,7 +61,7 @@ namespace Powerup
 
 	const sf::Sprite& PowerupView::getPowerupSprite() 
 	{ 
-		return powerup_sprite; 
+		return powerup_image->getSprite();
 	}
 
 	void PowerupView::destroy()
