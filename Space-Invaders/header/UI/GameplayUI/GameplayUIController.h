@@ -1,11 +1,14 @@
 #pragma once
-#include "SFML/Graphics.hpp"
+#include "../../header/UI/Interface/IUIController.h"
+#include "../../header/UI/UIElement/ImageView.h"
+#include "../../header/UI/UIElement/ButtonView.h"
+#include "../../header/UI/UIElement/TextView.h"
 
 namespace UI
 {
 	namespace GameplayUI
 	{
-		class GameplayUIController
+		class GameplayUIController : public Interface::IUIController
 		{
 		private:
 			// Constants:
@@ -24,18 +27,15 @@ namespace UI
 
 			const sf::Color text_color = sf::Color::White;
 
-			sf::Font font;
-			sf::Text score_text;
-			sf::Text enemies_killed_text;
+			UI::UIElement::ImageView* player_image;
+			UI::UIElement::TextView* score_text;
+			UI::UIElement::TextView* enemies_killed_text;
 
-			sf::Texture player_texture;
-			sf::Sprite player_sprite;
+			void createUIElements();
+			void initializeImage();
+			void initializeText();
 
-			void initializePlayerSprite();
-			void scalePlayerSprite();
-
-			void initializeTexts();
-			void initializeText(sf::Text& text, sf::String initial_text, sf::Vector2f position);
+			void destroy();
 
 		public:
 			GameplayUIController();

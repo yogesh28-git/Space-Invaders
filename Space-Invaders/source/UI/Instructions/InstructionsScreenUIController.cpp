@@ -1,144 +1,132 @@
 #include "../../header/UI/Instructions/InstructionsScreenUIController.h"
+#include "../../header/Main/GameService.h"
+#include "../../header/Sound/SoundService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Gameplay/GameplayService.h"
-#include "../../header/Sound/SoundService.h"
-#include "../../header/Main/GameService.h"
-#include "../../header/Player/PlayerModel.h"
 
 namespace UI
 {
     namespace Instructions
     {
+        using namespace Global;
+        using namespace UIElement;
         using namespace Main;
         using namespace Sound;
-        using namespace Global;
-        using namespace Player;
-        using namespace Event;
+
+        InstructionsScreenUIController::InstructionsScreenUIController()
+        {
+            createButtons();
+            createImage();
+            createText();
+        }
+
+        InstructionsScreenUIController::~InstructionsScreenUIController()
+        {
+            destroy();
+        }
 
         void InstructionsScreenUIController::initialize()
         {
-            game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-            initializeBackgroundImage();
             initializeTexts();
+            initializeBackgroundImage();
             initializeButtons();
+            registerButtonCallback();
         }
 
-        void InstructionsScreenUIController::update()
+        void InstructionsScreenUIController::createImage()
         {
-            handleButtonInteractions();
+            background_image = new ImageView();
         }
 
-        void InstructionsScreenUIController::render()
+        void InstructionsScreenUIController::createButtons()
         {
-            game_window->draw(background_sprite);
-            game_window->draw(menu_button_sprite);
-            drawInstructions();
+            menu_button = new ButtonView();
+        }
+
+        void InstructionsScreenUIController::createText()
+        {
+            for (int i = 0; i < number_of_instructions; i++)
+            {
+                instructions_text_list.push_back(new TextView());
+            }
         }
 
         void InstructionsScreenUIController::initializeBackgroundImage()
         {
-            if (background_texture.loadFromFile(Config::background_texture_path))
-            {
-                background_sprite.setTexture(background_texture);
-                scaleBackgroundImage();
-            }
-        }
+            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
-        void InstructionsScreenUIController::scaleBackgroundImage()
-        {
-            background_sprite.setScale(
-                static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
-                static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
-            );
-        }
-
-        void InstructionsScreenUIController::initializeTexts()
-        {
-            if (font.loadFromFile(Config::bubble_bobble_font_path))
-            {
-                instructions_text.setFont(font);
-                instructions_text.setCharacterSize(font_size);
-                instructions_text.setFillColor(text_color);
-                instructions_text.setPosition(sf::Vector2f(0.f, 0.f));
-                instructions_text.setString("");
-            }
+            background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
+            background_image->setImageAlpha(background_alpha);
         }
 
         void InstructionsScreenUIController::initializeButtons()
         {
-            if (loadButtonTexturesFromFile())
+            menu_button->initialize("Menu Button", Config::menu_button_texture_path, button_width, button_height, sf::Vector2f(0, menu_button_y_position));
+            menu_button->setCentreAlinged();
+        }
+
+        void InstructionsScreenUIController::initializeTexts()
+        {
+            for (int i = 0; i < instructions_text_list.size(); i++)
             {
-                setButtonSprites();
-                scaleAllButttons();
-                positionButtons();
+                instructions_text_list[i]->initialize(instructions[i], sf::Vector2f(0, top_offset + (text_spacing * i)), FontType::BUBBLE_BOBBLE, font_size, text_color);
+                instructions_text_list[i]->setTextCentreAligned();
             }
         }
 
-        bool InstructionsScreenUIController::loadButtonTexturesFromFile()
+        void InstructionsScreenUIController::registerButtonCallback()
         {
-            return menu_button_texture.loadFromFile(Config::menu_button_texture_path);
+            menu_button->registerCallbackFuntion(std::bind(&InstructionsScreenUIController::menuButtonCallback, this));
         }
 
-        void InstructionsScreenUIController::setButtonSprites()
+        void InstructionsScreenUIController::menuButtonCallback()
         {
-            menu_button_sprite.setTexture(menu_button_texture);
+            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            GameService::setGameState(GameState::MAIN_MENU);
         }
 
-        void InstructionsScreenUIController::scaleAllButttons()
+        void InstructionsScreenUIController::update()
         {
-            scaleButton(&menu_button_sprite);
-        }
+            background_image->update();
+            menu_button->update();
 
-        void InstructionsScreenUIController::scaleButton(sf::Sprite* button_to_scale)
-        {
-            button_to_scale->setScale(
-                button_width / button_to_scale->getTexture()->getSize().x,
-                button_height / button_to_scale->getTexture()->getSize().y
-            );
-        }
-
-        void InstructionsScreenUIController::positionButtons()
-        {
-            float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
-            menu_button_sprite.setPosition({ x_position, menu_button_top_offset });
-        }
-
-        void InstructionsScreenUIController::show() { }
-
-        void InstructionsScreenUIController::setTextPosition(float y_position)
-        {
-            sf::FloatRect textBounds = instructions_text.getLocalBounds();
-
-            float x_position = (game_window->getSize().x - textBounds.width) / 2;
-            instructions_text.setPosition(x_position, y_position);
-        }
-
-        void InstructionsScreenUIController::drawInstructions()
-        {
-            for (int i = 0; i < number_of_instructions; i++)
+            for (int i = 0; i < instructions_text_list.size(); i++)
             {
-                instructions_text.setString(instructions[i]);
-                setTextPosition(text_top_offset + (text_spacing * i));
-                game_window->draw(instructions_text);
+                instructions_text_list[i]->update();
             }
         }
 
-        void InstructionsScreenUIController::handleButtonInteractions()
+        void InstructionsScreenUIController::render()
         {
-            sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
+            background_image->render();
+            menu_button->render();
 
-            if (clickedButton(&menu_button_sprite, mouse_position))
+            for (int i = 0; i < instructions_text_list.size(); i++)
             {
-                ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
-                GameService::setGameState(GameState::MAIN_MENU);
+                instructions_text_list[i]->render();
             }
         }
 
-        bool InstructionsScreenUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
+        void InstructionsScreenUIController::show()
         {
-            EventService* event_service = ServiceLocator::getInstance()->getEventService();
-            return event_service->pressedLeftMouseButton() && button_sprite->getGlobalBounds().contains(mouse_position);
+            background_image->show();
+            menu_button->show();
+
+            for (int i = 0; i < instructions_text_list.size(); i++)
+            {
+                instructions_text_list[i]->show();
+            }
+        }
+
+        void InstructionsScreenUIController::destroy()
+        {
+            delete (background_image);
+            delete (menu_button);
+
+            for (int i = 0; i < instructions_text_list.size(); i++)
+            {
+                delete (instructions_text_list[i]);
+            }
         }
     }
 }

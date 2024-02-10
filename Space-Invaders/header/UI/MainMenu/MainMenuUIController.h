@@ -3,6 +3,7 @@
 #include "../../header/UI/Interface/IUIController.h"
 #include "../../header/UI/UIElement/ImageView.h"
 #include "../../header/UI/UIElement/ButtonView.h"
+#include "../../header/UI/UIElement/TextView.h"
 
 namespace UI
 {
@@ -24,15 +25,15 @@ namespace UI
 			const float text_top_offset = 150.f;
 			const int font_size = 80;
 
-			sf::Text high_score_text;
-
 			UIElement::ImageView* background_image;
+			UIElement::TextView* high_score_text;
 
 			UIElement::ButtonView* play_button;
 			UIElement::ButtonView* instructions_button;
 			UIElement::ButtonView* quit_button;
 
 			void createImage();
+			void createText();
 			void createButtons();
 
 			void initializeBackgroundImage();
@@ -45,9 +46,6 @@ namespace UI
 			void quitButtonCallback();
 
 			void destroy();
-
-			void setTextPosition(float y_position);
-			void updateHighScoreText();
 
 		public:
 			MainMenuUIController();

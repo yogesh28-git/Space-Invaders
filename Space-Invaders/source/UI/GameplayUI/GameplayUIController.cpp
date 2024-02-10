@@ -14,50 +14,37 @@ namespace UI
         using namespace Sound;
         using namespace Global;
         using namespace Player;
+        using namespace UI::UIElement;
 
-        GameplayUIController::GameplayUIController() = default;
+        GameplayUIController::GameplayUIController() { createUIElements(); }
 
-        GameplayUIController::~GameplayUIController() = default;
+        GameplayUIController::~GameplayUIController() { destroy(); }
 
         void GameplayUIController::initialize() 
         {
-            initializeTexts();
-            initializePlayerSprite();
+            initializeImage();
+            initializeText();
         }
 
-        void GameplayUIController::initializePlayerSprite()
+        void GameplayUIController::createUIElements()
         {
-            if (player_texture.loadFromFile(Config::player_texture_path))
-            {
-                player_sprite.setTexture(player_texture);
-                scalePlayerSprite();
-            }
+            player_image = new ImageView();
+            score_text = new TextView();
+            enemies_killed_text = new TextView();
         }
 
-        void GameplayUIController::scalePlayerSprite()
+        void GameplayUIController::initializeImage()
         {
-            player_sprite.setScale(
-                static_cast<float>(player_sprite_width) / player_sprite.getTexture()->getSize().x,
-                static_cast<float>(player_sprite_height) / player_sprite.getTexture()->getSize().y
-            );
+            player_image->initialize(Config::player_texture_path, player_sprite_width, player_sprite_height, sf::Vector2f(0,0));
         }
 
-        void GameplayUIController::initializeTexts()
+        void GameplayUIController::initializeText()
         {
-            if (font.loadFromFile(Config::DS_DIGIB_font_path)) 
-            {
-                initializeText(score_text, "Score : 0", sf::Vector2f(score_text_x_position, text_y_position));
-                initializeText(enemies_killed_text, "Enemies Killed : 0", sf::Vector2f(enemies_killed_text_x_position, text_y_position));
-            }
-        }
+            sf::String score_string = "Score  :  0";
+            sf::String enemies_killed_string = "Enemies Killed  :  0";
 
-        void GameplayUIController::initializeText(sf::Text& text, sf::String initial_text, sf::Vector2f position)
-        {
-            text.setFont(font);
-            text.setCharacterSize(font_size);
-            text.setFillColor(text_color);
-            text.setPosition(position);
-            text.setString(initial_text);
+            score_text->initialize(score_string, sf::Vector2f(score_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size, text_color);
+            enemies_killed_text->initialize(enemies_killed_string, sf::Vector2f(enemies_killed_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size, text_color);
         }
 
         void GameplayUIController::update()
@@ -68,10 +55,8 @@ namespace UI
 
         void GameplayUIController::render()
         {
-            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-
-            game_window->draw(score_text);
-            game_window->draw(enemies_killed_text);
+            score_text->render();
+            enemies_killed_text->render();
             drawPlayerLives();
         }
 
@@ -80,13 +65,13 @@ namespace UI
         void GameplayUIController::updateScoreText()
         {
             sf::String score_string = "Score  :  " + std::to_string(PlayerModel::player_score);
-            score_text.setString(score_string);
+            score_text->setText(score_string);
         }
 
         void GameplayUIController::updateEnemiesKilledText()
         {
             sf::String enemies_killed_string = "Enemies Killed  :  " + std::to_string(PlayerModel::enemies_killed);
-            enemies_killed_text.setString(enemies_killed_string);
+            enemies_killed_text->setText(enemies_killed_string);
         }
 
         void GameplayUIController::drawPlayerLives()
@@ -95,9 +80,16 @@ namespace UI
 
             for (int i = 0; i < PlayerModel::player_lives; i++)
             {
-                player_sprite.setPosition(sf::Vector2f(player_lives_x_offset - (i * player_lives_spacing), player_lives_y_offset));
-                game_window->draw(player_sprite);
+                player_image->setPosition(sf::Vector2f(player_lives_x_offset - (i * player_lives_spacing), player_lives_y_offset));
+                player_image->render();
             }
+        }
+
+        void GameplayUIController::destroy()
+        {
+            delete(player_image);
+            delete(score_text);
+            delete(enemies_killed_text);
         }
     }
 }

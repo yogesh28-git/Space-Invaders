@@ -1,62 +1,61 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "../../header/UI/Interface/IUIController.h"
+#include "../../header/UI/UIElement/ImageView.h"
+#include "../../header/UI/UIElement/ButtonView.h"
+#include "../../header/UI/UIElement/TextView.h"
 
 namespace UI
 {
 	namespace Credits
 	{
-		class CreditsScreenUIController
+		class CreditsScreenUIController : public Interface::IUIController
 		{
 		private:
+			// Constants:
 			const sf::String game_title = "Outscal Presents - Space Invaders";
 
-			const float text_top_offset = 200.f;
-			const int font_size = 80;
-
-			const float menu_button_top_offset = 500.f;
-			const float quit_button_top_offset = 700.f;
-			const sf::Color text_color = sf::Color::White;
+			const float text_top_offset = 260.f;
+			const int font_size = 110;
 
 			const float button_width = 400.f;
 			const float button_height = 140.f;
 
-			sf::RenderWindow* game_window;
+			const float menu_button_y_position = 600.f;
+			const float quit_button_y_position = 800.f;
 
-			sf::Texture background_texture;
-			sf::Sprite background_sprite;
+			const float background_alpha = 85.f;
 
-			sf::Texture menu_button_texture;
-			sf::Sprite menu_button_sprite;
+			const sf::Color text_color = sf::Color::White;
 
-			sf::Texture quit_button_texture;
-			sf::Sprite quit_button_sprite;
+			UIElement::ImageView* background_image;
+			UIElement::TextView* title_text;
 
-			sf::Font font;
-			sf::Text game_title_text;
+			UIElement::ButtonView* menu_button;
+			UIElement::ButtonView* quit_button;
 
+			void createText();
+			void createImage();
+			void createButtons();
+
+			void initializeText();
 			void initializeBackgroundImage();
-			void scaleBackgroundImage();
-
-			void initializeTexts();
-
 			void initializeButtons();
-			bool loadButtonTexturesFromFile();
-			void setButtonSprites();
 
-			void scaleAllButttons();
-			void scaleButton(sf::Sprite* button_to_scale);
-			void positionButtons();
+			void registerButtonCallback();
 
-			void handleButtonInteractions();
-			bool clickedButton(sf::Sprite*, sf::Vector2f);
+			void menuButtonCallback();
+			void quitButtonCallback();
 
-			void setTextPosition(float y_position);
+			void destroy();
 
 		public:
-			void initialize();
-			void update();
-			void render();
-			void show();
+			CreditsScreenUIController();
+			~CreditsScreenUIController();
+
+			void initialize() override;
+			void update() override;
+			void render() override;
+			void show() override;
 		};
 	}
 }

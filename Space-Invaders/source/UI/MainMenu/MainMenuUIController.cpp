@@ -22,6 +22,7 @@ namespace UI
         MainMenuUIController::MainMenuUIController()
         {
             createImage();
+            createText();
             createButtons();
         }
 
@@ -43,6 +44,11 @@ namespace UI
             background_image = new ImageView();
         }
 
+        void MainMenuUIController::createText()
+        {
+            high_score_text = new TextView();
+        }
+
         void MainMenuUIController::createButtons()
         {
             play_button = new ButtonView();
@@ -60,21 +66,17 @@ namespace UI
 
         void MainMenuUIController::initializeTexts()
         {
-            if (font.loadFromFile(Config::bubble_bobble_font_path))
-            {
-                high_score_text.setFont(font);
-                high_score_text.setCharacterSize(font_size);
-                high_score_text.setFillColor(text_color);
-                high_score_text.setString("HighScore : " + std::to_string(HighScore::loadHighScore().score));
-                setTextPosition(text_top_offset);
-            }
+            sf::String text_value = "HighScore : " + std::to_string(HighScore::loadHighScore().score);
+
+            high_score_text->initialize(text_value, sf::Vector2f(0, text_top_offset), FontType::BUBBLE_BOBBLE, font_size, text_color);
+            high_score_text->setTextCentreAligned();
         }
 
         void MainMenuUIController::initializeButtons()
         {
-            play_button->initialize("Play Button", Config::play_button_texture_path, button_width, button_height, sf::Vector2f(0, play_button_y_position));
-            instructions_button->initialize("Instructions Button", Config::instructions_button_texture_path, button_width, button_height, sf::Vector2f(0, instructions_button_y_position));
-            quit_button->initialize("Quit Button", Config::quit_button_texture_path, button_width, button_height, sf::Vector2f(0, quit_button_y_position));
+            play_button->initialize("Play Button", Config::play_button_texture_path, button_width, button_height, sf::Vector2f(0, play_button_top_offset));
+            instructions_button->initialize("Instructions Button", Config::instructions_button_texture_path, button_width, button_height, sf::Vector2f(0, instructions_button_top_offset));
+            quit_button->initialize("Quit Button", Config::quit_button_texture_path, button_width, button_height, sf::Vector2f(0, quit_button_top_offset));
 
             play_button->setCentreAlinged();
             instructions_button->setCentreAlinged();
@@ -97,6 +99,7 @@ namespace UI
         void MainMenuUIController::instructionsButtonCallback()
         {
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            GameService::setGameState(GameState::INSTRUCTIONS);
         }
 
         void MainMenuUIController::quitButtonCallback()
@@ -110,6 +113,7 @@ namespace UI
             play_button->update();
             instructions_button->update();
             quit_button->update();
+            high_score_text->update();
         }
 
         void MainMenuUIController::render()
@@ -118,11 +122,7 @@ namespace UI
             play_button->render();
             instructions_button->render();
             quit_button->render();
-        }
-
-        void MainMenuUIController::updateHighScoreText()
-        {
-            high_score_text.setString("HighScore : " + std::to_string(HighScore::loadHighScore().score));
+            high_score_text->render();
         }
 
         void MainMenuUIController::show()
@@ -131,6 +131,7 @@ namespace UI
             play_button->show();
             instructions_button->show();
             quit_button->show();
+            high_score_text->show();
         }
 
         void MainMenuUIController::destroy()
@@ -139,14 +140,7 @@ namespace UI
             delete (instructions_button);
             delete (quit_button);
             delete (background_image);
-        }
-
-        void MainMenuUIController::setTextPosition(float y_position)
-        {
-            sf::FloatRect textBounds = high_score_text.getLocalBounds();
-
-            float x_position = (game_window->getSize().x - textBounds.width) / 2;
-            high_score_text.setPosition(x_position, y_position);
+            delete (high_score_text);
         }
     }
 }

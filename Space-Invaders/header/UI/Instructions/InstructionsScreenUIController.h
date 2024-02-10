@@ -1,67 +1,59 @@
 ﻿#pragma once
-#include <SFML/Graphics.hpp>
+#include "../../header/UI/Interface/IUIController.h"
+#include "../../header/UI/UIElement/ImageView.h"
+#include "../../header/UI/UIElement/ButtonView.h"
+#include "../../header/UI/UIElement/TextView.h"
 
 namespace UI
 {
 	namespace Instructions
 	{
-		class InstructionsScreenUIController
+		class InstructionsScreenUIController : public Interface::IUIController
 		{
 		private:
-			static const int number_of_instructions = 4;
-			const float text_top_offset = 200.f;
-			const float text_spacing = 95.f;
-			const int font_size = 50;
-
-			const float menu_button_top_offset = 700.f;
-			const sf::Color text_color = sf::Color::White;
-
-			sf::String instructions[number_of_instructions] = { "Use the arrow keys to 'Move' your 'Spaceship'",
-																"Press the 'Left Mouse Button' to fire lasers and destroy the 'Alien' invaders",
-																"Collect 'Power-ups' for improved 'Firepower' and 'Shields'",
-																"Compete for the 'High Score'"};
-
-
-			// Constants:
 			const float button_width = 400.f;
 			const float button_height = 140.f;
 
-			sf::RenderWindow* game_window;
+			const float menu_button_y_position = 700.f;
+			const float background_alpha = 85.f;
 
-			sf::Texture background_texture;
-			sf::Sprite background_sprite;
+			static const int number_of_instructions = 4;
+			const float top_offset = 200.f;
+			const float text_spacing = 95.f;
+			const int font_size = 50;
 
-			sf::Texture menu_button_texture;
-			sf::Sprite menu_button_sprite;
+			const sf::Color text_color = sf::Color::White;
 
-			sf::Font font;
-			sf::Text instructions_text;
+			sf::String instructions[number_of_instructions] = { "Use the arrow keys to 'Move' your 'Spaceship'",
+																   "Press the 'Left Mouse Button' to fire lasers and destroy the 'Alien' invaders",
+																   "Collect 'Power-ups' for improved 'Firepower' and 'Shields'",
+																   "Compete for the 'High Score'" };
 
+			UIElement::ImageView* background_image;
+			UIElement::ButtonView* menu_button;
+
+			std::vector<UIElement::TextView*> instructions_text_list;
+
+			void createImage();
+			void createButtons();
+			void createText();
 			void initializeBackgroundImage();
-			void scaleBackgroundImage();
-
-			void initializeTexts();
-
 			void initializeButtons();
-			bool loadButtonTexturesFromFile();
-			void setButtonSprites();
+			void initializeTexts();
+			void registerButtonCallback();
 
-			void scaleAllButttons();
-			void scaleButton(sf::Sprite* button_to_scale);
-			void positionButtons();
+			void menuButtonCallback();
 
-			void handleButtonInteractions();
-			bool clickedButton(sf::Sprite*, sf::Vector2f);
-
-			void setTextPosition(float y_position);
-			void drawInstructions();
+			void destroy();
 
 		public:
+			InstructionsScreenUIController();
+			~InstructionsScreenUIController();
 
-			void initialize();
-			void update();
-			void render();
-			void show();
+			void initialize() override;
+			void update() override;
+			void render() override;
+			void show() override;
 		};
 	}
 }

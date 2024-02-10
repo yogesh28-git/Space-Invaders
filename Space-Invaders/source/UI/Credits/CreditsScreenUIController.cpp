@@ -1,140 +1,126 @@
 #include "../../header/UI/Credits/CreditsScreenUIController.h"
+#include "../../header/Main/GameService.h"
+#include "../../header/Graphics/GraphicService.h"
+#include "../../header/Sound/SoundService.h"
+#include "../../header/Event/EventService.h"
 #include "../../header/Global/Config.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Gameplay/GameplayService.h"
-#include "../../header/Sound/SoundService.h"
-#include "../../header/Main/GameService.h"
-#include "../../header/Player/PlayerModel.h"
 
 namespace UI
 {
     namespace Credits
     {
+        using namespace Global;
+        using namespace UIElement;
         using namespace Main;
         using namespace Sound;
-        using namespace Global;
-        using namespace Player;
-        using namespace Event;
+
+        CreditsScreenUIController::CreditsScreenUIController()
+        {
+            createText();
+            createImage();
+            createButtons();
+        }
+
+        CreditsScreenUIController::~CreditsScreenUIController()
+        {
+            destroy();
+        }
 
         void CreditsScreenUIController::initialize()
         {
-            game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+            initializeText();
             initializeBackgroundImage();
-            initializeTexts();
             initializeButtons();
+            registerButtonCallback();
         }
 
-        void CreditsScreenUIController::update()
+        void CreditsScreenUIController::createText()
         {
-            handleButtonInteractions();
+            title_text = new TextView();
         }
 
-        void CreditsScreenUIController::render()
+        void CreditsScreenUIController::createImage()
         {
-            game_window->draw(background_sprite);
-            game_window->draw(menu_button_sprite);
-            game_window->draw(quit_button_sprite);
-            game_window->draw(game_title_text);
+            background_image = new ImageView();
+        }
+
+        void CreditsScreenUIController::createButtons()
+        {
+            menu_button = new ButtonView();
+            quit_button = new ButtonView();
+        }
+
+        void CreditsScreenUIController::initializeText()
+        {
+            title_text->initialize(game_title, sf::Vector2f(0, text_top_offset), FontType::BUBBLE_BOBBLE, font_size, text_color);
+            title_text->setTextCentreAligned();
         }
 
         void CreditsScreenUIController::initializeBackgroundImage()
         {
-            if (background_texture.loadFromFile(Config::background_texture_path))
-            {
-                background_sprite.setTexture(background_texture);
-                scaleBackgroundImage();
-            }
-        }
+            sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 
-        void CreditsScreenUIController::scaleBackgroundImage()
-        {
-            background_sprite.setScale(
-                static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
-                static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
-            );
-        }
-
-        void CreditsScreenUIController::initializeTexts()
-        {
-            if (font.loadFromFile(Config::bubble_bobble_font_path))
-            {
-                game_title_text.setFont(font);
-                game_title_text.setCharacterSize(font_size);
-                game_title_text.setFillColor(text_color);
-                game_title_text.setString(game_title);
-                setTextPosition(text_top_offset);
-            }
+            background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
+            background_image->setImageAlpha(background_alpha);
         }
 
         void CreditsScreenUIController::initializeButtons()
         {
-            if (loadButtonTexturesFromFile())
-            {
-                setButtonSprites();
-                scaleAllButttons();
-                positionButtons();
-            }
+            menu_button->initialize("Menu Button", Config::menu_button_texture_path, button_width, button_height, sf::Vector2f(0, menu_button_y_position));
+            quit_button->initialize("Quit Button", Config::quit_button_texture_path, button_width, button_height, sf::Vector2f(0, quit_button_y_position));
+
+            menu_button->setCentreAlinged();
+            quit_button->setCentreAlinged();
         }
 
-        bool CreditsScreenUIController::loadButtonTexturesFromFile()
+        void CreditsScreenUIController::registerButtonCallback()
         {
-            return menu_button_texture.loadFromFile(Config::menu_button_texture_path) &&
-                    quit_button_texture.loadFromFile(Config::quit_button_texture_path);
+            menu_button->registerCallbackFuntion(std::bind(&CreditsScreenUIController::menuButtonCallback, this));
+            quit_button->registerCallbackFuntion(std::bind(&CreditsScreenUIController::quitButtonCallback, this));
         }
 
-        void CreditsScreenUIController::setButtonSprites()
+        void CreditsScreenUIController::menuButtonCallback()
         {
-            menu_button_sprite.setTexture(menu_button_texture);
-            quit_button_sprite.setTexture(quit_button_texture);
+            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            GameService::setGameState(GameState::MAIN_MENU);
         }
 
-        void CreditsScreenUIController::scaleAllButttons()
+        void CreditsScreenUIController::quitButtonCallback()
         {
-            scaleButton(&menu_button_sprite);
-            scaleButton(&quit_button_sprite);
+            ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->close();
         }
 
-        void CreditsScreenUIController::scaleButton(sf::Sprite* button_to_scale)
+        void CreditsScreenUIController::update()
         {
-            button_to_scale->setScale(
-                button_width / button_to_scale->getTexture()->getSize().x,
-                button_height / button_to_scale->getTexture()->getSize().y
-            );
+            background_image->update();
+            menu_button->update();
+            quit_button->update();
+            title_text->update();
         }
 
-        void CreditsScreenUIController::positionButtons()
+        void CreditsScreenUIController::render()
         {
-            float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
-            
-            menu_button_sprite.setPosition({ x_position, menu_button_top_offset });
-            quit_button_sprite.setPosition({ x_position, quit_button_top_offset });
+            background_image->render();
+            menu_button->render();
+            quit_button->render();
+            title_text->render();
         }
 
-        void CreditsScreenUIController::show() { }
-
-        void CreditsScreenUIController::setTextPosition(float y_position)
+        void CreditsScreenUIController::show()
         {
-            sf::FloatRect textBounds = game_title_text.getLocalBounds();
-
-            float x_position = (game_window->getSize().x - textBounds.width) / 2;
-            game_title_text.setPosition(x_position, y_position);
+            background_image->show();
+            menu_button->show();
+            quit_button->show();
+            title_text->show();
         }
 
-        void CreditsScreenUIController::handleButtonInteractions()
+        void CreditsScreenUIController::destroy()
         {
-            sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
-
-            if (clickedButton(&menu_button_sprite, mouse_position))
-            {
-                ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
-                GameService::setGameState(GameState::MAIN_MENU);
-            }
-        }
-
-        bool CreditsScreenUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
-        {
-            EventService* event_service = ServiceLocator::getInstance()->getEventService();
-            return event_service->pressedLeftMouseButton() && button_sprite->getGlobalBounds().contains(mouse_position);
+            delete (title_text);
+            delete (menu_button);
+            delete (quit_button);
+            delete (background_image);
         }
     }
 }

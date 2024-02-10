@@ -48,12 +48,8 @@ namespace Player
 
 	void PlayerView::setPlayerHighlight(bool b_highlight)
 	{
-		sf::Color player_color = player_sprite.getColor();
-
-		if (b_highlight) player_color.a = PlayerModel::invincible_player_alpha;
-		else player_color.a = 255;
-		
-		player_sprite.setColor(player_color);
+		if (b_highlight) player_image->setImageAlpha(PlayerModel::invincible_player_alpha);
+		else player_image->setImageAlpha(255);
 	}
 
 	const sf::Sprite& PlayerView::getPlayerSprite()
