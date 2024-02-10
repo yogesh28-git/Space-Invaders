@@ -1,6 +1,7 @@
 #pragma once
 #include "../../header/UI/MainMenu/MainMenuUIController.h"
 #include "../../header/UI/SplashScreen/SplashScreenUIController.h"
+#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
@@ -12,6 +13,7 @@ namespace UI
 
 		void createControllers();
 		void initializeControllers();
+		Interface::IUIController* getCurrentUIController();
 		void destroy();
 
 	public:

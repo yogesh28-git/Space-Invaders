@@ -7,39 +7,37 @@
 namespace Bullet
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
-	BulletView::BulletView() { }
+	BulletView::BulletView() { createUIElements(); }
 
-	BulletView::~BulletView() { }
+	BulletView::~BulletView() { destroy(); }
 
 	void BulletView::initialize(BulletController* controller)
 	{
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 		bullet_controller = controller;
-		initializeBulletSprite();
+		initializeImage();
 	}
 
-	void BulletView::update() { bullet_sprite.setPosition(bullet_controller->getBulletPosition()); }
-
-	void BulletView::render() { game_window->draw(bullet_sprite); }
-
-	const sf::Sprite& BulletView::getBulletSprite() { return bullet_sprite; }
-
-	void BulletView::initializeBulletSprite()
+	void BulletView::createUIElements()
 	{
-		if (bullet_texture.loadFromFile(getBulletTexturePath()))
-		{
-			bullet_sprite.setTexture(bullet_texture);
-			scaleBulletSprite();
-		}
+		bullet_image = new ImageView();
 	}
 
-	void BulletView::scaleBulletSprite()
+	void BulletView::initializeImage()
 	{
-		bullet_sprite.setScale(
-			static_cast<float>(bullet_sprite_width) / bullet_sprite.getTexture()->getSize().x,
-			static_cast<float>(bullet_sprite_height) / bullet_sprite.getTexture()->getSize().y
-		);
+		bullet_image->initialize(getBulletTexturePath(), bullet_sprite_width, bullet_sprite_height, bullet_controller->getBulletPosition());
+	}
+
+	void BulletView::update()
+	{
+		bullet_image->setPosition(bullet_controller->getBulletPosition());
+		bullet_image->update();
+	}
+
+	void BulletView::render()
+	{
+		bullet_image->render();
 	}
 
 	sf::String BulletView::getBulletTexturePath()
@@ -55,5 +53,15 @@ namespace Bullet
 		case::Bullet::BulletType::TORPEDOE:
 			return Config::torpedoe_texture_path;
 		}
+	}
+
+	const sf::Sprite& BulletView::getBulletSprite() 
+	{
+		return bullet_sprite; 
+	}
+
+	void BulletView::destroy()
+	{
+		delete (bullet_image);
 	}
 }
