@@ -9,48 +9,42 @@ namespace Enemy
 {
 	using namespace Global;
 	using namespace Graphics;
+	using namespace UI::UIElement;
 
-	EnemyView::EnemyView() { }
+	EnemyView::EnemyView() { createUIElements(); }
 
-	EnemyView::~EnemyView() { }
+	EnemyView::~EnemyView() { destroy(); }
 
 	void EnemyView::initialize(EnemyController* controller)
 	{
 		enemy_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializeEnemySprite();
+		initializeImage();
 	}
 
-	void EnemyView::initializeEnemySprite()
+	void EnemyView::createUIElements()
 	{
-		if (enemy_texture.loadFromFile(getEnemyTexturePath()))
-		{
-			enemy_sprite.setTexture(enemy_texture);
-			scaleEnemySprite();
-		}
+		enemy_image = new ImageView();
 	}
 
-	void EnemyView::scaleEnemySprite()
+	void EnemyView::initializeImage()
 	{
-		enemy_sprite.setScale(
-			static_cast<float>(enemy_sprite_width) / enemy_sprite.getTexture()->getSize().x,
-			static_cast<float>(enemy_sprite_height) / enemy_sprite.getTexture()->getSize().y
-		);
+		enemy_image->initialize(getEnemyTexturePath(), enemy_sprite_width, enemy_sprite_height, enemy_controller->getEnemyPosition());
 	}
 
 	void EnemyView::update()
 	{
-		enemy_sprite.setPosition(enemy_controller->getEnemyPosition());
+		enemy_image->setPosition(enemy_controller->getEnemyPosition());
+		enemy_image->update();
 	}
 
 	void EnemyView::render()
 	{
-		game_window->draw(enemy_sprite);
+		enemy_image->render();
 	}
 
 	const sf::Sprite& EnemyView::getEnemySprite()
 	{
-		return enemy_sprite;
+		return enemy_image->getSprite();
 	}
 
 	sf::String EnemyView::getEnemyTexturePath()
@@ -69,5 +63,10 @@ namespace Enemy
 		case::Enemy::EnemyType::UFO:
 			return Config::ufo_texture_path;
 		}
+	}
+
+	void EnemyView::destroy()
+	{
+		delete (enemy_image);
 	}
 }

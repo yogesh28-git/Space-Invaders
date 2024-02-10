@@ -1,14 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../header/UI/Interface/IUIController.h"
+#include "../../header/UI/UIElement/ImageView.h"
+#include "../../header/UI/UIElement/ButtonView.h"
 
 namespace UI
 {
 	namespace MainMenu
 	{
-		class MainMenuUIController
+		class MainMenuUIController : public Interface::IUIController
 		{
 		private:
 			const sf::Color text_color = sf::Color::White;
+			const float background_alpha = 85.f;
 
 			const float play_button_top_offset = 400.f;
 			const float instructions_button_top_offset = 600.f;
@@ -20,50 +24,39 @@ namespace UI
 			const float text_top_offset = 150.f;
 			const int font_size = 80;
 
-			bool mouse_button_pressed = false;
-
-			sf::Font font;
 			sf::Text high_score_text;
-			sf::RenderWindow* game_window;
 
-			sf::Texture background_texture;
-			sf::Sprite background_sprite;
+			UIElement::ImageView* background_image;
 
-			sf::Texture play_button_texture;
-			sf::Sprite play_button_sprite;
+			UIElement::ButtonView* play_button;
+			UIElement::ButtonView* instructions_button;
+			UIElement::ButtonView* quit_button;
 
-			sf::Texture instructions_button_texture;
-			sf::Sprite instructions_button_sprite;
-
-			sf::Texture quit_button_texture;
-			sf::Sprite quit_button_sprite;
+			void createImage();
+			void createButtons();
 
 			void initializeBackgroundImage();
-			void scaleBackgroundImage();
-
 			void initializeTexts();
 			void initializeButtons();
-			bool loadButtonTexturesFromFile();
-			void setButtonSprites();
 
-			void scaleAllButttons();
-			void scaleButton(sf::Sprite* button_to_scale);
-			void positionButtons();
+			void registerButtonCallback();
+			void playButtonCallback();
+			void instructionsButtonCallback();
+			void quitButtonCallback();
 
-			void processButtonInteractions();
-			bool clickedButton(sf::Sprite*, sf::Vector2f);
+			void destroy();
 
 			void setTextPosition(float y_position);
 			void updateHighScoreText();
 
 		public:
 			MainMenuUIController();
+			~MainMenuUIController();
 
-			void initialize();
-			void update();
-			void render();
-
-			void show();
+			void initialize() override;
+			void update() override;
+			void render() override;
+			void show() override;
 		};
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Powerup
 {
@@ -12,14 +13,13 @@ namespace Powerup
         const float powerup_sprite_height = 30.f;
 
         PowerupController* powerup_controller;
+        UI::UIElement::ImageView* powerup_image;
 
-        sf::RenderWindow* game_window;
-        sf::Texture powerup_texture;
-        sf::Sprite powerup_sprite;
-
-        void initializePowerupSprite();
-        void scalePowerupSprite();
+        void createUIElements();
+        void initializeImage();
         sf::String getPowerupTexturePath();
+
+        void destroy();
 
     public:
         PowerupView();

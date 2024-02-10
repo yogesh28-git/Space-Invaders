@@ -4,6 +4,7 @@
 #include "../../header/UI/GameplayUI/GameplayUIController.h"
 #include "../../header/UI/Instructions/InstructionsScreenUIController.h"
 #include "../../header/UI/Credits/CreditsScreenUIController.h"
+#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
@@ -18,6 +19,7 @@ namespace UI
 
 		void createControllers();
 		void initializeControllers();
+		Interface::IUIController* getCurrentUIController();
 		void destroy();
 
 	public:
