@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../header/Particle/ParticleSystemConfig.h"
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Particle
 {
@@ -10,16 +11,14 @@ namespace Particle
         ParticleSystemConfig particle_system_config;
         
         sf::Vector2f particles_position;
+        UI::UIElement::ImageView* particle_image;
 
-        sf::Texture particles_texture;
-        sf::Sprite particles_sprite;
-        sf::Clock clock;
+        void createUIElements();
+        void initializeImage();
 
         int current_frame;
+        sf::Clock clock;
         sf::Time frame_time;
-
-        void initializeParticlesSprite();
-        void scaleParticlesSprite();
       
     public:
         ParticleSystem(ParticleSystemConfig config);
