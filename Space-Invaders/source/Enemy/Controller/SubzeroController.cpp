@@ -23,6 +23,7 @@ namespace Enemy
 			enemy_model->setMovementDirection(MovementDirection::DOWN);
 			reward = subzero_reward;
 			rate_of_fire = subzero_rate_of_fire;
+			vertical_movement_speed = subzero_vertical_movement_speed;
 		}
 
 		void SubzeroController::move()
