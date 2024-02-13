@@ -1,7 +1,6 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Graphics/GraphicService.h"
-#include "../../header/Global/Config.h"
 #include "../../header/Enemy/EnemyController.h"
 
 namespace Enemy
@@ -22,7 +21,7 @@ namespace Enemy
 
 	void EnemyView::initializeEnemySprite()
 	{
-		if (enemy_texture.loadFromFile(Config::enemy_texture_path))
+		if (enemy_texture.loadFromFile(enemy_texture_path))
 		{
 			enemy_sprite.setTexture(enemy_texture);
 			scaleEnemySprite();

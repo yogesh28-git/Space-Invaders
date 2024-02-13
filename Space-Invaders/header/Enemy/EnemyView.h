@@ -8,6 +8,8 @@ namespace Enemy
     class EnemyView
     {
     private:
+        const sf::String enemy_texture_path = "assets/textures/enemy_ship.png";
+
         const float enemy_sprite_width = 60.f;
         const float enemy_sprite_height = 60.f;
 
