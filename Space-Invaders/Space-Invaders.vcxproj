@@ -134,30 +134,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="source\Event\EventService.cpp" />
-    <ClCompile Include="source\Gameplay\AnimationTest.cpp" />
-    <ClCompile Include="source\Gameplay\CollisionDetectionTest.cpp" />
-    <ClCompile Include="source\Gameplay\GameplayService.cpp" />
-    <ClCompile Include="source\Gameplay\SFMLTest.cpp" />
-    <ClCompile Include="source\Global\ServiceLocator.cpp" />
-    <ClCompile Include="source\Main\GameService.cpp" />
-    <ClCompile Include="source\Graphics\GraphicService.cpp" />
-    <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
-    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
-    <ClCompile Include="source\UI\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Event\EventService.h" />
-    <ClInclude Include="header\Gameplay\AnimationTest.h" />
-    <ClInclude Include="header\Gameplay\CollisionDetectionTest.h" />
-    <ClInclude Include="header\Gameplay\GameplayService.h" />
-    <ClInclude Include="header\Gameplay\SFMLTest.h" />
-    <ClInclude Include="header\Global\ServiceLocator.h" />
-    <ClInclude Include="header\Main\GameService.h" />
-    <ClInclude Include="header\Graphics\GraphicService.h" />
-    <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
-    <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
-    <ClInclude Include="header\UI\UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
