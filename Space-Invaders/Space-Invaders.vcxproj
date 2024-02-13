@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
+    <ClCompile Include="source\Elements\Bunker\BunkerData.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
     <ClCompile Include="source\Elements\ElementService.cpp" />
     <ClCompile Include="source\Enemy\EnemyController.cpp" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Elements\Bunker\BunkerController.h" />
+    <ClInclude Include="header\Elements\Bunker\BunkerData.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerView.h" />
     <ClInclude Include="header\Elements\ElementService.h" />
     <ClInclude Include="header\Enemy\EnemyController.h" />
@@ -181,7 +183,6 @@
     <ClInclude Include="header\Player\PlayerModel.h" />
     <ClInclude Include="header\Player\PlayerService.h" />
     <ClInclude Include="header\Player\PlayerView.h" />
-    <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
     <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
     <ClInclude Include="header\UI\UIService.h" />

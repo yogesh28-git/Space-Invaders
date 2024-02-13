@@ -1,12 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
 	namespace SplashScreen
 	{
-		class SplashScreenUIController : public Interface::IUIController
+		class SplashScreenUIController
 		{
 		private:
 			// Constants:
@@ -34,10 +33,10 @@ namespace UI
 		public:
 			SplashScreenUIController();
 
-			void initialize() override;
-			void update() override;
-			void render() override;
-			void show() override;
+			void initialize();
+			void update();
+			void render();
+			void show();
 		};
 	}
 }

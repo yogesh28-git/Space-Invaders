@@ -30,7 +30,7 @@ namespace Enemy
 
 	void EnemyController::update()
 	{
-		updateEnemyPosition();
+		move();
 		enemy_view->update();
 	}
 
@@ -39,7 +39,7 @@ namespace Enemy
 		enemy_view->render();
 	}
 
-	void EnemyController::updateEnemyPosition()
+	void EnemyController::move()
 	{
 		switch (enemy_model->getMovementDirection())
 		{
