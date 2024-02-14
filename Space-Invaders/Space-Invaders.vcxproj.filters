@@ -127,6 +127,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Powerup\PowerupView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="source\Graphics\GraphicService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -349,6 +351,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\Entity\EntityConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="header\Graphics\GraphicService.h">
       <Filter>Header Files</Filter>
     </ClInclude>

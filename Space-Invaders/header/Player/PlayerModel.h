@@ -38,8 +38,8 @@ namespace Player
 
         const float freez_duration = 2.f;
 
-        const float fire_cooldown_duration = 0.6f;
-        const float rapid_fire_cooldown_duration = 0.2f;
+        const float fire_cooldown_duration = 0.2f;
+        const float rapid_fire_cooldown_duration = 0.05f;
         const float tripple_laser_position_offset = 30.f;
 
         const float player_movement_speed = 350.0f;
