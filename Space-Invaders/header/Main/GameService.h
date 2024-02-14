@@ -8,7 +8,9 @@ namespace Main
 	{
 		BOOT,
 		MAIN_MENU,
+		INSTRUCTIONS,
 		GAMEPLAY,
+		CREDITS,
 	};
 
 	class GameService

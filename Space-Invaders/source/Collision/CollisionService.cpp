@@ -27,6 +27,9 @@ namespace Collision
 
 	void CollisionService::doCollision(int index_i, int index_j)
 	{
+		if (collider_list[index_i]->getCollisionState() == CollisionState::DISABLED ||
+			collider_list[index_j]->getCollisionState() == CollisionState::DISABLED) return;
+
 		if (hasCollisionOccurred(index_i, index_j))
 		{
 			if (areActiveColliders(index_i, index_j)) 

@@ -30,6 +30,7 @@ namespace Player
         void update();
         void render();
 
+        void setPlayerHighlight(bool b_highlight);
         const sf::Sprite& getPlayerSprite();
     };
 }

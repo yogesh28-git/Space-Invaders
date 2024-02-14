@@ -20,6 +20,7 @@ namespace Enemy
 		{
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(getInitialMovementDirection());
+			reward = thunder_snake_reward;
 			horizontal_movement_speed = thunder_snake_horizontal_movement_speed;
 		}
 
@@ -117,6 +118,12 @@ namespace Enemy
 				enemy_model->getEntityType(),
 				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
+		}
+
+		void ThunderSnakeController::destroy()
+		{
+			ServiceLocator::getInstance()->getPlayerService()->increaseScore(reward);
+			EnemyController::destroy();
 		}
 	}
 }

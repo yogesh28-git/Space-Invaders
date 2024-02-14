@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Bullet\BulletConfig.cpp" />
     <ClCompile Include="source\Bullet\BulletController.cpp" />
     <ClCompile Include="source\Bullet\BulletModel.cpp" />
     <ClCompile Include="source\Bullet\BulletService.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="source\Bullet\Controller\LaserBulletController.cpp" />
     <ClCompile Include="source\Bullet\Controller\TorpedoeController.cpp" />
     <ClCompile Include="source\Collision\CollisionService.cpp" />
+    <ClCompile Include="source\Collision\ICollider.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerData.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
@@ -160,6 +162,9 @@
     <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
+    <ClCompile Include="source\Particle\ParticleService.cpp" />
+    <ClCompile Include="source\Particle\ParticleSystem.cpp" />
+    <ClCompile Include="source\Gameplay\HighScore.cpp" />
     <ClCompile Include="source\Powerup\Controller\OutscalBombController.cpp" />
     <ClCompile Include="source\Powerup\Controller\RapidFireController.cpp" />
     <ClCompile Include="source\Powerup\Controller\ShieldController.cpp" />
@@ -176,6 +181,9 @@
     <ClCompile Include="source\Player\PlayerModel.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Player\PlayerView.cpp" />
+    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
+    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
     <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
     <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
@@ -217,6 +225,11 @@
     <ClInclude Include="header\Gameplay\GameplayView.h" />
     <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
+    <ClInclude Include="header\Particle\ParticleService.h" />
+    <ClInclude Include="header\Particle\ParticleSystem.h" />
+    <ClInclude Include="header\Gameplay\HighScore.h" />
+    <ClInclude Include="header\Particle\ParticleSystemConfig.h" />
+    <ClInclude Include="header\Particle\ParticleSystemConfigData.h" />
     <ClInclude Include="header\Powerup\Controller\OutscalBombController.h" />
     <ClInclude Include="header\Powerup\Controller\RapidFireController.h" />
     <ClInclude Include="header\Powerup\Controller\ShieldController.h" />
@@ -235,6 +248,9 @@
     <ClInclude Include="header\Player\PlayerModel.h" />
     <ClInclude Include="header\Player\PlayerService.h" />
     <ClInclude Include="header\Player\PlayerView.h" />
+    <ClInclude Include="header\UI\Credits\CreditsScreenUIController.h" />
+    <ClInclude Include="header\UI\GameplayUI\GameplayUIController.h" />
+    <ClInclude Include="header\UI\Instructions\InstructionsScreenUIController.h" />
     <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
     <ClInclude Include="header\UI\UIElement\AnimatedImageView.h" />
