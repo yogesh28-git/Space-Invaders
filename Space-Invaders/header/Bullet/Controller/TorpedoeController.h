@@ -8,7 +8,7 @@ namespace Bullet
         class TorpedoeController : public BulletController
         {
         private:
-            const float torpedo_movement_speed = 100.f;
+            const float torpedo_movement_speed = 200.f;
 
         public:
             TorpedoeController(BulletType bullet_type, Entity::EntityType owner_type);
