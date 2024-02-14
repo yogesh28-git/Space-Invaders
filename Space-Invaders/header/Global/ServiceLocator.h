@@ -4,10 +4,8 @@
 #include "../../header/UI/UIService.h"
 #include "../../header/Player/PlayerService.h"
 #include "../../header/Time/TimeService.h"
-#include "../../header/Sound/SoundService.h"
 #include "../../header/Enemy/EnemyService.h"
 #include "../../header/Gameplay/GameplayService.h"
-#include "../../header/Elements/ElementService.h"
 
 namespace Global
 {
@@ -18,11 +16,9 @@ namespace Global
         Graphics::GraphicService* graphic_service;
         UI::UIService* ui_service;
         Time::TimeService* time_service;
-        Sound::SoundService* sound_service;
         Gameplay::GameplayService* gameplay_service;
         Player::PlayerService* player_service;
         Enemy::EnemyService* enemy_service;
-        Element::ElementService* element_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -41,11 +37,9 @@ namespace Global
         Graphics::GraphicService* getGraphicService();
         UI::UIService* getUIService();
         Time::TimeService* getTimeService();
-        Sound::SoundService* getSoundService();
         Gameplay::GameplayService* getGameplayService();
         Player::PlayerService* getPlayerService();
         Enemy::EnemyService* getEnemyService();
-        Element::ElementService* getElementService();
         void deleteServiceLocator();
     };
 }
