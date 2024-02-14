@@ -7,12 +7,14 @@
 #include "../../header/Enemy/Controller/ThunderSnakeController.h"
 #include "../../header/Enemy/Controller/SubzeroController.h"
 #include "../../header/Enemy/Controller/UFOController.h"
+#include "../../header/Collision/ICollider.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
 	using namespace Controller;
+	using namespace Collision;
 
 	EnemyService::EnemyService() { std::srand(static_cast<unsigned>(std::time(nullptr))); }
 
@@ -28,12 +30,16 @@ namespace Enemy
 		updateSpawnTimer();
 		processEnemySpawn();
 
-		for (int i = 0; i < enemy_list.size(); i++) enemy_list[i]->update();
+		for (EnemyController* enemy : enemy_list)
+			enemy->update();
+
+		destroyFlaggedEnemies();
 	}
 
 	void EnemyService::render()
 	{
-		for (int i = 0; i < enemy_list.size(); i++) enemy_list[i]->render();
+		for (EnemyController* enemy : enemy_list)
+			enemy->render();
 	}
 
 	void EnemyService::updateSpawnTimer()
@@ -55,6 +61,7 @@ namespace Enemy
 		EnemyController* enemy_controller = createEnemy(getRandomEnemyType());
 		enemy_controller->initialize();
 
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(enemy_controller));
 		enemy_list.push_back(enemy_controller);
 		return enemy_controller;
 	}
@@ -83,8 +90,35 @@ namespace Enemy
 		}
 	}
 
+	void EnemyService::destroyFlaggedEnemies()
+	{
+		for (int i = 0; i < flagged_enemy_list.size(); i++)
+		{
+			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(flagged_enemy_list[i]));
+			delete (flagged_enemy_list[i]);
+		}
+		flagged_enemy_list.clear();
+	}
+
+	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
+	{
+		flagged_enemy_list.push_back(enemy_controller);
+		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
+	}
+
 	void EnemyService::destroy()
 	{
-		for (int i = 0; i < enemy_list.size(); i++) delete (enemy_list[i]);
+		for (int i = 0; i < enemy_list.size(); i++)
+		{
+			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(enemy_list[i]));
+			delete (enemy_list[i]);
+		}
+		enemy_list.clear();
+	}
+
+	void EnemyService::reset()
+	{
+		destroy();
+		spawn_timer = 0.0f;
 	}
 }

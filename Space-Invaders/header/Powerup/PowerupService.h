@@ -12,9 +12,11 @@ namespace Powerup
 	class PowerupService
 	{
 	private:
+		std::vector<IPowerup*> flagged_powerup_list;
 		std::vector<IPowerup*> powerup_list;
 
 		PowerupController* createPowerup(PowerupType powerup_type);
+		void destroyFlaggedPowerup();
 		void destroy();
 
 	public:
@@ -26,5 +28,6 @@ namespace Powerup
 		void render();
 
 		PowerupController* spawnPowerup(PowerupType powerup_type, sf::Vector2f position);
+		void destroyPowerup(PowerupController* powerup_controller);
 	};
 }
