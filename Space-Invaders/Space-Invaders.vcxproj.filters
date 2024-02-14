@@ -42,9 +42,6 @@
     <ClCompile Include="source\Enemy\EnemyView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Global\Config.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Sound\SoundService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Gameplay\GameplayService.cpp">
@@ -99,6 +93,84 @@
     <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Bullet\BulletController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet\BulletModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet\BulletService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet\BulletView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet\Controller\FrostBeamController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet\Controller\LaserBulletController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Bullet\Controller\TorpedoeController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Enemy\Controller\SubzeroController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Enemy\Controller\ThunderSnakeController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Enemy\Controller\UFOController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Enemy\Controller\ZapperController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\Controller\OutscalBombController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\Controller\RapidFireController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\Controller\ShieldController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\Controller\TrippleLaserController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\PowerupController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\PowerupModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\PowerupService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Powerup\PowerupView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElement\ButtonView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElement\ImageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElement\TextView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElement\UIView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Global\Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Main\GameService.h">
@@ -128,9 +200,6 @@
     <ClInclude Include="header\Enemy\EnemyView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\Global\Config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="header\Sound\SoundService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -147,9 +216,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\Gameplay\GameplayService.h">
@@ -180,6 +246,102 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\BulletConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\BulletController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\BulletModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\BulletService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\BulletView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\Controller\FrostBeamController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\Controller\LaserBulletController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\Controller\TorpedoeController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Bullet\IBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Enemy\Controller\SubzeroController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Enemy\Controller\ThunderSnakeController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Enemy\Controller\UFOController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Enemy\EnemyConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Enemy\Controller\ZapperController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\Controller\OutscalBombController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\Controller\RapidFireController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\Controller\ShieldController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\Controller\TrippleLaserController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\IPowerup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\PowerupConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\PowerupController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\PowerupModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\PowerupService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Powerup\PowerupView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\Interface\IUIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElement\AnimatedImageView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElement\ButtonView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElement\ImageView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElement\RectangleShapeView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElement\TextView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElement\UIView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Global\Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

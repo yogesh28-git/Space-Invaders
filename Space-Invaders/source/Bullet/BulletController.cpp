@@ -3,6 +3,7 @@
 #include "../../header/Bullet/BulletModel.h"
 #include "../../header/Bullet/BulletConfig.h"
 #include "../../header/Global/ServiceLocator.h"
+#include <iostream>
 
 namespace Bullet
 {
@@ -62,6 +63,12 @@ namespace Bullet
 	void BulletController::moveDown()
 	{
 		sf::Vector2f currentPosition = bullet_model->getBulletPosition();
+
+		//if (getBulletType() == BulletType::FROST_BEAM) 
+		//{
+		//	std::cout << "Frost Beam Speed is: " << bullet_model->getMovementSpeed() << "\n";
+		//}
+
 		currentPosition.y += bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		bullet_model->setBulletPosition(currentPosition);

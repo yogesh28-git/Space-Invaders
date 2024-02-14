@@ -1,5 +1,6 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Global/Config.h"
 #include "../../header/Graphics/GraphicService.h"
 #include "../../header/Enemy/EnemyController.h"
 #include "../../header/Enemy/EnemyConfig.h"

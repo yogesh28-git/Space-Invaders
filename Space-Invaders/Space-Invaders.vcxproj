@@ -157,6 +157,7 @@
     <ClCompile Include="source\Gameplay\GameplayController.cpp" />
     <ClCompile Include="source\Gameplay\GameplayService.cpp" />
     <ClCompile Include="source\Gameplay\GameplayView.cpp" />
+    <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
     <ClCompile Include="source\Powerup\Controller\OutscalBombController.cpp" />
     <ClCompile Include="source\Powerup\Controller\RapidFireController.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="header\Gameplay\GameplayController.h" />
     <ClInclude Include="header\Gameplay\GameplayService.h" />
     <ClInclude Include="header\Gameplay\GameplayView.h" />
+    <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
     <ClInclude Include="header\Powerup\Controller\OutscalBombController.h" />
     <ClInclude Include="header\Powerup\Controller\RapidFireController.h" />

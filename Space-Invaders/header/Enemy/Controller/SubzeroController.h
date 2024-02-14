@@ -9,6 +9,7 @@ namespace Enemy
         {
         private:
             const float subzero_rate_of_fire = 5.f;
+            float vertical_movement_speed = 50.f;
 
             void move() override;
             void moveDown();

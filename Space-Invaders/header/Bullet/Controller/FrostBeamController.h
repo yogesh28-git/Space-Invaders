@@ -8,7 +8,7 @@ namespace Bullet
         class FrostBeamController : public BulletController
         {
         private:
-            const float frost_beam_movement_speed = 250.f;
+            const float frost_beam_movement_speed = 500.f;
 
         public:
             FrostBeamController(BulletType type);
