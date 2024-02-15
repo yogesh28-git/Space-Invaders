@@ -19,6 +19,7 @@ namespace UI
 		gameplay_ui_controller = nullptr;
 		instructions_ui_controller = nullptr;
 		credits_ui_controller = nullptr;
+		splash_screen_ui_controller = nullptr;
 
 		createControllers();
 	}
@@ -29,6 +30,7 @@ namespace UI
 		gameplay_ui_controller = new GameplayUIController();
 		instructions_ui_controller = new InstructionsScreenUIController();
 		credits_ui_controller = new CreditsScreenUIController();
+		splash_screen_ui_controller = new SplashScreenUIController();
 	}
 
 	UIService::~UIService()
@@ -66,12 +68,16 @@ namespace UI
 		gameplay_ui_controller->initialize();
 		instructions_ui_controller->initialize();
 		credits_ui_controller->initialize();
+		splash_screen_ui_controller->initialize();
 	}
 
 	IUIController* UIService::getCurrentUIController()
 	{
 		switch (GameService::getGameState())
 		{
+		case GameState::SPLASH_SCREEN:
+			return splash_screen_ui_controller;
+
 		case GameState::MAIN_MENU:
 			return main_menu_controller;
 
@@ -95,5 +101,6 @@ namespace UI
 		delete(gameplay_ui_controller);
 		delete(instructions_ui_controller);
 		delete(credits_ui_controller);
+		delete(splash_screen_ui_controller);
 	}
 }

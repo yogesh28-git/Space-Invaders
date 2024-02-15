@@ -53,8 +53,14 @@
     <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
     <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
-    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
     <ClCompile Include="source\UI\UIService.cpp" />
+    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
+    <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
+    <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
+    <ClCompile Include="source\UI\UIElement\TextView.cpp" />
+    <ClCompile Include="source\UI\UIElement\UIView.cpp" />
+    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Bullet\BulletConfig.h" />
@@ -114,9 +120,15 @@
     <ClInclude Include="header\UI\Instructions\InstructionsScreenUIController.h" />
     <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
-    <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
     <ClInclude Include="header\UI\UIService.h" />
     <ClInclude Include="header\Particle\ParticleSystemConfig.h" />
     <ClInclude Include="header\Particle\ParticleSystemConfigData.h" />
+    <ClInclude Include="header\UI\UIElement\AnimatedImageView.h" />
+    <ClInclude Include="header\UI\UIElement\ButtonView.h" />
+    <ClInclude Include="header\UI\UIElement\ImageView.h" />
+    <ClInclude Include="header\UI\UIElement\RectangleShapeView.h" />
+    <ClInclude Include="header\UI\UIElement\TextView.h" />
+    <ClInclude Include="header\UI\UIElement\UIView.h" />
+    <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
   </ItemGroup>
 </Project>

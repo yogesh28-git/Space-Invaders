@@ -10,7 +10,7 @@ namespace Enemy
         private:
             const int subzero_reward = 10;
             const float subzero_rate_of_fire = 2;
-            float vertical_movement_speed = 100.f;
+            float subzero_vertical_movement_speed = 100.f;
 
             void move() override;
             void moveDown();
