@@ -87,10 +87,10 @@ namespace Enemy
 			}
 		}
 
-		void UFOController::destroy()
+		void UFOController::processScore()
 		{
 			ServiceLocator::getInstance()->getPlayerService()->increaseScore(ufo_reward);
-			EnemyController::destroy();
+			EnemyController::processScore();
 		}
 	}
 }

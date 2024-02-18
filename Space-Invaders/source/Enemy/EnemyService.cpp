@@ -120,6 +120,16 @@ namespace Enemy
 		enemy_list.clear();
 	}
 
+	void EnemyService::killAllEnemies()
+	{
+		for (int i = 0; i < enemy_list.size(); i++)
+		{
+			enemy_list[i]->processScore();
+			destroyEnemy(enemy_list[i]);
+		}
+		enemy_list.clear();
+	}
+
 	void EnemyService::reset()
 	{
 		destroy();

@@ -113,6 +113,7 @@ namespace Enemy
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 		{
+			processScore();
 			destroy();
 			return;
 		}
@@ -120,18 +121,23 @@ namespace Enemy
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
 		if (player_controller)
 		{
+			processScore();
 			destroy();
 			return;
 		}
 	}
 
+	void EnemyController::processScore()
+	{
+		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
+	}
+
 	void EnemyController::destroy()
 	{
 		ServiceLocator::getInstance()->getParticleService()->spawnParticleSystem(enemy_model->getEnemyPosition(),
-																				Particle::ParticlesType::EXPLOSION);
+			Particle::ParticlesType::EXPLOSION);
 
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
-		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
 		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 	}
 }

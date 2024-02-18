@@ -48,5 +48,7 @@ namespace Enemy
 
         const sf::Sprite& getColliderSprite() override;
         virtual void onCollision(ICollider* other_collider) override;
+
+        virtual void processScore();
     };
 }

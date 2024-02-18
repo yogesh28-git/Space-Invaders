@@ -53,10 +53,10 @@ namespace Enemy
 						Bullet::MovementDirection::DOWN);
 		}
 
-		void SubzeroController::destroy()
+		void SubzeroController::processScore()
 		{
 			ServiceLocator::getInstance()->getPlayerService()->increaseScore(reward);
-			EnemyController::destroy();
+			EnemyController::processScore();
 		}
 	}
 }

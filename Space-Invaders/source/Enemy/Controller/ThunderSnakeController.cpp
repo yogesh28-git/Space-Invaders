@@ -120,10 +120,10 @@ namespace Enemy
 				Bullet::MovementDirection::DOWN);
 		}
 
-		void ThunderSnakeController::destroy()
+		void ThunderSnakeController::processScore()
 		{
 			ServiceLocator::getInstance()->getPlayerService()->increaseScore(reward);
-			EnemyController::destroy();
+			EnemyController::processScore();
 		}
 	}
 }
