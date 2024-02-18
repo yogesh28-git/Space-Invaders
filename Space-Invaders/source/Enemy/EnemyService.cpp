@@ -102,9 +102,12 @@ namespace Enemy
 
 	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
 	{
-		dynamic_cast<ICollider*>(enemy_controller)->disableCollision();
-		flagged_enemy_list.push_back(enemy_controller);
-		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
+		if (std::find(flagged_enemy_list.begin(), flagged_enemy_list.end(), enemy_controller) == flagged_enemy_list.end())
+		{
+			dynamic_cast<ICollider*>(enemy_controller)->disableCollision();
+			flagged_enemy_list.push_back(enemy_controller);
+			enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
+		}
 	}
 
 	void EnemyService::destroy()

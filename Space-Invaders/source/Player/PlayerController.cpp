@@ -273,9 +273,9 @@ namespace Player
 		if (elapsed_fire_duration > 0) return;
 		
 		if (player_model->isTrippleLaserEnabled()) 
-			FireBullet(true);
+			fireBullet(true);
 
-		else FireBullet();
+		else fireBullet();
 
 		if (player_model->isRapidFireEnabled()) 
 			elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
@@ -283,21 +283,21 @@ namespace Player
 		else elapsed_fire_duration = player_model->fire_cooldown_duration;
 	}
 
-	void PlayerController::FireBullet(bool b_tripple_laser)
+	void PlayerController::fireBullet(bool b_tripple_laser)
 	{
 		sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
-		FireBullet(bullet_position);
+		fireBullet(bullet_position);
 
 		if (b_tripple_laser)
 		{
-			FireBullet(bullet_position + player_model->second_weapon_position_offset);
-			FireBullet(bullet_position + player_model->third_weapon_position_offset);
+			fireBullet(bullet_position + player_model->second_weapon_position_offset);
+			fireBullet(bullet_position + player_model->third_weapon_position_offset);
 		}
 
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 	}
 
-	void PlayerController::FireBullet(sf::Vector2f position)
+	void PlayerController::fireBullet(sf::Vector2f position)
 	{
 		increaseBulletsFired(1);
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
