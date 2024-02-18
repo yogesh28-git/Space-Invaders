@@ -257,9 +257,9 @@ namespace Player
 		if (elapsed_fire_duration > 0) return;
 		
 		if (player_model->isTrippleLaserEnabled()) 
-			FireBullet(true);
+			fireBullet(true);
 
-		else FireBullet();
+		else fireBullet();
 
 		if (player_model->isRapidFireEnabled()) 
 			elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
