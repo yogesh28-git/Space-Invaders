@@ -46,6 +46,18 @@ namespace Powerup
 		powerup_model->setPowerupPosition(currentPosition);
 	}
 
+	void PowerupController::handleOutOfBounds()
+	{
+		sf::Vector2f powerupPosition = getPowerupPosition();
+		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
+
+		if (powerupPosition.x < 0 || powerupPosition.x > windowSize.x ||
+			powerupPosition.y < 0 || powerupPosition.y > windowSize.y)
+		{
+			ServiceLocator::getInstance()->getPowerupService()->destroyPowerup(this);
+		}
+	}
+
 	sf::Vector2f PowerupController::getPowerupPosition()
 	{
 		return powerup_model->getPowerupPosition();

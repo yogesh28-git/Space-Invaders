@@ -267,19 +267,19 @@ namespace Player
 		else elapsed_fire_duration = player_model->fire_cooldown_duration;
 	}
 
-	void PlayerController::FireBullet(bool b_tripple_laser)
+	void PlayerController::fireBullet(bool b_tripple_laser)
 	{
 		sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
-		FireBullet(bullet_position);
+		fireBullet(bullet_position);
 
 		if (b_tripple_laser)
 		{
-			FireBullet(bullet_position + player_model->second_weapon_position_offset);
-			FireBullet(bullet_position + player_model->third_weapon_position_offset);
+			fireBullet(bullet_position + player_model->second_weapon_position_offset);
+			fireBullet(bullet_position + player_model->third_weapon_position_offset);
 		}
 	}
 
-	void PlayerController::FireBullet(sf::Vector2f position)
+	void PlayerController::fireBullet(sf::Vector2f position)
 	{
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, 
 				player_model->getEntityType(), position, Bullet::MovementDirection::UP);

@@ -25,6 +25,7 @@ namespace Bullet
 
         void moveUp();
         void moveDown();
+        void handleOutOfBounds();
 
     public:
         BulletController(BulletType bullet_type, Entity::EntityType owner_type);

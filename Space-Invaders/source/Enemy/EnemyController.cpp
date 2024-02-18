@@ -42,6 +42,7 @@ namespace Enemy
 		updateFireTimer();
 		processBulletFire();
 		enemy_view->update();
+		handleOutOfBounds();
 	}
 
 	void EnemyController::render()
@@ -70,6 +71,18 @@ namespace Enemy
 		float y_position = enemy_model->left_most_position.y;
 
 		return sf::Vector2f(x_position, y_position);
+	}
+
+	void EnemyController::handleOutOfBounds()
+	{
+		sf::Vector2f enemyPosition = getEnemyPosition();
+		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
+
+		if (enemyPosition.x < 0 || enemyPosition.x > windowSize.x ||
+			enemyPosition.y < 0 || enemyPosition.y > windowSize.y) 
+		{
+			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
+		}
 	}
 
 	sf::Vector2f EnemyController::getEnemyPosition()
