@@ -60,6 +60,12 @@ namespace Powerup
 		return powerup_controller;
 	}
 
+	void PowerupService::destroyPowerup(PowerupController* powerup_controller)
+	{
+		powerup_list.erase(std::remove(powerup_list.begin(), powerup_list.end(), powerup_controller), powerup_list.end());
+		delete(powerup_controller);
+	}
+
 	void PowerupService::destroy()
 	{
 		for (int i = 0; i < powerup_list.size(); i++) delete (powerup_list[i]);

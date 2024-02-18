@@ -15,6 +15,7 @@ namespace Powerup
         PowerupModel* powerup_model;
 
         void updatePowerupPosition();
+        void handleOutOfBounds();
 
     public:
         PowerupController(PowerupType type);

@@ -62,7 +62,7 @@ namespace Player
 
 		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey()) moveLeft();	
 		if (event_service->pressedRightArrowKey() || event_service->pressedDKey()) moveRight();
-		if (event_service->pressedLeftMouseButton()) FireBullet();
+		if (event_service->pressedLeftMouseButton()) fireBullet();
 	}
 
 	void PlayerController::moveLeft()
@@ -83,7 +83,7 @@ namespace Player
 		player_model->setPlayerPosition(currentPosition);
 	}
 
-	void PlayerController::FireBullet()
+	void PlayerController::fireBullet()
 	{
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
 			player_model->getPlayerPosition() + player_model->barrel_position_offset,

@@ -18,6 +18,7 @@ namespace Bullet
 
         void moveUp();
         void moveDown();
+        void handleOutOfBounds();
 
     public:
         BulletController(BulletType type);

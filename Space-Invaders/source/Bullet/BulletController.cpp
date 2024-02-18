@@ -31,6 +31,7 @@ namespace Bullet
 	{
 		updateBulletPosition();
 		bullet_view->update();
+		handleOutOfBounds();
 	}
 
 	void BulletController::render()
@@ -72,6 +73,18 @@ namespace Bullet
 		currentPosition.y += bullet_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		bullet_model->setBulletPosition(currentPosition);
+	}
+
+	void BulletController::handleOutOfBounds()
+	{
+		sf::Vector2f bulletPosition = getBulletPosition();
+		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
+
+		if (bulletPosition.x < 0 || bulletPosition.x > windowSize.x ||
+			bulletPosition.y < 0 || bulletPosition.y > windowSize.y)
+		{
+			ServiceLocator::getInstance()->getBulletService()->destroyBullet(this);
+		}
 	}
 
 	sf::Vector2f BulletController::getBulletPosition()

@@ -18,7 +18,7 @@ namespace Player
         void moveLeft();
         void moveRight();
 
-        void FireBullet();
+        void fireBullet();
 
     public:
         PlayerController();

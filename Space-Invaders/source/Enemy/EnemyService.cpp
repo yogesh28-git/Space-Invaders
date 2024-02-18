@@ -83,6 +83,12 @@ namespace Enemy
 		}
 	}
 
+	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
+	{
+		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
+		delete(enemy_controller);
+	}
+
 	void EnemyService::destroy()
 	{
 		for (int i = 0; i < enemy_list.size(); i++) delete (enemy_list[i]);
