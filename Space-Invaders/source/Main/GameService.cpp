@@ -26,14 +26,14 @@ namespace Main
 	{
 		service_locator->initialize();
 		initializeVariables();
-		showMainMenu();
+		showSplashScreen();
 	}
 
 	void GameService::initializeVariables() { game_window = service_locator->getGraphicService()->getGameWindow(); }
 
-	void GameService::showMainMenu()
+	void GameService::showSplashScreen()
 	{
-		setGameState(GameState::MAIN_MENU);
+		setGameState(GameState::SPLASH_SCREEN);
 		ServiceLocator::getInstance()->getUIService()->showScreen();
 	}
 
