@@ -1,5 +1,6 @@
 #pragma once
 #include "../../header/Powerup/IPowerup.h"
+#include "../Collision/ICollider.h"
 
 namespace Powerup
 {
@@ -8,12 +9,13 @@ namespace Powerup
 
     enum class PowerupType;
 
-    class PowerupController : public IPowerup
+    class PowerupController : public IPowerup, public Collision::ICollider
     {
     protected:
         PowerupView* powerup_view;
         PowerupModel* powerup_model;
 
+        virtual void applyPowerup() = 0;
         void updatePowerupPosition();
         void handleOutOfBounds();
 
@@ -27,5 +29,8 @@ namespace Powerup
 
         sf::Vector2f getPowerupPosition();
         PowerupType getPowerupType();
+
+        const sf::Sprite& getColliderSprite() override;
+        void onCollision(ICollider* other_collider) override;
     };
 }

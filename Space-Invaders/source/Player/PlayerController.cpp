@@ -4,6 +4,10 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Event/EventService.h"
 #include "../../header/Bullet/BulletConfig.h"
+#include "../../header/Entity/EntityConfig.h"
+#include "../../header/Bullet/BulletController.h"
+#include "../../header/Enemy/EnemyController.h"
+#include "../../header/Powerup/PowerupController.h"
 
 namespace Player
 {
@@ -11,6 +15,9 @@ namespace Player
 	using namespace Event;
 	using namespace Time;
 	using namespace Bullet;
+	using namespace Entity;
+	using namespace Enemy;
+	using namespace Powerup;
 
 	PlayerController::PlayerController()
 	{
@@ -32,13 +39,30 @@ namespace Player
 
 	void PlayerController::update()
 	{
-		processPlayerInput();
+		switch (player_model->getPlayerState())
+		{
+		case::Player::PlayerState::ALIVE:
+			processPlayerInput();
+			break;
+
+		case::Player::PlayerState::FROZEN:
+			updateFreezDuration();
+			break;
+		}
+
+		updatePowerupDuration();
+		updateFireDuration();
 		player_view->update();
 	}
 
 	void PlayerController::render()
 	{
 		player_view->render();
+	}
+
+	void PlayerController::reset()
+	{
+		player_model->reset();
 	}
 
 	sf::Vector2f PlayerController::getPlayerPosition()
@@ -56,13 +80,139 @@ namespace Player
 		return player_model->getPlayerState();
 	}
 
+	const sf::Sprite& PlayerController::getColliderSprite()
+	{
+		return player_view->getPlayerSprite();
+	}
+
+	void PlayerController::onCollision(ICollider* other_collider)
+	{
+		if(processPowerupCollision(other_collider)) 
+			return;
+
+		if(processBulletCollision(other_collider)) 
+			return;
+
+		processEnemyCollision(other_collider);
+	}
+
+	bool PlayerController::processBulletCollision(ICollider* other_collider)
+	{
+		if (player_model->isShieldEnabled())
+			return false;
+
+		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+
+		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
+		{
+			if (bullet_controller->getBulletType() == BulletType::FROST_BEAM)
+			{
+				player_model->setPlayerState(PlayerState::FROZEN);
+				elapsed_freez_duration = player_model->freez_duration;
+			}
+			else ServiceLocator::getInstance()->getGameplayService()->restart();
+			return true;
+		}
+
+		return false;
+	}
+
+	bool PlayerController::processEnemyCollision(ICollider* other_collider)
+	{
+		if (player_model->isShieldEnabled()) 
+			return false;
+
+		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
+		if (enemy_controller)
+		{
+			ServiceLocator::getInstance()->getGameplayService()->restart();
+			return true;
+		}
+		return false;
+	}
+
+	bool PlayerController::processPowerupCollision(ICollider* other_collider)
+	{
+		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
+		if (powerup_controller)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	void PlayerController::updatePowerupDuration()
+	{
+		if (elapsed_shield_duration > 0)
+		{
+			elapsed_shield_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			
+			if (elapsed_shield_duration <= 0) 
+				disableShield();
+		}
+
+		if (elapsed_rapid_fire_duration > 0)
+		{
+			elapsed_rapid_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			
+			if (elapsed_rapid_fire_duration <= 0) 
+				disableRapidFire();
+		}
+
+		if (elapsed_tripple_laser_duration > 0)
+		{
+			elapsed_tripple_laser_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			
+			if (elapsed_tripple_laser_duration <= 0) 
+				disableTrippleLaser();
+		}
+	}
+
+	void PlayerController::enableShield()
+	{
+		elapsed_shield_duration = player_model->shiled_powerup_duration;
+		player_model->setShieldState(true);
+	}
+
+	void PlayerController::disableShield()
+	{
+		player_model->setShieldState(false);
+	}
+
+	void PlayerController::enableRapidFire()
+	{
+		elapsed_rapid_fire_duration = player_model->rapid_fire_powerup_duration;
+		player_model->setRapidFireState(true);
+	}
+
+	void PlayerController::disableRapidFire()
+	{
+		player_model->setRapidFireState(false);
+	}
+
+	void PlayerController::enableTrippleLaser()
+	{
+		elapsed_tripple_laser_duration = player_model->tripple_laser_powerup_duration;
+		player_model->setTrippleFireState(true);
+	}
+
+	void PlayerController::disableTrippleLaser()
+	{
+		player_model->setTrippleFireState(false);
+	}
+
 	void PlayerController::processPlayerInput()
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey()) moveLeft();	
-		if (event_service->pressedRightArrowKey() || event_service->pressedDKey()) moveRight();
-		if (event_service->pressedLeftMouseButton()) fireBullet();
+		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey()) 
+			moveLeft();	
+
+		if (event_service->pressedRightArrowKey() || event_service->pressedDKey()) 
+			moveRight();
+
+		if (event_service->pressedLeftMouseButton()) 
+			processBulletFire();
 	}
 
 	void PlayerController::moveLeft()
@@ -83,10 +233,55 @@ namespace Player
 		player_model->setPlayerPosition(currentPosition);
 	}
 
-	void PlayerController::fireBullet()
+	void PlayerController::updateFireDuration()
 	{
-		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
-			player_model->getPlayerPosition() + player_model->barrel_position_offset,
-			Bullet::MovementDirection::UP);
+		if (elapsed_fire_duration >= 0)
+		{
+			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		}
+	}
+
+	void PlayerController::updateFreezDuration()
+	{
+		if (elapsed_freez_duration > 0)
+		{
+			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+			if (elapsed_freez_duration <= 0) 
+				player_model->setPlayerState(PlayerState::ALIVE);
+		}
+	}
+
+	void PlayerController::processBulletFire()
+	{
+		if (elapsed_fire_duration > 0) return;
+		
+		if (player_model->isTrippleLaserEnabled()) 
+			fireBullet(true);
+
+		else fireBullet();
+
+		if (player_model->isRapidFireEnabled()) 
+			elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
+
+		else elapsed_fire_duration = player_model->fire_cooldown_duration;
+	}
+
+	void PlayerController::fireBullet(bool b_tripple_laser)
+	{
+		sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
+		fireBullet(bullet_position);
+
+		if (b_tripple_laser)
+		{
+			fireBullet(bullet_position + player_model->second_weapon_position_offset);
+			fireBullet(bullet_position + player_model->third_weapon_position_offset);
+		}
+	}
+
+	void PlayerController::fireBullet(sf::Vector2f position)
+	{
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, 
+				player_model->getEntityType(), position, Bullet::MovementDirection::UP);
 	}
 }
