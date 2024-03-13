@@ -177,7 +177,6 @@
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Player\PlayerView.cpp" />
     <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
-    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
@@ -237,7 +236,6 @@
     <ClInclude Include="header\Player\PlayerView.h" />
     <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
-    <ClInclude Include="header\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="header\UI\UIElement\ButtonView.h" />
     <ClInclude Include="header\UI\UIElement\ImageView.h" />
     <ClInclude Include="header\UI\UIElement\RectangleShapeView.h" />
