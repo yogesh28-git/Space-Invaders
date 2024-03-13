@@ -3,12 +3,14 @@
 #include "../../header/Player/PlayerModel.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Event/EventService.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Player
 {
 	using namespace Global;
 	using namespace Event;
 	using namespace Time;
+	using namespace Bullet;
 
 	PlayerController::PlayerController()
 	{
@@ -58,15 +60,9 @@ namespace Player
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey())
-		{
-			moveLeft();
-		}
-		
-		if (event_service->pressedRightArrowKey() || event_service->pressedDKey())
-		{
-			moveRight();
-		}
+		if (event_service->pressedLeftArrowKey() || event_service->pressedAKey()) moveLeft();	
+		if (event_service->pressedRightArrowKey() || event_service->pressedDKey()) moveRight();
+		if (event_service->pressedLeftMouseButton()) fireBullet();
 	}
 
 	void PlayerController::moveLeft()
@@ -85,5 +81,12 @@ namespace Player
 
 		currentPosition.x = std::min(currentPosition.x, player_model->right_most_position.x);
 		player_model->setPlayerPosition(currentPosition);
+	}
+
+	void PlayerController::fireBullet()
+	{
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::FROST_BEAM,
+			player_model->getPlayerPosition() + player_model->barrel_position_offset,
+			Bullet::MovementDirection::UP);
 	}
 }

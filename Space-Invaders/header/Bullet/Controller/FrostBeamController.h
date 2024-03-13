@@ -1,0 +1,20 @@
+#pragma once
+#include "../../header/Bullet/BulletController.h"
+
+namespace Bullet
+{
+    namespace Controller
+    {
+        class FrostBeamController : public BulletController
+        {
+        private:
+            const float frost_beam_movement_speed = 500.f;
+
+        public:
+            FrostBeamController(BulletType type);
+            ~FrostBeamController();
+
+            void initialize(sf::Vector2f position, MovementDirection direction) override;
+        };
+    }
+}

@@ -6,6 +6,10 @@
 #include "../../header/Time/TimeService.h"
 #include "../../header/Enemy/EnemyService.h"
 #include "../../header/Gameplay/GameplayService.h"
+#include "../../header/Elements/ElementService.h"
+#include "../../header/Bullet/BulletService.h"
+#include "../../header/Powerup/PowerupService.h"
+#include "../../header/Sound/SoundService.h"
 
 namespace Global
 {
@@ -19,6 +23,11 @@ namespace Global
         Gameplay::GameplayService* gameplay_service;
         Player::PlayerService* player_service;
         Enemy::EnemyService* enemy_service;
+        Element::ElementService* element_service;
+        Bullet::BulletService* bullet_service;
+        Powerup::PowerupService* powerup_service;
+        Sound::SoundService* sound_service;
+        
 
         ServiceLocator();
         ~ServiceLocator();
@@ -40,6 +49,10 @@ namespace Global
         Gameplay::GameplayService* getGameplayService();
         Player::PlayerService* getPlayerService();
         Enemy::EnemyService* getEnemyService();
+        Element::ElementService* getElementService();
+        Bullet::BulletService* getBulletService();
+        Powerup::PowerupService* getPowerupService();
+        Sound::SoundService* getSoundService();
         void deleteServiceLocator();
     };
 }

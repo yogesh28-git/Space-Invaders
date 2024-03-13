@@ -3,29 +3,26 @@
 
 namespace Enemy
 {
-    enum class EnemyState
-    {
-        ALIVE,
-        DEAD,
-    };
-
-    enum class MovementDirection
-    {
-        LEFT,
-        RIGHT,
-        DOWN,
-    };
+    enum class EnemyType;
+    enum class EnemyState;
+    enum class MovementDirection;
 
     class EnemyModel
     {
     private:
         sf::Vector2f reference_position = sf::Vector2f(50.f, 50.f);
         sf::Vector2f enemy_position;
+
+        EnemyType enemy_type;
         EnemyState enemy_state;
         MovementDirection movement_direction;
 
     public:
-        EnemyModel();
+        const sf::Vector2f left_most_position = sf::Vector2f(50.f, 50.f);
+        const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 50.f);
+        const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 50.f);
+
+        EnemyModel(EnemyType type);
         ~EnemyModel();
 
         void initialize();
@@ -38,6 +35,9 @@ namespace Enemy
 
         EnemyState getEnemyState();
         void setEnemyState(EnemyState state);
+
+        EnemyType getEnemyType();
+        void setEnemyType(EnemyType type);
 
         MovementDirection getMovementDirection();
         void setMovementDirection(MovementDirection direction);
