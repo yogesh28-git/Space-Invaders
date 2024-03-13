@@ -109,6 +109,8 @@ namespace UI
             play_button->show();
             instructions_button->show();
             quit_button->show();
+
+            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
         }
 
         void MainMenuUIController::destroy()
