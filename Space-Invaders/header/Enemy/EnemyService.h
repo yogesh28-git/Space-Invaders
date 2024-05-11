@@ -22,7 +22,7 @@ namespace Enemy
 
 	public:
 		EnemyService();
-		virtual ~EnemyService();
+		~EnemyService();
 
 		void initialize();
 		void update();

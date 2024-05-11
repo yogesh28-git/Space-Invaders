@@ -1,7 +1,7 @@
 #include "../../header/Player/PlayerView.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
-#include "../../header/Graphics/GraphicService.h"
+#include "../../header/Graphic/GraphicService.h"
 #include "../../header/Player/PlayerController.h"
 
 namespace Player
@@ -45,3 +45,4 @@ namespace Player
 		delete(player_image);
 	}
 }
+

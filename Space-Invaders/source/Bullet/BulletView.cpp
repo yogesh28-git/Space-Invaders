@@ -26,12 +26,12 @@ namespace Bullet
 
 	void BulletView::initializeImage()
 	{
-		bullet_image->initialize(getBulletTexturePath(), bullet_sprite_width, bullet_sprite_height, bullet_controller->getBulletPosition());
+		bullet_image->initialize(getBulletTexturePath(), bullet_sprite_width, bullet_sprite_height, bullet_controller->getProjectilePosition());
 	}
 
 	void BulletView::update()
 	{
-		bullet_image->setPosition(bullet_controller->getBulletPosition());
+		bullet_image->setPosition(bullet_controller->getProjectilePosition());
 		bullet_image->update();
 	}
 
@@ -47,10 +47,10 @@ namespace Bullet
 		case::Bullet::BulletType::LASER_BULLET:
 			return Config::laser_bullet_texture_path;
 
-		case::Bullet::BulletType::FROST_BEAM:
+		case::Bullet::BulletType::FROST_BULLET:
 			return Config::frost_beam_texture_path;
 
-		case::Bullet::BulletType::TORPEDOE:
+		case::Bullet::BulletType::TORPEDO:
 			return Config::torpedoe_texture_path;
 		}
 	}

@@ -6,7 +6,7 @@ namespace Element
 
 	ElementService::~ElementService() { destroy(); }
 
-	void ElementService::initialize() 
+	void ElementService::initialize()
 	{
 		for (int i = 0; i < bunker_data_list.size(); i++)
 		{

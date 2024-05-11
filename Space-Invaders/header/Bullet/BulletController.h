@@ -1,20 +1,23 @@
 #pragma once
-#include "../../header/Bullet/IBullet.h"
+#include "../../Header/Projectile/IProjectile.h"
+#include "../../Header/Bullet/BulletConfig.h"
 
 namespace Bullet
 {
     class BulletView;
     class BulletModel;
+    
 
     enum class BulletType;
+  
 
-    class BulletController : public IBullet
+    class BulletController : public Projectile::IProjectile
     {
     protected:
         BulletView* bullet_view;
-        BulletModel* bullet_model;
+        BulletModel* bullet_model; 
 
-        void updateBulletPosition();
+        void updateProjectilePosition() override;
 
         void moveUp();
         void moveDown();
@@ -22,13 +25,13 @@ namespace Bullet
 
     public:
         BulletController(BulletType type);
-        virtual ~BulletController();
+        virtual ~BulletController() override;
 
-        void initialize(sf::Vector2f position, MovementDirection direction) override;
+        void initialize(sf::Vector2f position, Bullet::MovementDirection direction) override;
         void update() override;
         void render() override;
 
-        sf::Vector2f getBulletPosition();
+        sf::Vector2f getProjectilePosition() override;
         BulletType getBulletType();
     };
 }

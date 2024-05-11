@@ -1,5 +1,5 @@
 #pragma once
-#include "../../header/Powerup/IPowerup.h"
+#include "../../header/Collectible/ICollectible.h"
 
 namespace Powerup
 {
@@ -8,7 +8,7 @@ namespace Powerup
 
     enum class PowerupType;
 
-    class PowerupController : public IPowerup
+    class PowerupController : public Collectible::ICollectible
     {
     protected:
         PowerupView* powerup_view;
@@ -25,7 +25,9 @@ namespace Powerup
         void update() override;
         void render() override;
 
-        sf::Vector2f getPowerupPosition();
+        void onCollected() override;
+
+        sf::Vector2f getCollectiblePosition() override;
         PowerupType getPowerupType();
     };
 }

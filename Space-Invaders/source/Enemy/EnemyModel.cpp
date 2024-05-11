@@ -1,11 +1,12 @@
-#include "../../header/Enemy/EnemyModel.h"
-#include "../../header/Enemy/EnemyConfig.h"
+#include "../../Header/Enemy/EnemyModel.h"
+#include "../../Header/Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
-	EnemyModel::EnemyModel(EnemyType type) 
-	{
+	EnemyModel::EnemyModel(EnemyType type) {
+		
 		enemy_type = type;
+	
 	}
 
 	EnemyModel::~EnemyModel() { }
@@ -56,6 +57,7 @@ namespace Enemy
 	{
 		enemy_type = type;
 	}
+
 
 	MovementDirection EnemyModel::getMovementDirection()
 	{

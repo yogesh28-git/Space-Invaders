@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 #include "SFML/System/Vector2.hpp"
+#include "../../Header/Projectile/IProjectile.h"
 
 namespace Bullet
 {
-	class IBullet;
 	class BulletController;
 	enum class BulletType;
 	enum class MovementDirection;
@@ -12,7 +12,7 @@ namespace Bullet
 	class BulletService
 	{
 	private:
-		std::vector<IBullet*> bullet_list;
+		std::vector<Projectile::IProjectile*> bullet_list;
 
 		BulletController* createBullet(BulletType bullet_type);
 		void destroy();

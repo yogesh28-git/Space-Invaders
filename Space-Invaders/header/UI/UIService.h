@@ -1,5 +1,6 @@
 #pragma once
-#include "../../header/UI/MainMenu/MainMenuUIController.h"
+#pragma once
+#include "../../header/UI/MainMenu/MainMenuController.h"
 #include "../../header/UI/Interface/IUIController.h"
 
 namespace UI

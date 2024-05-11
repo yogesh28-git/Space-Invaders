@@ -12,7 +12,7 @@ namespace Element
 		void BunkerController::initialize(BunkerData data)
 		{
 			bunker_data = data;
-			bunker_view->initialize(this); 
+			bunker_view->initialize(this);
 		}
 
 		void BunkerController::update() { bunker_view->update(); }

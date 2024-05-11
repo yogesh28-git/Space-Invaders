@@ -11,7 +11,7 @@ namespace Bullet
     private:
         float movement_speed = 300.f;
         sf::Vector2f bullet_position;
-        
+
         BulletType bullet_type;
         MovementDirection movement_direction;
 

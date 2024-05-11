@@ -1,15 +1,14 @@
-#include "../../header/Enemy/EnemyController.h"
-#include "../../header/Enemy/EnemyView.h"
-#include "../../header/Enemy/EnemyModel.h"
-#include "../../header/Enemy/EnemyConfig.h"
-#include "../../header/Global/ServiceLocator.h"
-#include "../../header/Bullet/BulletConfig.h"
+#include "../../Header/Enemy/EnemyController.h"
+#include "../../Header/Enemy/EnemyView.h"
+#include "../../Header/Enemy/EnemyModel.h"
+#include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
-	using namespace Time;
 	using namespace Bullet;
+
 
 	EnemyController::EnemyController(EnemyType type)
 	{
@@ -73,11 +72,12 @@ namespace Enemy
 		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
 
 		if (enemyPosition.x < 0 || enemyPosition.x > windowSize.x ||
-			enemyPosition.y < 0 || enemyPosition.y > windowSize.y) 
+			enemyPosition.y < 0 || enemyPosition.y > windowSize.y)
 		{
 			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 		}
 	}
+
 
 	sf::Vector2f EnemyController::getEnemyPosition()
 	{

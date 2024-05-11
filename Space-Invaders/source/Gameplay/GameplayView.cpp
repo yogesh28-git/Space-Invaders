@@ -1,7 +1,7 @@
 #include "../../header/Gameplay/GameplayView.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
-#include "../../header/Graphics/GraphicService.h"
+#include "../../header/Graphic/GraphicService.h"
 
 namespace Gameplay
 {
@@ -23,7 +23,7 @@ namespace Gameplay
 			game_window->getSize().y,
 			sf::Vector2f(0, 0));
 
-		background_image->setImageAlpha(background_alpha);
+		//background_image->setImageAlpha(background_alpha); -> looks ugly with the transperency, your choice if you want to use this.
 	}
 
 	void GameplayView::update() { background_image->update(); }

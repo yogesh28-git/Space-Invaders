@@ -2,15 +2,16 @@
 #include "../../header/Powerup/PowerupController.h"
 #include "../../header/Powerup/PowerupConfig.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Powerup/Controller/OutscalBombController.h"
-#include "../../header/Powerup/Controller/RapidFireController.h"
-#include "../../header/Powerup/Controller/ShieldController.h"
-#include "../../header/Powerup/Controller/TrippleLaserController.h"
+#include "../../header/Powerup/Controllers/OutscalBombController.h"
+#include "../../header/Powerup/Controllers/RapidFireController.h"
+#include "../../header/Powerup/Controllers/ShieldController.h"
+#include "../../header/Powerup/Controllers/TrippleLaserController.h"
 
 namespace Powerup
 {
 	using namespace Global;
 	using namespace Controller;
+	using namespace Collectible;
 
 	PowerupService::PowerupService() { }
 
@@ -21,11 +22,6 @@ namespace Powerup
 	void PowerupService::update()
 	{
 		for (int i = 0; i < powerup_list.size(); i++) powerup_list[i]->update();
-
-		if (ServiceLocator::getInstance()->getEventService()->pressedRightMouseButton())
-		{
-			spawnPowerup(PowerupType::SHIELD, sf::Vector2f(100.f, 50.f));
-		}
 	}
 
 	void PowerupService::render()

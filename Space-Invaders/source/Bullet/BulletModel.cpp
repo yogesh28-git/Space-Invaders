@@ -1,10 +1,10 @@
-#include "../../header/Bullet/BulletModel.h"
+#include "../../Header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
-	BulletModel::BulletModel(BulletType type) 
+	BulletModel::BulletModel(BulletType type)
 	{
-		bullet_type = type; 
+		bullet_type = type;
 	}
 
 	BulletModel::~BulletModel() { }

@@ -1,13 +1,14 @@
-#include "../../header/Bullet/BulletService.h"
-#include "../../header/Bullet/BulletController.h"
-#include "../../header/Bullet/BulletConfig.h"
-#include "../../header/Bullet/Controller/FrostBeamController.h"
-#include "../../header/Bullet/Controller/LaserBulletController.h"
-#include "../../header/Bullet/Controller/TorpedoeController.h"
+#include "../../Header/Bullet/BulletService.h"
+#include "../../Header/Bullet/BulletController.h"
+#include "../../Header/Bullet/BulletConfig.h"
+#include "../../Header/Bullet/Controllers/FrostBulletController.h"
+#include "../../Header/Bullet/Controllers/LaserBulletController.h"
+#include "../../Header/Bullet/Controllers/TorpedoController.h"
 
 namespace Bullet
 {
 	using namespace Controller;
+	using namespace Projectile;
 
 	BulletService::BulletService() { }
 
@@ -32,11 +33,11 @@ namespace Bullet
 		case::Bullet::BulletType::LASER_BULLET:
 			return new LaserBulletController(Bullet::BulletType::LASER_BULLET);
 
-		case::Bullet::BulletType::FROST_BEAM:
-			return new FrostBeamController(Bullet::BulletType::FROST_BEAM);
+		case::Bullet::BulletType::FROST_BULLET:
+			return new FrostBulletController(Bullet::BulletType::FROST_BULLET);
 
-		case::Bullet::BulletType::TORPEDOE:
-			return new TorpedoeController(Bullet::BulletType::TORPEDOE);
+		case::Bullet::BulletType::TORPEDO:
+			return new TorpedoController(Bullet::BulletType::TORPEDO);
 		}
 	}
 
@@ -44,7 +45,7 @@ namespace Bullet
 	{
 		for (int i = 0; i < bullet_list.size(); i++) delete (bullet_list[i]);
 	}
-	
+
 	BulletController* BulletService::spawnBullet(BulletType bullet_type, sf::Vector2f position, MovementDirection direction)
 	{
 		BulletController* bullet_controller = createBullet(bullet_type);
