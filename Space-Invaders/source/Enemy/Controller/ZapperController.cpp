@@ -87,10 +87,10 @@ namespace Enemy
 				Bullet::MovementDirection::DOWN);
 		}
 
-		void ZapperController::processScore()
+		void ZapperController::destroy()
 		{
-			ServiceLocator::getInstance()->getPlayerService()->increaseScore(reward);
-			EnemyController::processScore();
+			
+			EnemyController::destroy();
 		}
 	}
 }

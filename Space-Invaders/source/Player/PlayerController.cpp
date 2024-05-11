@@ -10,7 +10,7 @@
 #include "../../header/Powerup/PowerupController.h"
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Main/GameService.h"
-#include "../../header/Gameplay/HighScore.h"
+
 
 namespace Player
 {
@@ -106,7 +106,7 @@ namespace Player
 
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
-			if (bullet_controller->getBulletType() == BulletType::FROST_BEAM) freezPlayer();
+			if (bullet_controller->getBulletType() == BulletType::FROST_BULLET) freezPlayer();
 			else decreasePlayerLive();
 
 			return true;
@@ -273,9 +273,9 @@ namespace Player
 		if (elapsed_fire_duration > 0) return;
 		
 		if (player_model->isTrippleLaserEnabled()) 
-			fireBullet(true);
+			FireBullet(true);
 
-		else fireBullet();
+		else FireBullet();
 
 		if (player_model->isRapidFireEnabled()) 
 			elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
@@ -283,21 +283,21 @@ namespace Player
 		else elapsed_fire_duration = player_model->fire_cooldown_duration;
 	}
 
-	void PlayerController::fireBullet(bool b_tripple_laser)
+	void PlayerController::FireBullet(bool b_tripple_laser)
 	{
 		sf::Vector2f bullet_position = player_model->getPlayerPosition() + player_model->barrel_position_offset;
-		fireBullet(bullet_position);
+		FireBullet(bullet_position);
 
 		if (b_tripple_laser)
 		{
-			fireBullet(bullet_position + player_model->second_weapon_position_offset);
-			fireBullet(bullet_position + player_model->third_weapon_position_offset);
+			FireBullet(bullet_position + player_model->second_weapon_position_offset);
+			FireBullet(bullet_position + player_model->third_weapon_position_offset);
 		}
 
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 	}
 
-	void PlayerController::fireBullet(sf::Vector2f position)
+	void PlayerController::FireBullet(sf::Vector2f position)
 	{
 		increaseBulletsFired(1);
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
@@ -309,20 +309,9 @@ namespace Player
 		PlayerModel::player_lives -= 1;
 		if (PlayerModel::player_lives <= 0)
 		{
-			saveHighScore();
-			GameService::setGameState(GameState::CREDITS);
+			reset();
 		}
 	}
 
-	void PlayerController::saveHighScore()
-	{
-		HighScoreData current_high_score = HighScore::loadHighScore();
 
-		if (PlayerModel::player_score > current_high_score.score)
-		{
-			current_high_score.player_name = "Outscal";
-			current_high_score.score = PlayerModel::player_score;
-			HighScore::saveHighScore(current_high_score);
-		}
-	}
 }

@@ -34,6 +34,5 @@ namespace Enemy
 
 		EnemyController* spawnEnemy();
 		void destroyEnemy(EnemyController* enemy_controller);
-		void killAllEnemies();
 	};
 }

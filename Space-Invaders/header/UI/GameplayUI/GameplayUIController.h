@@ -16,7 +16,6 @@ namespace UI
 
 			const float text_y_position = 15.f;
 			const float enemies_killed_text_x_position = 60.f;
-			const float score_text_x_position = 870.f;
 			
 			const float player_lives_y_offset = 25.f;
 			const float player_lives_x_offset = 1850.f;
@@ -28,7 +27,6 @@ namespace UI
 			const sf::Color text_color = sf::Color::White;
 
 			UI::UIElement::ImageView* player_image;
-			UI::UIElement::TextView* score_text;
 			UI::UIElement::TextView* enemies_killed_text;
 
 			void createUIElements();
@@ -46,7 +44,6 @@ namespace UI
 			void render();
 			void show();
 
-			void updateScoreText();
 			void updateEnemiesKilledText();
 			void drawPlayerLives();
 		};

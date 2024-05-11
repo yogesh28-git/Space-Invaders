@@ -6,8 +6,8 @@ namespace Bullet
 	enum class BulletType
 	{
 		LASER_BULLET,
-		TORPEDOE,
-		FROST_BEAM,
+		TORPEDO,
+		FROST_BULLET,
 	};
 
 	enum class MovementDirection

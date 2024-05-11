@@ -3,7 +3,7 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Graphics/GraphicService.h"
 #include "../../header/Global/Config.h"
-#include "../../header/Gameplay/HighScore.h"
+
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Event/EventService.h"
 
@@ -22,7 +22,7 @@ namespace UI
         MainMenuUIController::MainMenuUIController()
         {
             createImage();
-            createText();
+           
             createButtons();
         }
 
@@ -34,7 +34,7 @@ namespace UI
         void MainMenuUIController::initialize()
         {
             initializeBackgroundImage();
-            initializeTexts();
+            
             initializeButtons();
             registerButtonCallback();
         }
@@ -44,10 +44,7 @@ namespace UI
             background_image = new ImageView();
         }
 
-        void MainMenuUIController::createText()
-        {
-            high_score_text = new TextView();
-        }
+      
 
         void MainMenuUIController::createButtons()
         {
@@ -64,13 +61,7 @@ namespace UI
             background_image->setImageAlpha(background_alpha);
         }
 
-        void MainMenuUIController::initializeTexts()
-        {
-            sf::String text_value = "HighScore : " + std::to_string(HighScore::loadHighScore().score);
-
-            high_score_text->initialize(text_value, sf::Vector2f(0, text_top_offset), FontType::BUBBLE_BOBBLE, font_size, text_color);
-            high_score_text->setTextCentreAligned();
-        }
+        
 
         void MainMenuUIController::initializeButtons()
         {
@@ -113,7 +104,7 @@ namespace UI
             play_button->update();
             instructions_button->update();
             quit_button->update();
-            high_score_text->update();
+            
         }
 
         void MainMenuUIController::render()
@@ -122,7 +113,7 @@ namespace UI
             play_button->render();
             instructions_button->render();
             quit_button->render();
-            high_score_text->render();
+          
         }
 
         void MainMenuUIController::show()
@@ -131,7 +122,7 @@ namespace UI
             play_button->show();
             instructions_button->show();
             quit_button->show();
-            high_score_text->show();
+            
         }
 
         void MainMenuUIController::destroy()
@@ -140,7 +131,7 @@ namespace UI
             delete (instructions_button);
             delete (quit_button);
             delete (background_image);
-            delete (high_score_text);
+            
         }
     }
 }

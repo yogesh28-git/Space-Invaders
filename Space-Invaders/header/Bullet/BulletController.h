@@ -1,5 +1,5 @@
 #pragma once
-#include "../../header/Bullet/IBullet.h"
+#include "../../header/Projectile/IProjectile.h"
 #include "../../header/Entity/EntityConfig.h"
 #include "../Collision/ICollider.h"
 
@@ -10,13 +10,13 @@ namespace Bullet
 
     enum class BulletType;
 
-    class BulletController : public IBullet, public Collision::ICollider
+    class BulletController : public Projectile::IProjectile, public Collision::ICollider
     {
     protected:
         BulletView* bullet_view;
         BulletModel* bullet_model;
 
-        void updateBulletPosition();
+        void updateProjectilePosition() override;
 
         void processBulletCollision(ICollider* other_collider);
         void processEnemyCollision(ICollider* other_collider);
@@ -35,7 +35,7 @@ namespace Bullet
         void update() override;
         void render() override;
 
-        sf::Vector2f getBulletPosition();
+        sf::Vector2f getProjectilePosition() override;
         BulletType getBulletType();
         Entity::EntityType getOwnerEntityType();
 

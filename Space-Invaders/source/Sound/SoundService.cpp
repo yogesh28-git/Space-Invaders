@@ -23,8 +23,6 @@ namespace Sound
 			printf("Error loading background music file");
 		if (!buffer_bullet_fire.loadFromFile(Config::bullet_fire_sound_path))
 			printf("Error loading background music file");
-		if (!buffer_explosion.loadFromFile(Config::explosion_sound_path))
-			printf("Error loading background music file");
 		if (!buffer_powerup_enabled.loadFromFile(Config::powerup_enabled_sound_path))
 			printf("Error loading background music file");
 		if (!buffer_powerup_disabled.loadFromFile(Config::powerup_disabled_sound_path))

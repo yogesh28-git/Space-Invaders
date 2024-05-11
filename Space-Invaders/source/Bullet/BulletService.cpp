@@ -26,7 +26,7 @@ namespace Bullet
 
 	void BulletService::update()
 	{
-		for (IBullet* bullet : bullet_list)
+		for (Projectile::IProjectile* bullet : bullet_list)
 			bullet->update();
 
 		destroyFlaggedBullets();
@@ -34,7 +34,7 @@ namespace Bullet
 
 	void BulletService::render()
 	{
-		for (IBullet* bullet : bullet_list)
+		for (Projectile::IProjectile* bullet : bullet_list)
 			bullet->render();
 	}
 
@@ -45,15 +45,15 @@ namespace Bullet
 		case::Bullet::BulletType::LASER_BULLET:
 			return new LaserBulletController(Bullet::BulletType::LASER_BULLET, owner_type);
 
-		case::Bullet::BulletType::FROST_BEAM:
-			return new FrostBeamController(Bullet::BulletType::FROST_BEAM, owner_type);
+		case::Bullet::BulletType::FROST_BULLET:
+			return new FrostBeamController(Bullet::BulletType::FROST_BULLET, owner_type);
 
-		case::Bullet::BulletType::TORPEDOE:
-			return new TorpedoeController(Bullet::BulletType::TORPEDOE, owner_type);
+		case::Bullet::BulletType::TORPEDO:
+			return new TorpedoeController(Bullet::BulletType::TORPEDO, owner_type);
 		}
 	}
 
-	bool BulletService::isValidBullet(int index, std::vector<IBullet*>& bullet_list)
+	bool BulletService::isValidBullet(int index, std::vector<Projectile::IProjectile*>& bullet_list)
 	{
 		return index >= 0 && index < bullet_list.size() && bullet_list[index] != nullptr;
 	}
@@ -93,13 +93,10 @@ namespace Bullet
 	}
 
 	void BulletService::destroyBullet(BulletController* bullet_controller)
-	{	
-		if (std::find(flagged_bullet_list.begin(), flagged_bullet_list.end(), bullet_controller) == flagged_bullet_list.end())
-		{
-			dynamic_cast<ICollider*>(bullet_controller)->disableCollision();
-			flagged_bullet_list.push_back(bullet_controller);
-			bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
-		}
+	{
+		dynamic_cast<ICollider*>(bullet_controller)->disableCollision();
+		flagged_bullet_list.push_back(bullet_controller);
+		bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
 	}
 
 	void BulletService::reset() { destroy(); }

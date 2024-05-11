@@ -22,7 +22,7 @@ namespace Powerup
 
 	void PowerupService::update()
 	{
-		for (IPowerup* powerup : powerup_list) 
+		for (Collectible::ICollectible* powerup : powerup_list) 
 			powerup->update();
 
 		destroyFlaggedPowerup();
@@ -30,7 +30,7 @@ namespace Powerup
 
 	void PowerupService::render()
 	{
-		for (IPowerup* powerup : powerup_list)
+		for (Collectible::ICollectible* powerup : powerup_list)
 			powerup->render();
 	}
 
@@ -64,7 +64,7 @@ namespace Powerup
 
 	void PowerupService::destroyFlaggedPowerup()
 	{
-		for (IPowerup* powerup : flagged_powerup_list) 
+		for (Collectible::ICollectible* powerup : flagged_powerup_list)
 			delete (powerup);
 
 		flagged_powerup_list.clear();
@@ -80,7 +80,7 @@ namespace Powerup
 
 	void PowerupService::destroy()
 	{
-		for (IPowerup* powerup : powerup_list)
+		for (Collectible::ICollectible* powerup : powerup_list)
 			delete (powerup);
 	}
 }

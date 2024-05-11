@@ -33,7 +33,7 @@ namespace Element
 		{
 			BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 
-			if (bullet_controller && bullet_controller->getBulletType() == BulletType::TORPEDOE)
+			if (bullet_controller && bullet_controller->getBulletType() == BulletType::TORPEDO)
 			{
 				ServiceLocator::getInstance()->getElementService()->destroyBunker(this);
 			}

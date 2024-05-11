@@ -13,7 +13,7 @@
     <ClCompile Include="source\Collision\CollisionService.cpp" />
     <ClCompile Include="source\Collision\ICollider.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
-    <ClCompile Include="source\Elements\Bunker\BunkerData.cpp" />
+    <ClCompile Include="source\Elements\Bunker\BunkerModel.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
     <ClCompile Include="source\Elements\ElementService.cpp" />
     <ClCompile Include="source\Enemy\Controller\SubzeroController.cpp" />
@@ -30,9 +30,6 @@
     <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
-    <ClCompile Include="source\Particle\ParticleService.cpp" />
-    <ClCompile Include="source\Particle\ParticleSystem.cpp" />
-    <ClCompile Include="source\Gameplay\HighScore.cpp" />
     <ClCompile Include="source\Powerup\Controller\OutscalBombController.cpp" />
     <ClCompile Include="source\Powerup\Controller\RapidFireController.cpp" />
     <ClCompile Include="source\Powerup\Controller\ShieldController.cpp" />
@@ -49,18 +46,17 @@
     <ClCompile Include="source\Player\PlayerModel.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Player\PlayerView.cpp" />
-    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
     <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
-    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
     <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
-    <ClCompile Include="source\UI\UIService.cpp" />
-    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
-    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
     <ClCompile Include="source\UI\UIElement\TextView.cpp" />
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
+    <ClCompile Include="source\UI\UIService.cpp" />
     <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
+    <ClCompile Include="source\AnimationSystem\AnimationSystem.cpp" />
+    <ClCompile Include="source\AnimationSystem\AnimationService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Bullet\BulletConfig.h" />
@@ -71,12 +67,11 @@
     <ClInclude Include="header\Bullet\Controller\FrostBeamController.h" />
     <ClInclude Include="header\Bullet\Controller\LaserBulletController.h" />
     <ClInclude Include="header\Bullet\Controller\TorpedoeController.h" />
-    <ClInclude Include="header\Bullet\IBullet.h" />
     <ClInclude Include="header\Entity\EntityConfig.h" />
     <ClInclude Include="header\Collision\CollisionService.h" />
     <ClInclude Include="header\Collision\ICollider.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerController.h" />
-    <ClInclude Include="header\Elements\Bunker\BunkerData.h" />
+    <ClInclude Include="header\Elements\Bunker\BunkerModel.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerView.h" />
     <ClInclude Include="header\Elements\ElementService.h" />
     <ClInclude Include="header\Enemy\Controller\SubzeroController.h" />
@@ -94,14 +89,10 @@
     <ClInclude Include="header\Gameplay\GameplayView.h" />
     <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
-    <ClInclude Include="header\Particle\ParticleService.h" />
-    <ClInclude Include="header\Particle\ParticleSystem.h" />
-    <ClInclude Include="header\Gameplay\HighScore.h" />
     <ClInclude Include="header\Powerup\Controller\OutscalBombController.h" />
     <ClInclude Include="header\Powerup\Controller\RapidFireController.h" />
     <ClInclude Include="header\Powerup\Controller\ShieldController.h" />
     <ClInclude Include="header\Powerup\Controller\TrippleLaserController.h" />
-    <ClInclude Include="header\Powerup\IPowerup.h" />
     <ClInclude Include="header\Powerup\PowerupConfig.h" />
     <ClInclude Include="header\Powerup\PowerupController.h" />
     <ClInclude Include="header\Powerup\PowerupModel.h" />
@@ -115,20 +106,21 @@
     <ClInclude Include="header\Player\PlayerModel.h" />
     <ClInclude Include="header\Player\PlayerService.h" />
     <ClInclude Include="header\Player\PlayerView.h" />
-    <ClInclude Include="header\UI\Credits\CreditsScreenUIController.h" />
     <ClInclude Include="header\UI\GameplayUI\GameplayUIController.h" />
-    <ClInclude Include="header\UI\Instructions\InstructionsScreenUIController.h" />
     <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
     <ClInclude Include="header\UI\UIService.h" />
-    <ClInclude Include="header\Particle\ParticleSystemConfig.h" />
-    <ClInclude Include="header\Particle\ParticleSystemConfigData.h" />
-    <ClInclude Include="header\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="header\UI\UIElement\ButtonView.h" />
     <ClInclude Include="header\UI\UIElement\ImageView.h" />
-    <ClInclude Include="header\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="header\UI\UIElement\TextView.h" />
     <ClInclude Include="header\UI\UIElement\UIView.h" />
+    <ClInclude Include="header\Projectile\IProjectile.h" />
+    <ClInclude Include="header\Collectible\ICollectible.h" />
     <ClInclude Include="header\UI\SplashScreen\SplashScreenUIController.h" />
+    <ClInclude Include="header\UI\UIElement\AnimatedImageView.h" />
+    <ClInclude Include="header\AnimationSystem\AnimationSystemConfig.h" />
+    <ClInclude Include="header\AnimationSystem\AnimationSystemConfigData.h" />
+    <ClInclude Include="header\AnimationSystem\AnimationSystem.h" />
+    <ClInclude Include="header\AnimationSystem\AnimationService.h" />
   </ItemGroup>
 </Project>

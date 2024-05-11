@@ -3,7 +3,6 @@
 namespace Player
 {
 	int PlayerModel::player_lives;
-	int PlayerModel::player_score;
 	int PlayerModel::enemies_killed;
 	int PlayerModel::bullets_fired;
 
@@ -18,7 +17,7 @@ namespace Player
 		player_state = PlayerState::ALIVE;
 		player_position = initial_player_position;
 		player_lives = max_player_lives;
-		player_score = 0;
+
 		enemies_killed = 0;
 		bullets_fired = 0;
 

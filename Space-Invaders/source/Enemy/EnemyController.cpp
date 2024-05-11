@@ -7,7 +7,6 @@
 #include "../../header/Entity/EntityConfig.h"
 #include "../../header/Bullet/BulletController.h"
 #include "../../header/Player/PlayerController.h"
-#include "../../header/Particle/ParticleSystem.h"
 #include "../../header/Sound/SoundService.h"
 
 namespace Enemy
@@ -45,7 +44,6 @@ namespace Enemy
 		updateFireTimer();
 		processBulletFire();
 		enemy_view->update();
-		handleOutOfBounds();
 	}
 
 	void EnemyController::render()
@@ -76,18 +74,6 @@ namespace Enemy
 		return sf::Vector2f(x_position, y_position);
 	}
 
-	void EnemyController::handleOutOfBounds()
-	{
-		sf::Vector2f enemyPosition = getEnemyPosition();
-		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
-
-		if (enemyPosition.x < 0 || enemyPosition.x > windowSize.x ||
-			enemyPosition.y < 0 || enemyPosition.y > windowSize.y) 
-		{
-			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
-		}
-	}
-
 	sf::Vector2f EnemyController::getEnemyPosition()
 	{
 		return enemy_model->getEnemyPosition();
@@ -113,7 +99,6 @@ namespace Enemy
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 		{
-			processScore();
 			destroy();
 			return;
 		}
@@ -121,23 +106,20 @@ namespace Enemy
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
 		if (player_controller)
 		{
-			processScore();
 			destroy();
 			return;
 		}
 	}
 
-	void EnemyController::processScore()
-	{
-		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
-	}
-
 	void EnemyController::destroy()
 	{
-		ServiceLocator::getInstance()->getParticleService()->spawnParticleSystem(enemy_model->getEnemyPosition(),
-			Particle::ParticlesType::EXPLOSION);
+		ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(enemy_model->getEnemyPosition(),
+			Animation::AnimationType::EXPLOSION);
 
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
+
+		
+		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
 		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 	}
 }

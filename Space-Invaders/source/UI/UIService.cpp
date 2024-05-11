@@ -6,19 +6,15 @@ namespace UI
 {
 	using namespace Main;
 	using namespace MainMenu;
-	using namespace SplashScreen;
 	using namespace GameplayUI;
-	using namespace Instructions;
-	using namespace Credits;
 	using namespace UIElement;
 	using namespace Interface;
+	using namespace SplashScreen;
 
 	UIService::UIService()
 	{
 		main_menu_controller = nullptr;
 		gameplay_ui_controller = nullptr;
-		instructions_ui_controller = nullptr;
-		credits_ui_controller = nullptr;
 		splash_screen_ui_controller = nullptr;
 
 		createControllers();
@@ -28,8 +24,6 @@ namespace UI
 	{
 		main_menu_controller = new MainMenuUIController();
 		gameplay_ui_controller = new GameplayUIController();
-		instructions_ui_controller = new InstructionsScreenUIController();
-		credits_ui_controller = new CreditsScreenUIController();
 		splash_screen_ui_controller = new SplashScreenUIController();
 	}
 
@@ -66,8 +60,6 @@ namespace UI
 	{
 		main_menu_controller->initialize();
 		gameplay_ui_controller->initialize();
-		instructions_ui_controller->initialize();
-		credits_ui_controller->initialize();
 		splash_screen_ui_controller->initialize();
 	}
 
@@ -82,13 +74,7 @@ namespace UI
 			return main_menu_controller;
 
 		case GameState::GAMEPLAY:
-			return gameplay_ui_controller;
-
-		case GameState::INSTRUCTIONS:
-			return instructions_ui_controller;
-
-		case GameState::CREDITS:
-			return credits_ui_controller;
+			return gameplay_ui_controller;	
 
 		default:
 			return nullptr;
@@ -99,8 +85,6 @@ namespace UI
 	{
 		delete(main_menu_controller);
 		delete(gameplay_ui_controller);
-		delete(instructions_ui_controller);
-		delete(credits_ui_controller);
 		delete(splash_screen_ui_controller);
 	}
 }

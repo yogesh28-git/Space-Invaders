@@ -35,8 +35,8 @@ namespace Player
 
         void updateFireDuration();
         void processBulletFire();
-        void fireBullet(bool b_tripple_laser = false);
-        void fireBullet(sf::Vector2f position);
+        void FireBullet(bool b_tripple_laser = false);
+        void FireBullet(sf::Vector2f position);
         
         void updatePowerupDuration();
        
@@ -44,7 +44,7 @@ namespace Player
         void disableRapidFire();    
         void disableTrippleLaser();
 
-        void saveHighScore();
+    
 
     public:
         PlayerController();
@@ -57,8 +57,6 @@ namespace Player
         void reset();
 
         void decreasePlayerLive();
-        inline void increaseScore(int val) { PlayerModel::player_score += val; }
-        inline void decreaseScore(int val) { PlayerModel::player_score -= val; }
         inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
         inline void increaseBulletsFired(int val) { PlayerModel::bullets_fired += val; }
         

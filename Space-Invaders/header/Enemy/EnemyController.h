@@ -31,7 +31,6 @@ namespace Enemy
         virtual void move() = 0;
 
         sf::Vector2f getRandomInitialPosition();
-        void handleOutOfBounds();
         virtual void destroy();
        
     public:
@@ -48,7 +47,5 @@ namespace Enemy
 
         const sf::Sprite& getColliderSprite() override;
         virtual void onCollision(ICollider* other_collider) override;
-
-        virtual void processScore();
     };
 }

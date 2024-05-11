@@ -15,10 +15,10 @@ namespace Bullet
 		case::Bullet::BulletType::LASER_BULLET:
 			return laser_bullet_texture_path;
 
-		case::Bullet::BulletType::FROST_BEAM:
+		case::Bullet::BulletType::FROST_BULLET:
 			return frost_beam_texture_path;
 
-		case::Bullet::BulletType::TORPEDOE:
+		case::Bullet::BulletType::TORPEDO:
 			return torpedoe_texture_path;
 		}
 	}

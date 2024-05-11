@@ -16,7 +16,7 @@ namespace Player
     {
     private:
         friend class PlayerController;
-        friend void UI::GameplayUI::GameplayUIController::updateScoreText();
+        
         friend void UI::GameplayUI::GameplayUIController::updateEnemiesKilledText();
         friend void UI::GameplayUI::GameplayUIController::drawPlayerLives();
 

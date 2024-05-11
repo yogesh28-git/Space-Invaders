@@ -52,7 +52,7 @@ namespace Global
 
 	const sf::String Config::bullet_fire_sound_path = "assets/sounds/bullet_fire.ogg";
 
-	const sf::String Config::explosion_sound_path = "assets/sounds/explosion.wav";
+	
 
 	const sf::String Config::powerup_enabled_sound_path = "assets/sounds/powerup_enabled.ogg";
 
