@@ -2,11 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "../Collision/ICollider.h"
 #include "../../header/Powerup/PowerupConfig.h"
+#include "../../header/Player/PlayerModel.h"
 
 namespace Player
 {
     class PlayerView;
-    class PlayerModel;
 
     enum class PlayerState;
 
@@ -31,17 +31,20 @@ namespace Player
         bool processPowerupCollision(ICollider* other_collider);
         bool processEnemyCollision(ICollider* other_collider);
         void updateFreezDuration();
+        void freezPlayer();
 
         void updateFireDuration();
         void processBulletFire();
-        void fireBullet(bool b_tripple_laser = false);
-        void fireBullet(sf::Vector2f position);
+        void FireBullet(bool b_tripple_laser = false);
+        void FireBullet(sf::Vector2f position);
         
         void updatePowerupDuration();
        
         void disableShield();   
         void disableRapidFire();    
         void disableTrippleLaser();
+
+    
 
     public:
         PlayerController();
@@ -53,12 +56,15 @@ namespace Player
 
         void reset();
 
+        void decreasePlayerLive();
+        inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
+        
+        
         void enableShield();
         void enableRapidFire();
         void enableTrippleLaser();
 
         sf::Vector2f getPlayerPosition();
-        int getPlayerScore();
         PlayerState getPlayerState();
 
         const sf::Sprite& getColliderSprite() override;

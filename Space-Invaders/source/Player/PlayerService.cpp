@@ -35,6 +35,12 @@ namespace Player
 		player_controller->render();
 	}
 
+
+	void PlayerService::increaseEnemiesKilled(int val)
+	{
+		player_controller->increaseEnemiesKilled(val);
+	}
+	
 	void PlayerService::enableShield()
 	{
 		player_controller->enableShield();

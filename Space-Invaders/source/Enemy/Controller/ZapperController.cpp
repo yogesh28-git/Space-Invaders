@@ -86,5 +86,11 @@ namespace Enemy
 				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}
+
+		void ZapperController::destroy()
+		{
+			
+			EnemyController::destroy();
+		}
 	}
 }

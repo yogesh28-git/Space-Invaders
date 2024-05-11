@@ -39,6 +39,8 @@ namespace UI
             }
         }
 
+        
+
         void ImageView::setScale(float width, float height)
         {
             float scale_x = width / image_sprite.getTexture()->getSize().x;

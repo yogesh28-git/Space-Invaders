@@ -20,6 +20,9 @@ namespace Global
 	const sf::String Config::bunker_texture_path = "assets/textures/bunker.png";
 
 
+	const sf::String Config::explosion_texture_path = "assets/textures/explosion.png";
+
+
 	const sf::String Config::shield_texture_path = "assets/textures/shield.png";
 
 	const sf::String Config::tripple_laser_texture_path = "assets/textures/tripple_laser.png";
@@ -27,13 +30,6 @@ namespace Global
 	const sf::String Config::rapid_fire_texture_path = "assets/textures/rapid_fire.png";
 
 	const sf::String Config::outscal_bomb_texture_path = "assets/textures/outscal_bomb.png";
-
-
-	const sf::String Config::laser_bullet_texture_path = "assets/textures/laser_bullet.png";
-
-	const sf::String Config::torpedoe_texture_path = "assets/textures/torpedoe.png";
-
-	const sf::String Config::frost_beam_texture_path = "assets/textures/frost_beam.png";
 
 
 	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
@@ -53,4 +49,12 @@ namespace Global
 	const sf::String Config::background_music_path = "assets/sounds/background_music.mp3";
 
 	const sf::String Config::button_click_sound_path = "assets/sounds/button_click_sound.wav";
+
+	const sf::String Config::bullet_fire_sound_path = "assets/sounds/bullet_fire.ogg";
+
+	
+
+	const sf::String Config::powerup_enabled_sound_path = "assets/sounds/powerup_enabled.ogg";
+
+	const sf::String Config::powerup_disabled_sound_path = "assets/sounds/powerup_disabled.ogg";
 }

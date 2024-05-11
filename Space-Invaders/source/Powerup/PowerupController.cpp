@@ -38,9 +38,14 @@ namespace Powerup
 		powerup_view->render();
 	}
 
+	void PowerupController::onCollected()
+	{
+		applyPowerup();
+	}
+
 	void PowerupController::updatePowerupPosition()
 	{
-		sf::Vector2f currentPosition = powerup_model->getPowerupPosition();
+		sf::Vector2f currentPosition = getCollectiblePosition();
 		currentPosition.y += powerup_model->getMovementSpeed() * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		powerup_model->setPowerupPosition(currentPosition);
@@ -48,7 +53,7 @@ namespace Powerup
 
 	void PowerupController::handleOutOfBounds()
 	{
-		sf::Vector2f powerupPosition = getPowerupPosition();
+		sf::Vector2f powerupPosition = getCollectiblePosition();
 		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
 
 		if (powerupPosition.x < 0 || powerupPosition.x > windowSize.x ||
@@ -58,7 +63,7 @@ namespace Powerup
 		}
 	}
 
-	sf::Vector2f PowerupController::getPowerupPosition()
+	sf::Vector2f PowerupController::getCollectiblePosition()
 	{
 		return powerup_model->getPowerupPosition();
 	}
@@ -79,7 +84,7 @@ namespace Powerup
 
 		if (player_controller)
 		{
-			applyPowerup();
+			onCollected();
 			ServiceLocator::getInstance()->getPowerupService()->destroyPowerup(this);
 		}
 	}

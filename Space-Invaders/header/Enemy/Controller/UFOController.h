@@ -9,12 +9,14 @@ namespace Enemy
         class UFOController : public EnemyController
         {
         private:
-
+           
+            
             void move() override;
             void moveLeft();
             void moveRight();
 
             void fireBullet() override;
+            void destroy() override;
             Powerup::PowerupType getRandomPowerupType();
 
         public:

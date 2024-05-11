@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../header/Entity/EntityConfig.h"
+#include "../../header/UI/GameplayUI/GameplayUIController.h"
 
 namespace Player
 {
@@ -14,12 +15,21 @@ namespace Player
     class PlayerModel
     {
     private:
+        friend class PlayerController;
+        
+        friend void UI::GameplayUI::GameplayUIController::updateEnemiesKilledText();
+        friend void UI::GameplayUI::GameplayUIController::drawPlayerLives();
+
         const sf::Vector2f initial_player_position = sf::Vector2f(950.f, 950.f);
+        const int max_player_lives = 3;
 
         sf::Vector2f player_position;
         Entity::EntityType entity_type;
         PlayerState player_state;
-        int player_score;
+
+        static int player_lives;
+        static int enemies_killed;
+       
 
         bool b_shield;
         bool b_rapid_fire;
@@ -36,13 +46,14 @@ namespace Player
         const float rapid_fire_powerup_duration = 10.f;
         const float tripple_laser_powerup_duration = 10.f;
 
-        const float freez_duration = 2.f;
+        const float freez_duration = 1.5f;
 
         const float fire_cooldown_duration = 0.2f;
         const float rapid_fire_cooldown_duration = 0.05f;
         const float tripple_laser_position_offset = 30.f;
 
         const float player_movement_speed = 350.0f;
+        static const int invincible_player_alpha = 170.f;
 
         PlayerModel();
         ~PlayerModel();
@@ -52,9 +63,6 @@ namespace Player
 
         sf::Vector2f getPlayerPosition();
         void setPlayerPosition(sf::Vector2f position);
-
-        int getPlayerScore();
-        void setPlayerScore(int score);
 
         PlayerState getPlayerState();
         void setPlayerState(PlayerState state);

@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Bullet\BulletConfig.cpp" />
     <ClCompile Include="source\Bullet\BulletController.cpp" />
     <ClCompile Include="source\Bullet\BulletModel.cpp" />
     <ClCompile Include="source\Bullet\BulletService.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="source\Bullet\Controller\LaserBulletController.cpp" />
     <ClCompile Include="source\Bullet\Controller\TorpedoeController.cpp" />
     <ClCompile Include="source\Collision\CollisionService.cpp" />
+    <ClCompile Include="source\Collision\ICollider.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerData.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
@@ -176,10 +178,10 @@
     <ClCompile Include="source\Player\PlayerModel.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Player\PlayerView.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
     <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
-    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
     <ClCompile Include="source\UI\UIElement\TextView.cpp" />
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
     <ClCompile Include="source\UI\UIService.cpp" />
@@ -193,12 +195,12 @@
     <ClInclude Include="header\Bullet\Controller\FrostBeamController.h" />
     <ClInclude Include="header\Bullet\Controller\LaserBulletController.h" />
     <ClInclude Include="header\Bullet\Controller\TorpedoeController.h" />
-    <ClInclude Include="header\Bullet\IBullet.h" />
+    <ClInclude Include="header\Collectible\ICollectible.h" />
     <ClInclude Include="header\Entity\EntityConfig.h" />
     <ClInclude Include="header\Collision\CollisionService.h" />
     <ClInclude Include="header\Collision\ICollider.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerController.h" />
-    <ClInclude Include="header\Elements\Bunker\BunkerData.h" />
+    <ClInclude Include="header\Elements\Bunker\BunkerModel.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerView.h" />
     <ClInclude Include="header\Elements\ElementService.h" />
     <ClInclude Include="header\Enemy\Controller\SubzeroController.h" />
@@ -220,12 +222,12 @@
     <ClInclude Include="header\Powerup\Controller\RapidFireController.h" />
     <ClInclude Include="header\Powerup\Controller\ShieldController.h" />
     <ClInclude Include="header\Powerup\Controller\TrippleLaserController.h" />
-    <ClInclude Include="header\Powerup\IPowerup.h" />
     <ClInclude Include="header\Powerup\PowerupConfig.h" />
     <ClInclude Include="header\Powerup\PowerupController.h" />
     <ClInclude Include="header\Powerup\PowerupModel.h" />
     <ClInclude Include="header\Powerup\PowerupService.h" />
     <ClInclude Include="header\Powerup\PowerupView.h" />
+    <ClInclude Include="header\Projectile\IProjectile.h" />
     <ClInclude Include="header\Sound\SoundService.h" />
     <ClInclude Include="header\Time\TimeService.h" />
     <ClInclude Include="header\Main\GameService.h" />
@@ -234,11 +236,11 @@
     <ClInclude Include="header\Player\PlayerModel.h" />
     <ClInclude Include="header\Player\PlayerService.h" />
     <ClInclude Include="header\Player\PlayerView.h" />
+    <ClInclude Include="header\UI\GameplayUI\GameplayUIController.h" />
     <ClInclude Include="header\UI\Interface\IUIController.h" />
     <ClInclude Include="header\UI\MainMenu\MainMenuUIController.h" />
     <ClInclude Include="header\UI\UIElement\ButtonView.h" />
     <ClInclude Include="header\UI\UIElement\ImageView.h" />
-    <ClInclude Include="header\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="header\UI\UIElement\TextView.h" />
     <ClInclude Include="header\UI\UIElement\UIView.h" />
     <ClInclude Include="header\UI\UIService.h" />

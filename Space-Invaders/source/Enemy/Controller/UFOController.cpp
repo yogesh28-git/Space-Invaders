@@ -24,6 +24,7 @@ namespace Enemy
 		void UFOController::initialize()
 		{
 			EnemyController::initialize();
+			
 		}
 
 		void UFOController::move()
@@ -84,6 +85,12 @@ namespace Enemy
 				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(getRandomPowerupType(), enemy_model->getEnemyPosition());
 				return;
 			}
+		}
+
+		void UFOController::destroy()
+		{
+			
+			EnemyController::destroy();
 		}
 	}
 }

@@ -35,9 +35,8 @@ namespace Bullet
 
 	void BulletController::update()
 	{
-		updateBulletPosition();
+		updateProjectilePosition();
 		bullet_view->update();
-		handleOutOfBounds();
 	}
 
 	void BulletController::render()
@@ -45,19 +44,6 @@ namespace Bullet
 		bullet_view->render();
 	}
 
-	void BulletController::updateBulletPosition()
-	{
-		switch (bullet_model->getMovementDirection())
-		{
-		case::Bullet::MovementDirection::UP:
-			moveUp();
-			break;
-
-		case::Bullet::MovementDirection::DOWN:
-			moveDown();
-			break;
-		}
-	}
 
 	void BulletController::moveUp()
 	{
@@ -76,7 +62,7 @@ namespace Bullet
 
 	void BulletController::handleOutOfBounds()
 	{
-		sf::Vector2f bulletPosition = getBulletPosition();
+		sf::Vector2f bulletPosition = getProjectilePosition();
 		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
 
 		if (bulletPosition.x < 0 || bulletPosition.x > windowSize.x ||
@@ -86,7 +72,8 @@ namespace Bullet
 		}
 	}
 
-	sf::Vector2f BulletController::getBulletPosition()
+
+	sf::Vector2f BulletController::getProjectilePosition()
 	{
 		return bullet_model->getBulletPosition();
 	}
@@ -112,6 +99,20 @@ namespace Bullet
 		processEnemyCollision(other_collider);
 		processBunkerCollision(other_collider);
 		processBulletCollision(other_collider);
+	}
+
+	void BulletController::updateProjectilePosition()
+	{
+		switch (bullet_model->getMovementDirection())
+		{
+		case::Bullet::MovementDirection::UP:
+			moveUp();
+			break;
+
+		case::Bullet::MovementDirection::DOWN:
+			moveDown();
+			break;
+		}
 	}
 
 	void BulletController::processBulletCollision(ICollider* other_collider)

@@ -12,6 +12,7 @@
 #include "../../header/Sound/SoundService.h"
 #include "../../header/Collision/CollisionService.h"
 
+
 namespace Global
 {
     class ServiceLocator
@@ -29,6 +30,7 @@ namespace Global
         Powerup::PowerupService* powerup_service;
         Sound::SoundService* sound_service;
         Collision::CollisionService* collision_service;
+
 
         ServiceLocator();
         ~ServiceLocator();
@@ -55,6 +57,7 @@ namespace Global
         Powerup::PowerupService* getPowerupService();
         Sound::SoundService* getSoundService();
         Collision::CollisionService* getCollisionService();
+
         void deleteServiceLocator();
     };
 }

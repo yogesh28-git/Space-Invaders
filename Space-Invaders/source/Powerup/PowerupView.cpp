@@ -27,12 +27,12 @@ namespace Powerup
 
 	void PowerupView::initializeImage()
 	{
-		powerup_image->initialize(getPowerupTexturePath(), powerup_sprite_width, powerup_sprite_height, powerup_controller->getPowerupPosition());
+		powerup_image->initialize(getPowerupTexturePath(), powerup_sprite_width, powerup_sprite_height, powerup_controller->getCollectiblePosition());
 	}
 
 	void PowerupView::update()
 	{
-		powerup_image->setPosition(powerup_controller->getPowerupPosition());
+		powerup_image->setPosition(powerup_controller->getCollectiblePosition());
 		powerup_image->update();
 	}
 
