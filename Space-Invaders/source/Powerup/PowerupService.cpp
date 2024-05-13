@@ -13,6 +13,7 @@ namespace Powerup
 	using namespace Global;
 	using namespace Collision;
 	using namespace Controller;
+	using namespace Collectible;
 
 	PowerupService::PowerupService() { }
 

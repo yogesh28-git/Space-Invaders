@@ -14,6 +14,7 @@
 #include "../../header/AnimationSystem/AnimationService.h"
 
 
+
 namespace Global
 {
     class ServiceLocator
@@ -32,6 +33,7 @@ namespace Global
         Sound::SoundService* sound_service;
         Collision::CollisionService* collision_service;
         Animation::AnimationService* animation_service;
+
 
 
         ServiceLocator();

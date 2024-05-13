@@ -2,6 +2,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+
 namespace Event
 {
 	enum class ButtonState
@@ -27,9 +28,10 @@ namespace Event
 		bool isGameWindowOpen();
 		bool gameWindowWasClosed();
 		bool hasQuitGame();
-		bool isKeyboardEvent();
 		void updateMouseButtonsState(ButtonState& current_button_state, sf::Mouse::Button mouse_button);
 		void updateKeyboardButtonsState(ButtonState& current_button_state, sf::Keyboard::Key keyboard_button);
+
+
 
 	public:
 		EventService();
@@ -40,11 +42,13 @@ namespace Event
 		void processEvents();
 
 		bool pressedEscapeKey();
-		bool pressedLeftArrowKey();
-		bool pressedRightArrowKey();
+		bool pressedLeftKey();
+		bool pressedRightKey();
+		bool isKeyboardEvent();
 		bool pressedAKey();
 		bool pressedDKey();
 		bool pressedLeftMouseButton();
 		bool pressedRightMouseButton();
+
 	};
 }

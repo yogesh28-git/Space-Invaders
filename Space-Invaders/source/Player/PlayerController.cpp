@@ -16,7 +16,6 @@ namespace Player
 {
 	using namespace Global;
 	using namespace Event;
-	using namespace Time;
 	using namespace Bullet;
 	using namespace Entity;
 	using namespace Enemy;
@@ -78,7 +77,9 @@ namespace Player
 
 	PlayerState PlayerController::getPlayerState()
 	{
+		
 		return player_model->getPlayerState();
+		
 	}
 
 	const sf::Sprite& PlayerController::getColliderSprite()

@@ -1,4 +1,4 @@
-#include "../../header/Bullet/BulletModel.h"
+#include "../../Header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
