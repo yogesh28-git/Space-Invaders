@@ -11,7 +11,7 @@ namespace Player
 
 	public:
 		PlayerService();
-		virtual ~PlayerService();
+		~PlayerService();
 
 		void initialize();
 		void update();
@@ -28,3 +28,4 @@ namespace Player
 		void reset();
 	};
 }
+

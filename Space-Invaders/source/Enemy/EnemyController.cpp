@@ -12,12 +12,12 @@
 namespace Enemy
 {
 	using namespace Global;
-	using namespace Time;
 	using namespace Bullet;
 	using namespace Collision;
 	using namespace Entity;
 	using namespace Player;
 	using namespace Sound;
+
 
 	EnemyController::EnemyController(EnemyType type)
 	{

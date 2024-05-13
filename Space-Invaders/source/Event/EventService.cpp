@@ -1,12 +1,15 @@
-#include "../../header/Event/EventService.h"
-#include "../../header/Global/ServiceLocator.h"
-#include "../../header/Graphics/GraphicService.h"
-#include <iostream>
+#include "../../Header/Event/EventService.h"
+#include "../../Header/Graphic/GraphicService.h"
+#include "../../Header/Global/ServiceLocator.h"
+#include <iostream>>
 
-namespace Event
+
+
+
+namespace Event  
 {
+
     using namespace Global;
-    using namespace Graphics;
 
     EventService::EventService() { game_window = nullptr; }
 
@@ -15,6 +18,7 @@ namespace Event
     void EventService::initialize()
     {
         game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+        
     }
 
     void EventService::update()
@@ -29,16 +33,19 @@ namespace Event
 
     void EventService::processEvents()
     {
-        if (isGameWindowOpen())
-        {
-            // Iterate over all events in the queue.
-            while (game_window->pollEvent(game_event))
-            {
+        if (isGameWindowOpen()) {
+            while (game_window->pollEvent(game_event)) {
+                // Check for window closure
                 if (gameWindowWasClosed() || hasQuitGame())
+                {
                     game_window->close();
+                }
+
             }
+
         }
     }
+
 
     void EventService::updateMouseButtonsState(ButtonState& current_button_state, sf::Mouse::Button mouse_button)
     {
@@ -80,6 +87,7 @@ namespace Event
         }
     }
 
+
     bool EventService::isGameWindowOpen() { return game_window != nullptr; }
 
     bool EventService::gameWindowWasClosed() { return game_event.type == sf::Event::Closed; }
@@ -90,9 +98,9 @@ namespace Event
 
     bool EventService::pressedEscapeKey() { return game_event.key.code == sf::Keyboard::Escape; }
 
-    bool EventService::pressedLeftArrowKey() { return left_arrow_button_state == ButtonState::HELD; }
+    bool EventService::pressedLeftKey() { return left_arrow_button_state == ButtonState::HELD; }
 
-    bool EventService::pressedRightArrowKey() { return right_arrow_button_state == ButtonState::HELD; }
+    bool EventService::pressedRightKey() { return right_arrow_button_state == ButtonState::HELD; }
 
     bool EventService::pressedAKey() { return A_button_state == ButtonState::HELD; }
 
