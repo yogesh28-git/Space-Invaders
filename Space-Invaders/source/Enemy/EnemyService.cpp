@@ -72,11 +72,7 @@ namespace Enemy
 		return enemy_controller;
 	}
 
-	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
-	{
-		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
-		delete(enemy_controller);
-	}
+	
 
 	EnemyController* EnemyService::createEnemy(EnemyType enemy_type)
 	{
