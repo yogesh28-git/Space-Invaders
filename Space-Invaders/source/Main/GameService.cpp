@@ -18,10 +18,7 @@ namespace Main
 
 	}
 
-	void GameService::destroy()
-	{
-		service_locator->deleteServiceLocator();
-	}
+	
 
 	void GameService::showMainMenu()
 	{
@@ -40,10 +37,6 @@ namespace Main
 		game_window = nullptr;
 	}
 
-	GameService::~GameService()
-	{
-		destroy();
-	}
 
 
 	void GameService::ignite()
@@ -65,7 +58,7 @@ namespace Main
 	void GameService::render()
 	{
 
-		game_window->clear(service_locator->getGraphicService()->getWindowColor());
+		game_window->clear();
 		service_locator->render();
 		game_window->display();
 	}

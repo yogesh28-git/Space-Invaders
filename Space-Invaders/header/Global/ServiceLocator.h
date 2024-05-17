@@ -58,6 +58,6 @@ namespace Global
         Sound::SoundService* getSoundService();
         Collision::CollisionService* getCollisionService();
 
-        void deleteServiceLocator();
+        
     };
 }
