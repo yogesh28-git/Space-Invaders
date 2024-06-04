@@ -161,5 +161,7 @@ namespace Global
 
 	Sound::SoundService* ServiceLocator::getSoundService() { return sound_service; }
 
+	Collision::CollisionService* ServiceLocator::getCollisionService() { return collision_service; }
+
 	
 }
