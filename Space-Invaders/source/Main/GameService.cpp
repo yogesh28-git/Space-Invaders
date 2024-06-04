@@ -1,5 +1,5 @@
 #include "../../Header/Main/GameService.h"
-#include "../../Header/Graphic/GraphicService.h"
+#include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Event/EventService.h"
 
 

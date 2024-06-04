@@ -11,6 +11,7 @@ namespace Enemy
         private:
             const float thunder_snake_horizontal_movement_speed = 190.f;
 
+
             void move() override;
             void moveLeft();
             void moveRight();
@@ -18,6 +19,7 @@ namespace Enemy
             void moveDiagonalRight();
 
             void fireBullet() override;
+            void destroy() override;
 
             MovementDirection getInitialMovementDirection();
 

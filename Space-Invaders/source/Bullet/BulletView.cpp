@@ -48,10 +48,10 @@ namespace Bullet
 			return BulletConfig::laser_bullet_texture_path;
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return BulletConfig::frost_beam_texture_path;
+			return BulletConfig::frost_bullet_texture_path;
 
 		case::Bullet::BulletType::TORPEDO:
-			return BulletConfig::torpedoe_texture_path;
+			return BulletConfig::torpedo_texture_path;
 		}
 	}
 

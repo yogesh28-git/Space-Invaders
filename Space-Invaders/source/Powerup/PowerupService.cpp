@@ -3,10 +3,10 @@
 #include "../../header/Powerup/PowerupConfig.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Collision/ICollider.h"
-#include "../../header/Powerup/Controller/OutscalBombController.h"
-#include "../../header/Powerup/Controller/RapidFireController.h"
-#include "../../header/Powerup/Controller/ShieldController.h"
-#include "../../header/Powerup/Controller/TrippleLaserController.h"
+#include "../../header/Powerup/Controllers/OutscalBombController.h"
+#include "../../header/Powerup/Controllers/RapidFireController.h"
+#include "../../header/Powerup/Controllers/ShieldController.h"
+#include "../../header/Powerup/Controllers/TrippleLaserController.h"
 
 namespace Powerup
 {
