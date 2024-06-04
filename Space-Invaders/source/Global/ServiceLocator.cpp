@@ -151,7 +151,7 @@ namespace Global
 
 	Powerup::PowerupService* ServiceLocator::getPowerupService() { return powerup_service; }
 
-	Collision::CollisionService* ServiceLocator::getCollisionService() { return collision_service; }
+	
 
 	Animation::AnimationService* ServiceLocator::getAnimationService() { return animation_service;  }
 
@@ -161,5 +161,5 @@ namespace Global
 
 	Sound::SoundService* ServiceLocator::getSoundService() { return sound_service; }
 
-	void ServiceLocator::deleteServiceLocator() { delete(this); }
+	
 }

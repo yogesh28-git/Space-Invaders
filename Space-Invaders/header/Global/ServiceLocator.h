@@ -63,6 +63,6 @@ namespace Global
         Collision::CollisionService* getCollisionService();
         Animation::AnimationService* getAnimationService();
 
-        void deleteServiceLocator();
+        
     };
 }
