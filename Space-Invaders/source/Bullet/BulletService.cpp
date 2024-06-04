@@ -1,9 +1,9 @@
 #include "../../header/Bullet/BulletService.h"
 #include "../../header/Bullet/BulletController.h"
 #include "../../header/Bullet/BulletConfig.h"
-#include "../../header/Bullet/Controller/FrostBeamController.h"
-#include "../../header/Bullet/Controller/LaserBulletController.h"
-#include "../../header/Bullet/Controller/TorpedoeController.h"
+#include "../../header/Bullet/Controllers/FrostBulletController.h"
+#include "../../header/Bullet/Controllers/LaserBulletController.h"
+#include "../../header/Bullet/Controllers/TorpedoController.h"
 #include "../../header/Collision/ICollider.h"
 #include "../../header/Global/ServiceLocator.h"
 
@@ -46,10 +46,10 @@ namespace Bullet
 			return new LaserBulletController(Bullet::BulletType::LASER_BULLET, owner_type);
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return new FrostBeamController(Bullet::BulletType::FROST_BULLET, owner_type);
+			return new FrostBulletController(Bullet::BulletType::FROST_BULLET, owner_type);
 
 		case::Bullet::BulletType::TORPEDO:
-			return new TorpedoeController(Bullet::BulletType::TORPEDO, owner_type);
+			return new TorpedoController(Bullet::BulletType::TORPEDO, owner_type);
 		}
 	}
 

@@ -1,5 +1,5 @@
 #include "../../Header/Event/EventService.h"
-#include "../../Header/Graphic/GraphicService.h"
+#include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include <iostream>>
 

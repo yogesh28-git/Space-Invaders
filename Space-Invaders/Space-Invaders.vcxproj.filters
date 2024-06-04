@@ -7,19 +7,12 @@
     <ClCompile Include="source\Bullet\BulletModel.cpp" />
     <ClCompile Include="source\Bullet\BulletService.cpp" />
     <ClCompile Include="source\Bullet\BulletView.cpp" />
-    <ClCompile Include="source\Bullet\Controller\FrostBeamController.cpp" />
-    <ClCompile Include="source\Bullet\Controller\LaserBulletController.cpp" />
-    <ClCompile Include="source\Bullet\Controller\TorpedoeController.cpp" />
     <ClCompile Include="source\Collision\CollisionService.cpp" />
     <ClCompile Include="source\Collision\ICollider.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerController.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerModel.cpp" />
     <ClCompile Include="source\Elements\Bunker\BunkerView.cpp" />
     <ClCompile Include="source\Elements\ElementService.cpp" />
-    <ClCompile Include="source\Enemy\Controller\SubzeroController.cpp" />
-    <ClCompile Include="source\Enemy\Controller\ThunderSnakeController.cpp" />
-    <ClCompile Include="source\Enemy\Controller\UFOController.cpp" />
-    <ClCompile Include="source\Enemy\Controller\ZapperController.cpp" />
     <ClCompile Include="source\Enemy\EnemyController.cpp" />
     <ClCompile Include="source\Enemy\EnemyModel.cpp" />
     <ClCompile Include="source\Enemy\EnemyService.cpp" />
@@ -30,10 +23,6 @@
     <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
-    <ClCompile Include="source\Powerup\Controller\OutscalBombController.cpp" />
-    <ClCompile Include="source\Powerup\Controller\RapidFireController.cpp" />
-    <ClCompile Include="source\Powerup\Controller\ShieldController.cpp" />
-    <ClCompile Include="source\Powerup\Controller\TrippleLaserController.cpp" />
     <ClCompile Include="source\Powerup\PowerupController.cpp" />
     <ClCompile Include="source\Powerup\PowerupModel.cpp" />
     <ClCompile Include="source\Powerup\PowerupService.cpp" />
@@ -57,6 +46,17 @@
     <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="source\AnimationSystem\AnimationSystem.cpp" />
     <ClCompile Include="source\AnimationSystem\AnimationService.cpp" />
+    <ClCompile Include="source\Bullet\Controllers\FrostBulletController.cpp" />
+    <ClCompile Include="source\Bullet\Controllers\LaserBulletController.cpp" />
+    <ClCompile Include="source\Bullet\Controllers\TorpedoController.cpp" />
+    <ClCompile Include="source\Enemy\Controllers\SubZeroController.cpp" />
+    <ClCompile Include="source\Enemy\Controllers\ThunderSnakeController.cpp" />
+    <ClCompile Include="source\Enemy\Controllers\UFOController.cpp" />
+    <ClCompile Include="source\Enemy\Controllers\ZapperController.cpp" />
+    <ClCompile Include="source\Powerup\Controllers\OutscalBombController.cpp" />
+    <ClCompile Include="source\Powerup\Controllers\RapidFireController.cpp" />
+    <ClCompile Include="source\Powerup\Controllers\ShieldController.cpp" />
+    <ClCompile Include="source\Powerup\Controllers\TrippleLaser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Bullet\BulletConfig.h" />
@@ -64,9 +64,6 @@
     <ClInclude Include="header\Bullet\BulletModel.h" />
     <ClInclude Include="header\Bullet\BulletService.h" />
     <ClInclude Include="header\Bullet\BulletView.h" />
-    <ClInclude Include="header\Bullet\Controller\FrostBeamController.h" />
-    <ClInclude Include="header\Bullet\Controller\LaserBulletController.h" />
-    <ClInclude Include="header\Bullet\Controller\TorpedoeController.h" />
     <ClInclude Include="header\Entity\EntityConfig.h" />
     <ClInclude Include="header\Collision\CollisionService.h" />
     <ClInclude Include="header\Collision\ICollider.h" />
@@ -74,25 +71,17 @@
     <ClInclude Include="header\Elements\Bunker\BunkerModel.h" />
     <ClInclude Include="header\Elements\Bunker\BunkerView.h" />
     <ClInclude Include="header\Elements\ElementService.h" />
-    <ClInclude Include="header\Enemy\Controller\SubzeroController.h" />
-    <ClInclude Include="header\Enemy\Controller\ThunderSnakeController.h" />
-    <ClInclude Include="header\Enemy\Controller\UFOController.h" />
     <ClInclude Include="header\Enemy\EnemyController.h" />
     <ClInclude Include="header\Enemy\EnemyModel.h" />
     <ClInclude Include="header\Enemy\EnemyService.h" />
     <ClInclude Include="header\Enemy\EnemyConfig.h" />
     <ClInclude Include="header\Enemy\EnemyView.h" />
-    <ClInclude Include="header\Enemy\Controller\ZapperController.h" />
     <ClInclude Include="header\Event\EventService.h" />
     <ClInclude Include="header\Gameplay\GameplayController.h" />
     <ClInclude Include="header\Gameplay\GameplayService.h" />
     <ClInclude Include="header\Gameplay\GameplayView.h" />
     <ClInclude Include="header\Global\Config.h" />
     <ClInclude Include="header\Global\ServiceLocator.h" />
-    <ClInclude Include="header\Powerup\Controller\OutscalBombController.h" />
-    <ClInclude Include="header\Powerup\Controller\RapidFireController.h" />
-    <ClInclude Include="header\Powerup\Controller\ShieldController.h" />
-    <ClInclude Include="header\Powerup\Controller\TrippleLaserController.h" />
     <ClInclude Include="header\Powerup\PowerupConfig.h" />
     <ClInclude Include="header\Powerup\PowerupController.h" />
     <ClInclude Include="header\Powerup\PowerupModel.h" />
@@ -122,5 +111,16 @@
     <ClInclude Include="header\AnimationSystem\AnimationSystemConfigData.h" />
     <ClInclude Include="header\AnimationSystem\AnimationSystem.h" />
     <ClInclude Include="header\AnimationSystem\AnimationService.h" />
+    <ClInclude Include="header\Bullet\Controllers\FrostBulletController.h" />
+    <ClInclude Include="header\Bullet\Controllers\LaserBulletController.h" />
+    <ClInclude Include="header\Bullet\Controllers\TorpedoController.h" />
+    <ClInclude Include="header\Enemy\Controllers\SubZeroController.h" />
+    <ClInclude Include="header\Enemy\Controllers\ThunderSnakeController.h" />
+    <ClInclude Include="header\Enemy\Controllers\UFOController.h" />
+    <ClInclude Include="header\Enemy\Controllers\ZapperController.h" />
+    <ClInclude Include="header\Powerup\Controllers\OutscalBombController.h" />
+    <ClInclude Include="header\Powerup\Controllers\RapidFireController.h" />
+    <ClInclude Include="header\Powerup\Controllers\ShieldController.h" />
+    <ClInclude Include="header\Powerup\Controllers\TrippleLaserController.h" />
   </ItemGroup>
 </Project>

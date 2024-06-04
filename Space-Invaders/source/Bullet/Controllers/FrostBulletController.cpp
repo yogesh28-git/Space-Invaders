@@ -1,11 +1,11 @@
-#include "../../Header/Bullet/Controllers/FrostBulletController.h"
-#include "../../Header/Bullet/BulletModel.h"
+#include "../../header/Bullet/Controllers/FrostBulletController.h"
+#include "../../header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
 	namespace Controller
 	{
-		FrostBulletController::FrostBulletController(BulletType type) : BulletController(type) { }
+		FrostBulletController::FrostBulletController(BulletType bullet_type, Entity::EntityType owner_type) : BulletController(bullet_type, owner_type) { }
 
 		FrostBulletController::~FrostBulletController() { }
 

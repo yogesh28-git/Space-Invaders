@@ -1,13 +1,14 @@
-#include "../../Header/Enemy/Controllers/ZapperController.h"
-#include "../../Header/Enemy/EnemyModel.h"
-#include "../../Header/Enemy/EnemyConfig.h"
-#include "../../Header/Bullet/BulletConfig.h"
-#include "../../Header/Global/ServiceLocator.h"
-
+#include "../../header/Enemy/Controllers/ZapperController.h"
+#include "../../header/Enemy/EnemyView.h"
+#include "../../header/Enemy/EnemyModel.h"
+#include "../../header/Enemy/EnemyConfig.h"
+#include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
 	using namespace Bullet;
 
 	namespace Controller
@@ -19,13 +20,6 @@ namespace Enemy
 		void ZapperController::initialize()
 		{
 			EnemyController::initialize();
-		}
-
-		void ZapperController::fireBullet()
-		{
-			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
-				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
-				Bullet::MovementDirection::DOWN);
 		}
 
 		void ZapperController::move()
@@ -44,13 +38,12 @@ namespace Enemy
 				moveDown();
 				break;
 			}
-		
 		}
 
 		void ZapperController::moveLeft()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.x -= enemy_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.x <= enemy_model->left_most_position.x)
 			{
@@ -63,7 +56,7 @@ namespace Enemy
 		void ZapperController::moveRight()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.x += enemy_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.x >= enemy_model->right_most_position.x)
 			{
@@ -76,7 +69,7 @@ namespace Enemy
 		void ZapperController::moveDown()
 		{
 			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-			currentPosition.y += enemy_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			currentPosition.y += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (currentPosition.y >= enemy_model->getReferencePosition().y + vertical_travel_distance)
 			{
@@ -84,6 +77,20 @@ namespace Enemy
 				else enemy_model->setMovementDirection(MovementDirection::LEFT);
 			}
 			else enemy_model->setEnemyPosition(currentPosition);
+		}
+
+		void ZapperController::fireBullet()
+		{
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+				enemy_model->getEntityType(),
+				enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
+		}
+
+		void ZapperController::destroy()
+		{
+
+			EnemyController::destroy();
 		}
 	}
 }

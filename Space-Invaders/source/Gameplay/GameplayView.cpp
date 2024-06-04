@@ -1,7 +1,7 @@
 #include "../../header/Gameplay/GameplayView.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
-#include "../../header/Graphic/GraphicService.h"
+#include "../../header/Graphics/GraphicService.h"
 
 namespace Gameplay
 {

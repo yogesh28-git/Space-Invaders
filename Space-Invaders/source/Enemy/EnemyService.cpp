@@ -3,10 +3,10 @@
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Time/TimeService.h"
 #include "../../header/Enemy/EnemyConfig.h"
-#include "../../header/Enemy/Controller/ZapperController.h"
-#include "../../header/Enemy/Controller/ThunderSnakeController.h"
-#include "../../header/Enemy/Controller/SubzeroController.h"
-#include "../../header/Enemy/Controller/UFOController.h"
+#include "../../header/Enemy/Controllers/ZapperController.h"
+#include "../../header/Enemy/Controllers/ThunderSnakeController.h"
+#include "../../header/Enemy/Controllers/SubzeroController.h"
+#include "../../header/Enemy/Controllers/UFOController.h"
 #include "../../header/Collision/ICollider.h"
 
 namespace Enemy

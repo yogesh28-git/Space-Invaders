@@ -1,11 +1,13 @@
-#include "../../Header/Bullet/Controllers/TorpedoController.h"
-#include "../../Header/Bullet/BulletModel.h"
+#include "../../header/Bullet/Controllers/TorpedoController.h"
+#include "../../header/Bullet/BulletModel.h"
 
 namespace Bullet
 {
 	namespace Controller
 	{
-		TorpedoController::TorpedoController(BulletType type) : BulletController(type) { }
+		using namespace Entity;
+
+		TorpedoController::TorpedoController(BulletType bullet_type, Entity::EntityType owner_type) : BulletController(bullet_type, owner_type) { }
 
 		TorpedoController::~TorpedoController() { }
 
