@@ -15,7 +15,7 @@ namespace Graphics
 	void GraphicService::initialize()
 	{
 		game_window = createGameWindow();
-		setFrameRate(frame_rate);
+		//setFrameRate(frame_rate);
 	}
 
 	sf::RenderWindow* GraphicService::createGameWindow()
