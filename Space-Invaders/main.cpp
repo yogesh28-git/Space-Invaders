@@ -1,34 +1,38 @@
 #include <SFML/Graphics.hpp>
 
+
+class Player
+{
+
+private:
+    sf::Texture playerTexture;
+    sf::Sprite playerSprite;
+    int health = 3;
+    int movementSpeed = 10;
+    sf::Vector2f position{ 400,500 };
+
+public:
+    void takeDamage()
+    {
+
+    }
+    void move()
+    {
+        
+    }
+    void shootBullets()
+    {
+
+    }
+};
+
+
 int main()
 {
     sf::VideoMode videoMode(800, 600);
     sf::RenderWindow window(videoMode, "Space-Invaders");
     window.setFramerateLimit(60);
-
-    // Image
-    sf::Texture outscal_logo;
-    if (!outscal_logo.loadFromFile("assets/textures/outscal_logo.png"))
-    {
-        printf("Cannot load image");
-        return 0;
-    }
-  
-    sf::Sprite outscalSprite(outscal_logo);
-    outscalSprite.setScale(0.5, 0.5);
-    outscalSprite.setRotation(-45);
-    outscalSprite.setPosition(100, 300);
-
-    // Text
-    sf::Font font;
-    if (!font.loadFromFile("assets/fonts/bubbleBobble.ttf"))
-    {
-        printf("Cannot load image");
-        return 0;
-    }
-    sf::Text text("SFML is Awesome", font, 24);
-    text.setFillColor(sf::Color::White);
-    text.setPosition(100, 100);
+    sf::Vector2f v1(16.5f, 24.f);
 
     while (window.isOpen())
     {
@@ -41,9 +45,6 @@ int main()
         }
 
         window.clear(sf::Color::Black);
-
-        window.draw(outscalSprite);
-        window.draw(text);
 
         window.display();
     }
