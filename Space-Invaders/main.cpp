@@ -6,20 +6,29 @@ int main()
     sf::RenderWindow window(videoMode, "Space-Invaders");
     window.setFramerateLimit(60);
 
-    sf::RectangleShape square(sf::Vector2f(50, 50));
-    square.setPosition(300, 300);
-    square.setFillColor(sf::Color::Red);
+    // Image
+    sf::Texture outscal_logo;
+    if (!outscal_logo.loadFromFile("assets/textures/outscal_logo.png"))
+    {
+        printf("Cannot load image");
+        return 0;
+    }
+  
+    sf::Sprite outscalSprite(outscal_logo);
+    outscalSprite.setScale(0.5, 0.5);
+    outscalSprite.setRotation(-45);
+    outscalSprite.setPosition(100, 300);
 
-    sf::CircleShape circle(50);
-    circle.setPosition(500, 400);
-    circle.setFillColor(sf::Color::Green);
-
-    sf::ConvexShape triangle(3);
-    triangle.setPoint(0, sf::Vector2f(0,0));
-    triangle.setPoint(1, sf::Vector2f(100, 0));
-    triangle.setPoint(2, sf::Vector2f(50, 100));
-    triangle.setFillColor(sf::Color::Blue);
-    triangle.setPosition(200, 200);
+    // Text
+    sf::Font font;
+    if (!font.loadFromFile("assets/fonts/bubbleBobble.ttf"))
+    {
+        printf("Cannot load image");
+        return 0;
+    }
+    sf::Text text("SFML is Awesome", font, 24);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(100, 100);
 
     while (window.isOpen())
     {
@@ -33,9 +42,8 @@ int main()
 
         window.clear(sf::Color::Black);
 
-        window.draw(circle);
-        window.draw(square);
-        window.draw(triangle);
+        window.draw(outscalSprite);
+        window.draw(text);
 
         window.display();
     }
