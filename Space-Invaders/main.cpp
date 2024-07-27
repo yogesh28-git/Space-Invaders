@@ -6,7 +6,7 @@ class PlayerShip
 
 private:
     int health = 3;
-    int movementSpeed = 10;
+    int movementSpeed = 5;
     sf::Vector2f position{ 400,500 };
 
 public:
@@ -16,9 +16,9 @@ public:
     {
 
     }
-    void move(float x, float y)
+    void move(float xOffset)
     {
-        position = position + sf::Vector2f(x, y);
+        position.x += xOffset;
     }
     void shootBullets()
     {
@@ -27,6 +27,10 @@ public:
     sf::Vector2f getPosition()
     {
         return position;
+    }
+    int getMovementSpeed()
+    {
+        return movementSpeed;
     }
 };
 
@@ -61,11 +65,11 @@ int main()
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
-            player.move(-1.0f,0);
+            player.move(-1.0f * player.getMovementSpeed());
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
         {
-            player.move(1.0f,0);
+            player.move(1.0f * player.getMovementSpeed());
         }
 
         window.clear(sf::Color::Black);
