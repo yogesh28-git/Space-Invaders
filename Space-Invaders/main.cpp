@@ -2,6 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Header/GameService.h"
+
+/*
 class Player
 {
 private:
@@ -34,9 +37,23 @@ public:
         return movement_speed;
     }
 };
+*/
 
 int main()
 {
+    GameService game_service;
+
+    game_service.ignite();
+
+    while (game_service.isRunning())
+    {
+        game_service.update();
+        game_service.render();
+    }
+
+    return 0;
+
+    /*
     sf::VideoMode videoMode = sf::VideoMode(800, 800);
     sf::RenderWindow window(videoMode, "Resizable Window", sf::Style::Resize | sf::Style::Close);
 
@@ -76,5 +93,7 @@ int main()
 
         window.display();
     }
-    return 0;
+    */
+
+    
 }
