@@ -8,24 +8,21 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 800), "Resizable Window", sf::Style::Resize | sf::Style::Close);
     //sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Fullscreen Window", sf::Style::Fullscreen | sf::Style::Close);
 
-    // Green Circle
-    sf::CircleShape circle(100.f);
-    circle.setFillColor(sf::Color::Green);
 
-    // Red Square
-    sf::RectangleShape square(sf::Vector2f(200, 200));
-    square.setFillColor(sf::Color::Red);
-    square.setPosition(0, 250);
+    sf::Texture outscal_logo_tex;
+    if (!outscal_logo_tex.loadFromFile("assets/textures/outscal_logo.png"))
+    {
+        std::cout<<"Texture did not load";
+    }
+    sf::Sprite outscal_logo;
+    outscal_logo.setTexture(outscal_logo_tex);
+    outscal_logo.setPosition(10, 10);
 
-    // Blue Triangle
-    sf::ConvexShape triangle(3);
-    triangle.setPoint(0, sf::Vector2f(100, 100));
-    triangle.setPoint(1, sf::Vector2f(0, 300));
-    triangle.setPoint(2, sf::Vector2f(200, 300));
-    triangle.setFillColor(sf::Color::Blue);
-    triangle.setPosition(0, 400);
+    sf::Font font;
+    font.loadFromFile("assets/fonts/bubbleBobble.ttf");
 
-    
+    sf::Text text("Hello Fucking World!!", font, 50);
+    text.setPosition(10, 150);
     
     while (window.isOpen())
     {
@@ -37,9 +34,8 @@ int main()
         }
 
         window.clear();
-        window.draw(circle);
-        window.draw(square);
-        window.draw(triangle);
+        window.draw(outscal_logo);
+        window.draw(text);
         window.display();
     }
     
