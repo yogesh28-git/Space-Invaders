@@ -41,6 +41,10 @@ void GameService::ignite()
 
 void GameService::update()
 {
+	// Check for events
+	service_locator->getEventService()->processEvents();
+
+	// Perform state updates
 	service_locator->update();
 }
 
