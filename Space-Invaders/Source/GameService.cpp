@@ -1,8 +1,18 @@
 #include "../Header/GameService.h"
 
+
+
+// PRIVATE METHODS //
+
 void GameService::initialize()
 {
-	//... Get things running
+	service_locator->initialize();
+	initializeVariables();
+}
+
+void GameService::initializeVariables()
+{
+	game_window = service_locator->getGraphicService()->getGameWindow();
 }
 
 void GameService::destroy()
@@ -10,33 +20,38 @@ void GameService::destroy()
 	//cleanup resources
 }
 
+// PUBLIC METHODS //
+
 GameService::GameService()
 {
-	//constructor
+	service_locator = nullptr;
+	game_window = nullptr;
 }
 
 GameService::~GameService()
 {
-	//destructor
+	destroy();
 }
 
 void GameService::ignite()
 {
-	//starts the game
+	service_locator = ServiceLocator::getInstance();
+	initialize();
 }
 
 void GameService::update()
 {
-	// Updates the game logic and game state.
+	service_locator->update();
 }
 
 void GameService::render()
 {
-	// Renders each frame of the game.
+	game_window->clear(service_locator->getGraphicService()->getWindowColor());
+	service_locator->render();
+	game_window->display();
 }
 
 bool GameService::isRunning()
 {
-	// Checks if the game is currently running.
-	return false; //default return
+	return service_locator->getGraphicService()->isGameWindowOpen();
 }
