@@ -10,7 +10,7 @@ bool EventService::isGameWindowOpen()
 
 bool EventService::gameWindowWasClosed()
 {
-	return game_event.type = sf::Event::Closed;
+	return game_event.type == sf::Event::Closed;
 }
 
 bool EventService::hasQuitGame()
@@ -43,8 +43,9 @@ void EventService::processEvents()
 	{
 		while (game_window->pollEvent(game_event))
 		{
-			if (gameWindowWasClosed || hasQuitGame)
+			if (gameWindowWasClosed() || hasQuitGame())
 				game_window->close();
+
 		}
 	}
 }
@@ -57,4 +58,16 @@ bool EventService::pressedEscapeKey()
 bool EventService::isKeyboardEvent()
 {
 	return game_event.type == sf::Event::KeyPressed;
+}
+
+
+
+bool EventService::pressedLeftKey()
+{
+	return game_event.key.code == sf::Keyboard::Left;
+}
+
+bool EventService::pressedRightKey()
+{
+	return  game_event.key.code == sf::Keyboard::Right;
 }
