@@ -4,6 +4,9 @@
 
 namespace Player
 {
+
+	using namespace Global;
+
 	void PlayerView::initializePlayerSprite()
 	{
 		if (player_texture.loadFromFile(player_texture_path))

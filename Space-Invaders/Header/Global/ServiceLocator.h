@@ -4,6 +4,7 @@
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/Time/TimeService.h"
+#include "../../Header/UI/UIService.h"
 
 
 namespace Global
@@ -16,6 +17,7 @@ namespace Global
         Event::EventService* event_service;
         Player::PlayerService* player_service;
         Time::TimeService* time_service;
+        UI::UIService* ui_service;
 
 
         // Constructor for initializing the ServiceLocator.
@@ -41,6 +43,7 @@ namespace Global
         Graphic::GraphicService* getGraphicService();   // Retrieve the GraphicService instance
         Player::PlayerService* getPlayerService();
         Time::TimeService* getTimeService();
+        UI::UIService* getUIService();
 
     };
 }

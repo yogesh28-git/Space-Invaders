@@ -4,6 +4,8 @@ namespace Main
 {
 	using namespace Global;
 
+	GameState GameService::current_state = GameState::BOOT;
+
 	// PRIVATE METHODS //
 
 	void GameService::initialize()
@@ -60,6 +62,16 @@ namespace Main
 	bool GameService::isRunning()
 	{
 		return service_locator->getGraphicService()->isGameWindowOpen();
+	}
+
+	void GameService::setGameState(GameState state)
+	{
+		current_state = state;
+	}
+
+	GameState GameService::getGameState()
+	{
+		return current_state;
 	}
 
 }
