@@ -1,11 +1,14 @@
 #include "../../Header/UI/MainMenu/MainMenuController.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Main/GameService.h"
 
 namespace UI
 {
 	namespace MainMenu
 	{
 		using namespace Global;
+		using namespace Main;
+		using namespace Event;
 
 		void MainMenuController::initializeBackgroundImage()
 		{
@@ -61,6 +64,26 @@ namespace UI
 			instructions_button_sprite.setPosition(x_position, 700.0f);
 			quit_button_sprite.setPosition(x_position, 900.0f);
 		}
+		void MainMenuController::processButtonInteractions()
+		{
+			sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition());
+
+			if (clickedButton(&play_button_sprite, mouse_position)) {
+				GameService::setGameState(GameState::GAMEPLAY);
+			}
+			if (clickedButton(&instructions_button_sprite, mouse_position))
+			{
+				printf("Clicked instructions button");
+			}
+			if (clickedButton(&quit_button_sprite, mouse_position)) {
+				game_window->close();
+			}
+		}
+		bool MainMenuController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
+		{
+			EventService* event_service = ServiceLocator::getInstance()->getEventService();
+			return event_service->pressedLeftMouseButton() && button_sprite->getGlobalBounds().contains(mouse_position);
+		}
 		MainMenuController::MainMenuController()
 		{
 			game_window = nullptr;
@@ -73,6 +96,7 @@ namespace UI
 		}
 		void MainMenuController::update()
 		{
+			processButtonInteractions();
 		}
 		void MainMenuController::render()
 		{
