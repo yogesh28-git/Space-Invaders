@@ -24,6 +24,8 @@ namespace UI
 	UI::UIService::UIService()
 	{
 		main_menu_controller = nullptr;
+
+		createControllers();
 	}
 
 	UI::UIService::~UIService()
@@ -38,10 +40,12 @@ namespace UI
 
 	void UI::UIService::update()
 	{
+		main_menu_controller->update();
 	}
 
 	void UI::UIService::render()
 	{
+		main_menu_controller->render();
 	}
 }
 
