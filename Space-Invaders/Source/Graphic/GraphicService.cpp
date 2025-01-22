@@ -41,6 +41,8 @@ namespace Graphic
 		game_window = createGameWindow();
 
 		game_window->setFramerateLimit(frame_rate);
+
+		game_window->setVerticalSyncEnabled(true);
 	}
 
 	void GraphicService::update()
