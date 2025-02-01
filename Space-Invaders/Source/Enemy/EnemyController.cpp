@@ -10,71 +10,80 @@ namespace Enemy {
 
 	void EnemyController::move()
 	{
-		switch (enemy_model->getMovementDirection()) {
+		
+	}
+	sf::Vector2f EnemyController::getRandomInitialPosition()
+	{
+		int x_offset = std::rand() % (static_cast<int>(enemy_model->right_most_position.x - enemy_model->left_most_position.x));
 
-		case MovementDirection::LEFT:
-			moveLeft();
-			break;
+		float x_position = enemy_model->left_most_position.x + x_offset;
+		float y_position = enemy_model->left_most_position.y;
 
-		case MovementDirection::RIGHT:
-			moveRight();
-			break;
+		return sf::Vector2f(x_position, y_position);
+	}
+	void EnemyController::handleOutOfBounds()
+	{
+		sf::Vector2f position = enemy_model->getEnemyPosition();
+		sf::Vector2u window_size = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
 
-		case MovementDirection::DOWN:
-			moveDown();
-			break;
+		if (position.x < 0 || position.x > window_size.x || position.y < 0 || position.y > window_size.y)
+		{
+			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 		}
 	}
-	void EnemyController::moveLeft()
+	/*
+	void enemycontroller::moveleft()
 	{
-		sf::Vector2f curr_position = enemy_model->getEnemyPosition();
+		sf::vector2f curr_position = enemy_model->getenemyposition();
 
-		curr_position.x -= enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		curr_position.x -= enemy_model->enemy_movement_speed * servicelocator::getinstance()->gettimeservice()->getdeltatime();
 
 		if (curr_position.x <= enemy_model->left_most_position.x) {
-			enemy_model->setMovementDirection(MovementDirection::DOWN);
-			enemy_model->setReferencePosition(curr_position);
+			enemy_model->setmovementdirection(movementdirection::down);
+			enemy_model->setreferenceposition(curr_position);
 		}
 		else {
-			enemy_model->setEnemyPosition(curr_position);
+			enemy_model->setenemyposition(curr_position);
 		}
 	}
-	void EnemyController::moveRight()
+	void enemycontroller::moveright()
 	{
-		sf::Vector2f curr_position = enemy_model->getEnemyPosition();
+		sf::vector2f curr_position = enemy_model->getenemyposition();
 
-		curr_position.x += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		curr_position.x += enemy_model->enemy_movement_speed * servicelocator::getinstance()->gettimeservice()->getdeltatime();
 
 		if (curr_position.x >= enemy_model->right_most_position.x) {
-			enemy_model->setMovementDirection(MovementDirection::DOWN);
-			enemy_model->setReferencePosition(curr_position);
+			enemy_model->setmovementdirection(movementdirection::down);
+			enemy_model->setreferenceposition(curr_position);
 		}
 		else {
-			enemy_model->setEnemyPosition(curr_position);
+			enemy_model->setenemyposition(curr_position);
 		}
 	}
-	void EnemyController::moveDown()
+	void enemycontroller::movedown()
 	{
-		sf::Vector2f curr_position = enemy_model->getEnemyPosition();
+		sf::vector2f curr_position = enemy_model->getenemyposition();
 
-		curr_position.y += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		curr_position.y += enemy_model->enemy_movement_speed * servicelocator::getinstance()->gettimeservice()->getdeltatime();
 
-		if (curr_position.y >= enemy_model->getReferencePosition().y + enemy_model->vertical_travel_distance) {
-			//Check left or right
-			if (enemy_model->getReferencePosition().x <= enemy_model->left_most_position.x) {
-				enemy_model->setMovementDirection(MovementDirection::RIGHT);
+		if (curr_position.y >= enemy_model->getreferenceposition().y + enemy_model->vertical_travel_distance) {
+			//check left or right
+			if (enemy_model->getreferenceposition().x <= enemy_model->left_most_position.x) {
+				enemy_model->setmovementdirection(movementdirection::right);
 			}
 			else {
-				enemy_model->setMovementDirection(MovementDirection::LEFT);
+				enemy_model->setmovementdirection(movementdirection::left);
 			}
 		}
 		else {
-			enemy_model->setEnemyPosition(curr_position);
+			enemy_model->setenemyposition(curr_position);
 		}
 	}
-	EnemyController::EnemyController()
+	*/
+
+	EnemyController::EnemyController(EnemyType type)
 	{
-		enemy_model = new EnemyModel();
+		enemy_model = new EnemyModel(type);
 		enemy_view = new EnemyView();
 	}
 	EnemyController::~EnemyController()
@@ -88,12 +97,14 @@ namespace Enemy {
 	void EnemyController::initialize()
 	{
 		enemy_model->initialize();
+		enemy_model->setEnemyPosition(getRandomInitialPosition());
 		enemy_view->initialize(this);
 	}
 	void EnemyController::update()
 	{
 		move();
 		enemy_view->update();
+		handleOutOfBounds();
 	}
 	void EnemyController::render()
 	{
@@ -102,5 +113,13 @@ namespace Enemy {
 	sf::Vector2f EnemyController::getEnemyPosition()
 	{
 		return enemy_model->getEnemyPosition();
+	}
+	EnemyType EnemyController::getEnemyType()
+	{
+		return enemy_model->getEnemyType();
+	}
+	EnemyState EnemyController::getEnemyState()
+	{
+		return enemy_model->getEnemyState();
 	}
 }

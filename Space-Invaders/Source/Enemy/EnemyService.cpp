@@ -1,11 +1,16 @@
 #include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Enemy/EnemyConfig.h"
+
+#include "../../Header/Enemy/Controllers/SubZeroController.h"
+#include "../../Header/Enemy/Controllers/ZapperController.h"
 
 
 namespace Enemy {
 
 	using namespace Global;
+	using namespace Controllers;
 
 	void EnemyService::updateSpawnTimer()
 	{
@@ -27,10 +32,30 @@ namespace Enemy {
 			
 	}
 
+	EnemyType EnemyService::getRandomEnemyType()
+	{
+		int rand_type = std::rand() % 2;
+		return static_cast<EnemyType> (rand_type);
+	}
+
+	EnemyController* EnemyService::createEnemy(EnemyType type)
+	{
+		switch (type)
+		{
+		case EnemyType::ZAPPER:
+			return new ZapperController(EnemyType::ZAPPER);
+		
+		case EnemyType::SUBZERO:
+			return new SubZeroController(EnemyType::SUBZERO);
+		}
+	}
+
 	EnemyService::EnemyService()
 	{
 		for (EnemyController* enemy : enemy_list)
 			enemy = nullptr;
+
+		std::srand(static_cast<unsigned>(std::time(nullptr)));
 	}
 
 	EnemyService::~EnemyService()
@@ -60,10 +85,17 @@ namespace Enemy {
 
 	void EnemyService::spawnEnemy()
 	{
-		EnemyController* enemy = new EnemyController();
+		EnemyController* enemy = createEnemy(getRandomEnemyType());
 		enemy->initialize();
 
 		enemy_list.push_back(enemy);
+	}
+
+	void EnemyService::destroyEnemy(EnemyController* controller)
+	{
+		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), controller), enemy_list.end());
+
+		delete controller;
 	}
 
 }

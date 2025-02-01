@@ -5,28 +5,33 @@ namespace Enemy {
 	
 	class EnemyModel;
 	class EnemyView;
+	enum class EnemyState;
+	enum class EnemyType;
 
 	class EnemyController {
 
-	private:
+	protected:
 
 		EnemyView* enemy_view;
 		EnemyModel* enemy_model;
 
-		void move();
-		void moveLeft();
-		void moveRight();
-		void moveDown();
+		virtual void move() = 0;
+
+		sf::Vector2f getRandomInitialPosition();				//To spawn the enemy
+		void handleOutOfBounds();								//So that enemy does not go out of screen bounds
 
 	public:
 
-		EnemyController();
-		~EnemyController();
+		EnemyController(EnemyType type);
+		virtual ~EnemyController();
 
-		void initialize();
+		virtual void initialize();
 		void update();
 		void render();
 
+		
 		sf::Vector2f getEnemyPosition();
+		EnemyType getEnemyType();
+		EnemyState getEnemyState();
 	};
 }

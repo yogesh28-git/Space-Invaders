@@ -3,6 +3,12 @@
 #include <iostream>
 #include "../../Header/Main/GameService.h"
 
+class Student {
+private:
+    void SayHello() {
+        std::cout << "Hello";
+    }
+};
 
 int main()
 {
