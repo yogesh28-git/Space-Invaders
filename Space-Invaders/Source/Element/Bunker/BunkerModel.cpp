@@ -4,6 +4,12 @@ namespace Element
 {
 	namespace Bunker
 	{
-
+		BunkerData::BunkerData()
+		{
+		}
+		BunkerData::BunkerData(sf::Vector2f pos)
+		{
+			position = pos;
+		}
 	}
 }

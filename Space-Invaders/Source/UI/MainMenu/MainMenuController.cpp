@@ -1,6 +1,7 @@
 #include "../../Header/UI/MainMenu/MainMenuController.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Main/GameService.h"
+#include "../../Header/Global/Config.h"
 
 namespace UI
 {
@@ -9,10 +10,11 @@ namespace UI
 		using namespace Global;
 		using namespace Main;
 		using namespace Event;
+		using namespace Sound;
 
 		void MainMenuController::initializeBackgroundImage()
 		{
-			if (background_texture.loadFromFile(background_texture_path))
+			if (background_texture.loadFromFile(Config::background_texture_path))
 			{
 				background_sprite.setTexture(background_texture);
 				scaleBackgroundImage();
@@ -35,7 +37,7 @@ namespace UI
 		}
 		bool MainMenuController::loadButtonTexturesFromFile()
 		{
-			return play_button_texture.loadFromFile(play_button_texture_path) && instructions_button_texture.loadFromFile(instructions_button_texture_path) && quit_button_texture.loadFromFile(quit_button_texture_path);
+			return play_button_texture.loadFromFile(Config::play_button_texture_path) && instructions_button_texture.loadFromFile(Config::instructions_button_texture_path) && quit_button_texture.loadFromFile(Config::quit_button_texture_path);
 		}
 		void MainMenuController::setButtonSprites()
 		{
@@ -69,6 +71,8 @@ namespace UI
 			sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition());
 
 			if (clickedButton(&play_button_sprite, mouse_position)) {
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+				ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
 				GameService::setGameState(GameState::GAMEPLAY);
 			}
 			if (clickedButton(&instructions_button_sprite, mouse_position))
