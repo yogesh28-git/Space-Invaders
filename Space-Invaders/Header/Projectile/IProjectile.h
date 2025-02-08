@@ -4,12 +4,10 @@
 
 namespace Projectile
 {
-	enum class MovementDirection;
-
 	class IProjectile
 	{
 	public:
-		virtual void initialize(sf::Vector2f position, MovementDirection direction) = 0;
+		virtual void initialize(sf::Vector2f position, Bullet::MovementDirection direction) = 0;
 		virtual void update() = 0;
 		virtual void render() = 0;
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Header/Bullet/BulletConfig.h"
+#include <SFML/System/Vector2.hpp>
 #include "../../Header/Projectile/IProjectile.h"
 
 namespace Bullet
@@ -7,6 +7,7 @@ namespace Bullet
 	class BulletModel;
 	class BulletView;
 	enum class BulletType;
+	enum class MovementDirection;
 
 	class BulletController : public Projectile::IProjectile
 	{
@@ -17,7 +18,6 @@ namespace Bullet
 
 		void updateProjectilePosition() override;
 
-
 		void moveUp();
 		void moveDown();
 		void handleOutOfBounds();
@@ -26,7 +26,7 @@ namespace Bullet
 		BulletController(BulletType type);
 		virtual ~BulletController() override;
 
-		void initialize(sf::Vector2f position, MovementDirection direction) override;
+		virtual void initialize(sf::Vector2f position, MovementDirection direction) override;
 		void update() override;
 		void render() override;
 		

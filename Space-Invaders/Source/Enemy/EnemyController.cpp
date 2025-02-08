@@ -8,6 +8,20 @@ namespace Enemy {
 
 	using namespace Global;
 
+	void EnemyController::updateFireTimer()
+	{
+		elapsed_fire_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	void EnemyController::processBulletFire()
+	{
+		if (elapsed_fire_duration > rate_of_fire)
+		{
+			fireBullet();
+			elapsed_fire_duration = 0;
+		}
+	}
+
 	void EnemyController::move()
 	{
 		
@@ -103,6 +117,8 @@ namespace Enemy {
 	void EnemyController::update()
 	{
 		move();
+		updateFireTimer();
+		processBulletFire();
 		enemy_view->update();
 		handleOutOfBounds();
 	}
@@ -121,5 +137,9 @@ namespace Enemy {
 	EnemyState EnemyController::getEnemyState()
 	{
 		return enemy_model->getEnemyState();
+	}
+	sf::Vector2f EnemyController::getBarrelPositionOffset()
+	{
+		return enemy_view->getBarrelPositionOffset();
 	}
 }

@@ -15,6 +15,13 @@ namespace Enemy {
 		EnemyView* enemy_view;
 		EnemyModel* enemy_model;
 
+		float rate_of_fire = 3.0f;
+		float elapsed_fire_duration = 0.0f;
+
+		void updateFireTimer();
+		void processBulletFire();
+		virtual void fireBullet() = 0;
+
 		virtual void move() = 0;
 
 		sf::Vector2f getRandomInitialPosition();				//To spawn the enemy
@@ -33,5 +40,6 @@ namespace Enemy {
 		sf::Vector2f getEnemyPosition();
 		EnemyType getEnemyType();
 		EnemyState getEnemyState();
+		sf::Vector2f getBarrelPositionOffset();
 	};
 }

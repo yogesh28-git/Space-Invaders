@@ -13,6 +13,7 @@ namespace Global
 	using namespace Gameplay;
 	using namespace Element;
 	using namespace Sound;
+	using namespace Bullet;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -25,6 +26,7 @@ namespace Global
 		gameplay_service = nullptr;
 		element_service = nullptr;
 		sound_service = nullptr;
+		bullet_service = nullptr;
 		createServices();
 	}
 
@@ -44,6 +46,7 @@ namespace Global
 		gameplay_service = new GameplayService();
 		element_service = new ElementService();
 		sound_service = new SoundService();
+		bullet_service = new BulletService();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -74,6 +77,9 @@ namespace Global
 
 		delete sound_service;
 		sound_service = nullptr;
+
+		delete bullet_service;
+		bullet_service = nullptr;
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -89,10 +95,12 @@ namespace Global
 		event_service->initialize();
 		gameplay_service->initialize();
 		player_service->initialize();
-		ui_service->initialize();
 		enemy_service->initialize();
 		element_service->initialize();
 		sound_service->initialize();
+		bullet_service->initialize();
+
+		ui_service->initialize();
 	}
 
 	void ServiceLocator::update()
@@ -100,27 +108,31 @@ namespace Global
 		graphic_service->update();
 		time_service->update();
 		event_service->update();
-		ui_service->update();
 
 		if (GameService::getGameState() == GameState::GAMEPLAY) {
 			gameplay_service->update();
 			player_service->update();
 			enemy_service->update();
+			bullet_service->update();
 			element_service->update();
 		}
+
+		ui_service->update();
 	}
 
 	void ServiceLocator::render()
 	{
 		graphic_service->render();
-		ui_service->render();
 
 		if (GameService::getGameState() == GameState::GAMEPLAY) {
 			gameplay_service->render();
 			player_service->render();
 			enemy_service->render();
+			bullet_service->render();
 			element_service->render();
 		}
+
+		ui_service->render();
 	}
 
 	EventService* ServiceLocator::getEventService()
@@ -166,6 +178,11 @@ namespace Global
 	Sound::SoundService* ServiceLocator::getSoundService()
 	{
 		return sound_service;
+	}
+
+	Bullet::BulletService* ServiceLocator::getBulletService()
+	{
+		return bullet_service;
 	}
 
 

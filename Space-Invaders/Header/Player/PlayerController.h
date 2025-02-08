@@ -16,6 +16,8 @@ namespace Player
 		void moveLeft();
 		void moveRight();
 
+		void fireBullet();
+
 
 	public:
 

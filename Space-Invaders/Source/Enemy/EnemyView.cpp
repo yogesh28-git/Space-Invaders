@@ -58,4 +58,8 @@ namespace Enemy {
 	{
 		game_window->draw(enemy_sprite);
 	}
+	sf::Vector2f EnemyView::getBarrelPositionOffset()
+	{
+		return barrel_position_offset;
+	}
 }

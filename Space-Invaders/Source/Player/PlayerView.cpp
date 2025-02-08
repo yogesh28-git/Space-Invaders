@@ -49,6 +49,10 @@ namespace Player
 	{
 		game_window->draw(player_sprite);
 	}
+	sf::Vector2f PlayerView::getBarrelPositionOffset()
+	{
+		return barrel_position_offset;
+	}
 }
 
 
