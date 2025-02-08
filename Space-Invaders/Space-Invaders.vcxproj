@@ -163,7 +163,10 @@
     <ClCompile Include="Source\Player\PlayerModel.cpp" />
     <ClCompile Include="Source\Player\PlayerService.cpp" />
     <ClCompile Include="Source\Player\PlayerView.cpp" />
-    <ClCompile Include="Source\Projectile\IProjectile.cpp" />
+    <ClCompile Include="Source\Powerup\PowerupController.cpp" />
+    <ClCompile Include="Source\Powerup\PowerupModel.cpp" />
+    <ClCompile Include="Source\Powerup\PowerupService.cpp" />
+    <ClCompile Include="Source\Powerup\PowerupView.cpp" />
     <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
     <ClCompile Include="Source\UI\MainMenu\MainMenuController.cpp" />
@@ -177,6 +180,7 @@
     <ClInclude Include="Header\Bullet\BulletView.h" />
     <ClInclude Include="Header\Bullet\Controllers\LaserBulletController.h" />
     <ClInclude Include="Header\Bullet\Controllers\TorpedoeController.h" />
+    <ClInclude Include="Header\Collectible\ICollectible.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerController.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerModel.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerView.h" />
@@ -207,6 +211,11 @@
     <ClInclude Include="Header\Player\PlayerModel.h" />
     <ClInclude Include="Header\Player\PlayerService.h" />
     <ClInclude Include="Header\Player\PlayerView.h" />
+    <ClInclude Include="Header\Powerup\PowerupConfig.h" />
+    <ClInclude Include="Header\Powerup\PowerupController.h" />
+    <ClInclude Include="Header\Powerup\PowerupModel.h" />
+    <ClInclude Include="Header\Powerup\PowerupService.h" />
+    <ClInclude Include="Header\Powerup\PowerupView.h" />
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\ServiceLocator.h" />
     <ClInclude Include="Header\Sound\SoundService.h" />
