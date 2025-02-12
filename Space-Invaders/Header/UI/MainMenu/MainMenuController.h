@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../Header/UI/Interface/IUIController.h"
 
 namespace UI
 {
 	namespace MainMenu
 	{
-		class MainMenuController
+		class MainMenuController : Interface::IUIController
 		{
 		private:
 
@@ -44,10 +45,13 @@ namespace UI
 		public:
 
 			MainMenuController();
+			~MainMenuController() override;
 
-			void initialize();
-			void update();
-			void render();
+			void initialize() override;
+			void update() override;
+			void render() override;
+
+			void show() override;
 		};
 	}
 }

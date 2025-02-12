@@ -92,6 +92,9 @@ namespace UI
 		{
 			game_window = nullptr;
 		}
+		MainMenuController::~MainMenuController()
+		{
+		}
 		void MainMenuController::initialize()
 		{
 			game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
@@ -108,6 +111,9 @@ namespace UI
 			game_window->draw(play_button_sprite);
 			game_window->draw(instructions_button_sprite);
 			game_window->draw(quit_button_sprite);
+		}
+		void MainMenuController::show()
+		{
 		}
 	}
 }
