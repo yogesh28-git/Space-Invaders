@@ -26,6 +26,6 @@ namespace Powerup
 		void render();
 
 		PowerupController* spawnPowerup(PowerupType type, sf::Vector2f position);
-		void destroyPowerup(PowerupController*);
+		void destroyPowerup(PowerupController* powerup_controller);
 	};
 }

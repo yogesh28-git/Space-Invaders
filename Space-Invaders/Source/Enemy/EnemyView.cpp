@@ -12,24 +12,29 @@ namespace Enemy {
 
 	void EnemyView::initializeEnemySprite(EnemyType enemy_type)
 	{
+
+		sf::String texture_path = "";
+
 		switch (enemy_type) {
 
 		case EnemyType::ZAPPER:
-			if (enemy_texture.loadFromFile(Config::zapper_texture_path)) {
-				enemy_sprite.setTexture(enemy_texture);
-				scaleEnemySprite();
-			}
+			texture_path = Config::zapper_texture_path;
 			break;
 
 		case EnemyType::SUBZERO:
-			if (enemy_texture.loadFromFile(Config::subzero_texture_path)) {
-				enemy_sprite.setTexture(enemy_texture);
-				scaleEnemySprite();
-			}
+			texture_path = Config::subzero_texture_path;
+			break;
+
+		case EnemyType::UFO:
+			texture_path = Config::ufo_texture_path;
 			break;
 		}
 
-		
+		if (enemy_texture.loadFromFile(texture_path))
+		{
+			enemy_sprite.setTexture(enemy_texture);
+			scaleEnemySprite();
+		}
 	}
 	void EnemyView::scaleEnemySprite()
 	{
