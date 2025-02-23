@@ -7,62 +7,67 @@
 namespace Bullet
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
-	
-	void BulletView::initializeImage(BulletType type)
+	void BulletView::createUIElements()
 	{
-		sf::String texture_path;
+		bullet_image = new ImageView();
+	}
 
-		switch (type)
+	void BulletView::initializeImage()
+	{
+		bullet_image->initialize(getBulletTexturePath(), bullet_sprite_width, bullet_sprite_height, bullet_controller->getProjectilePosition());
+	}
+
+	sf::String BulletView::getBulletTexturePath()
+	{
+		switch (bullet_controller->getBulletType())
 		{
 		case BulletType::LASER:
-			texture_path = Config::laser_bullet_texture_path;
+			return Config::laser_bullet_texture_path;
 			break;
 		case BulletType::FROST:
-			texture_path = Config::frost_beam_texture_path;
+			return Config::frost_beam_texture_path;
 			break;
 		case BulletType::TORPEDO:
-			texture_path = Config::torpedoe_texture_path;
+			return Config::torpedoe_texture_path;
 			break;
-		}
-
-		if (bullet_texture.loadFromFile(texture_path))
-		{
-			bullet_sprite.setTexture(bullet_texture);
-			scaleSprite();
+		default: 
+			return "";
+			break;
 		}
 	}
 
-	void BulletView::scaleSprite()
+	void BulletView::destroy()
 	{
-		float factorX = bullet_sprite_width / bullet_sprite.getTexture()->getSize().x;
-		float factorY = bullet_sprite_height / bullet_sprite.getTexture()->getSize().y;
-		bullet_sprite.setScale(factorX , factorY);
+		delete bullet_image;
 	}
 
 	BulletView::BulletView()
 	{
+		createUIElements();
 	}
 
 	BulletView::~BulletView()
 	{
+		destroy();
 	}
 
 	void BulletView::initialize(BulletController* controller)
 	{
 		bullet_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializeImage(bullet_controller->getBulletType());
+		initializeImage();
 	}
 
 	void BulletView::update()
 	{
-		bullet_sprite.setPosition(bullet_controller->getProjectilePosition());
+		bullet_image->update();
+		bullet_image->setPosition(bullet_controller->getProjectilePosition());
 	}
 
 	void BulletView::render()
 	{
-		game_window->draw(bullet_sprite);
+		bullet_image->render();
 	}
 
 }

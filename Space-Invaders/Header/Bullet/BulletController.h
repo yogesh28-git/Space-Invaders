@@ -23,6 +23,7 @@ namespace Bullet
 		void handleOutOfBounds();
 
 	public:
+
 		BulletController(BulletType type);
 		virtual ~BulletController() override;
 

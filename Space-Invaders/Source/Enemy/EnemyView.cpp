@@ -9,59 +9,62 @@ namespace Enemy {
 
 	using namespace Global;
 	using namespace Graphic;
+	using namespace UI::UIElement;
 
-	void EnemyView::initializeEnemySprite(EnemyType enemy_type)
+	void EnemyView::createUIElements()
 	{
-
-		sf::String texture_path = "";
-
-		switch (enemy_type) {
+		enemy_image = new ImageView();
+	}
+	void EnemyView::initializeEnemySprite()
+	{
+		enemy_image->initialize(getEnemyTexturePath(), enemy_sprite_width, enemy_sprite_height, enemy_controller->getEnemyPosition());
+	}
+	sf::String EnemyView::getEnemyTexturePath()
+	{
+		switch (enemy_controller->getEnemyType())
+		{
 
 		case EnemyType::ZAPPER:
-			texture_path = Config::zapper_texture_path;
+			return Config::zapper_texture_path;
 			break;
 
 		case EnemyType::SUBZERO:
-			texture_path = Config::subzero_texture_path;
+			return Config::subzero_texture_path;
 			break;
 
 		case EnemyType::UFO:
-			texture_path = Config::ufo_texture_path;
+			return Config::ufo_texture_path;
+			break;
+		default: 
+			return "";
 			break;
 		}
-
-		if (enemy_texture.loadFromFile(texture_path))
-		{
-			enemy_sprite.setTexture(enemy_texture);
-			scaleEnemySprite();
-		}
 	}
-	void EnemyView::scaleEnemySprite()
+	void EnemyView::destroy()
 	{
-		float factorX = enemy_sprite_width / enemy_sprite.getTexture()->getSize().x;
-		float factorY = enemy_sprite_height / enemy_sprite.getTexture()->getSize().y;
-
-		enemy_sprite.setScale(factorX, factorY);
+		delete enemy_image;
 	}
 	EnemyView::EnemyView()
 	{
+		createUIElements();
 	}
 	EnemyView::~EnemyView()
 	{
+		destroy();
 	}
 	void EnemyView::initialize(EnemyController* controller)
 	{
 		enemy_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializeEnemySprite(enemy_controller->getEnemyType());
+		initializeEnemySprite();
 	}
 	void EnemyView::update()
 	{
-		enemy_sprite.setPosition(enemy_controller->getEnemyPosition());
+		enemy_image->update();
+		enemy_image->setPosition(enemy_controller->getEnemyPosition());
 	}
 	void EnemyView::render()
 	{
-		game_window->draw(enemy_sprite);
+		enemy_image->render();
 	}
 	sf::Vector2f EnemyView::getBarrelPositionOffset()
 	{

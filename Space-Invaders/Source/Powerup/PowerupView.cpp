@@ -7,58 +7,65 @@
 namespace Powerup
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
-	void PowerupView::initializeImage(PowerupType type)
+	void PowerupView::createUIElements()
 	{
-		sf::String texture_path = " ";
+		powerup_image = new ImageView();
+	}
 
-		switch (type)
+	void PowerupView::initializeImage()
+	{
+		powerup_image->initialize(getPowerupTexturePath(), powerup_sprite_width, powerup_sprite_height, powerup_controller->getCollectiblePosition());
+	}
+
+	sf::String PowerupView::getPowerupTexturePath()
+	{
+		switch (powerup_controller->getPowerupType())
 		{
 		case PowerupType::BOMB:
-			texture_path = Config::outscal_bomb_texture_path;
+			return Config::outscal_bomb_texture_path;
 			break;
 		case PowerupType::SHIELD:
-			texture_path = Config::shield_texture_path;
+			return Config::shield_texture_path;
 			break;
 		case PowerupType::RAPID_FIRE:
-			texture_path = Config::rapid_fire_texture_path;
+			return Config::rapid_fire_texture_path;
 			break;
 		case PowerupType::TRIPPLE_LASER:
-			texture_path = Config::tripple_laser_texture_path;
+			return Config::tripple_laser_texture_path;
+			break;
+		default:
+			return "";
 			break;
 		}
-
-		if (powerup_texture.loadFromFile(texture_path))
-		{
-			powerup_sprite.setTexture(powerup_texture);
-			scaleSprite();
-		}
 	}
-	void PowerupView::scaleSprite()
+
+	void PowerupView::destroy()
 	{
-		float factorX = powerup_sprite_width / powerup_sprite.getTexture()->getSize().x;
-		float factorY = powerup_sprite_height / powerup_sprite.getTexture()->getSize().y;
-		powerup_sprite.setScale(factorX, factorY);
+		delete powerup_image;
 	}
 
 	PowerupView::PowerupView()
 	{
+		createUIElements();
 	}
 	PowerupView::~PowerupView()
 	{
+		destroy();
 	}
 	void PowerupView::initialize(PowerupController* controller)
 	{
 		powerup_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializeImage(powerup_controller->getPowerupType());
+		initializeImage();
 	}
 	void PowerupView::update()
 	{
-		powerup_sprite.setPosition(powerup_controller->getCollectiblePosition());
+		powerup_image->setPosition(powerup_controller->getCollectiblePosition());
+		powerup_image->update();
 	}
 	void PowerupView::render()
 	{
-		game_window->draw(powerup_sprite);
+		powerup_image->render();
 	}
 }

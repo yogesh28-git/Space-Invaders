@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../Header/UI/UIElement/ImageView.h"
 
 namespace Enemy {
 
@@ -14,15 +15,12 @@ namespace Enemy {
 		const sf::Vector2f barrel_position_offset = sf::Vector2f(30.0f, 60.0f);
 
 		EnemyController* enemy_controller;
+		UI::UIElement::ImageView* enemy_image;
 
-		sf::RenderWindow* game_window;
-
-		sf::Texture enemy_texture;
-		sf::Sprite enemy_sprite;
-
-		void initializeEnemySprite(EnemyType enemy_type);
-		void scaleEnemySprite();
-
+		void createUIElements();
+		void initializeEnemySprite();
+		sf::String getEnemyTexturePath();
+		void destroy();
 
 	public:
 		EnemyView();

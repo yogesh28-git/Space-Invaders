@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../Header/UI/Interface/IUIController.h"
+#include "../../Header/UI/UIElement/ButtonView.h"
 
 namespace UI
 {
@@ -13,34 +14,29 @@ namespace UI
 			const float button_width = 400.0f;
 			const float button_height = 140.0f;
 
-			sf::RenderWindow* game_window;
+			const float play_button_y_position = 500.f;
+			const float instructions_button_y_position = 700.f;
+			const float quit_button_y_position = 900.f;
 
-			sf::Texture background_texture;
-			sf::Sprite background_sprite;
+			const float background_alpha = 85.f;
 
-			sf::Texture play_button_texture;
-			sf::Sprite play_button_sprite;
+			UIElement::ImageView* background_image;
 
-			sf::Texture instructions_button_texture;
-			sf::Sprite instructions_button_sprite;
+			UIElement::ButtonView* play_button;
+			UIElement::ButtonView* instructions_button;
+			UIElement::ButtonView* quit_button;
 
-			sf::Texture quit_button_texture;
-			sf::Sprite quit_button_sprite;
-
+			void createImage();
+			void createButtons();
 			void initializeBackgroundImage();
-			void scaleBackgroundImage();
-
 			void initializeButtons();
-			bool loadButtonTexturesFromFile();
-			void setButtonSprites();
+			void registerButtonCallback();
 
-			void scaleAllButtons();
-			void scaleButton(sf::Sprite& button_to_scale);
-			void positionButtons();
+			void playButtonCallback();
+			void instructionsButtonCallback();
+			void quitButtonCallback();
 
-			//Process Button Interactions
-			void processButtonInteractions();
-			bool clickedButton(sf::Sprite* sprite, sf::Vector2f position);
+			void destroy();
 
 		public:
 
