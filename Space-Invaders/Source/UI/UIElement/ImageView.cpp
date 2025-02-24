@@ -69,5 +69,10 @@ namespace UI
 
 			image_sprite.setPosition(position_x, position_y);
 		}
+
+		const sf::Sprite& ImageView::getSprite()
+		{
+			return image_sprite; //returns the sprite.
+		}
 	}
 }

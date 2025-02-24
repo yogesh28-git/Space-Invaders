@@ -59,6 +59,11 @@ namespace Player
 	{
 		return barrel_position_offset;
 	}
+
+	const sf::Sprite& PlayerView::getPlayerSprite()
+	{
+		return player_image->getSprite();
+	}
 }
 
 

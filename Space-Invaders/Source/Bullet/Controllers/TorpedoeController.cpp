@@ -3,9 +3,11 @@
 
 namespace Bullet
 {
+	using namespace Entity;
+
 	namespace Controllers
 	{
-		TorpedoeController::TorpedoeController(BulletType type) : BulletController(type)
+		TorpedoeController::TorpedoeController(BulletType type, EntityType owner_type) : BulletController(type, owner_type)
 		{
 
 		}

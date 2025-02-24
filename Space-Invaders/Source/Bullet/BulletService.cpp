@@ -1,24 +1,25 @@
 #include "../../Header/Bullet/BulletService.h"
 #include "../../Header/Bullet/BulletConfig.h"
+
 #include "../../Header/Bullet/Controllers/LaserBulletController.h"
 #include "../../Header/Bullet/Controllers/TorpedoeController.h"
-
 
 namespace Bullet
 {
 	using namespace Projectile;
 	using namespace Controllers;
+	using namespace Entity;
 
-	BulletController* BulletService::createBullet(BulletType type)
+	BulletController* BulletService::createBullet(BulletType type, EntityType owner_type)
 	{
 
 		switch (type)
 		{
 		case BulletType::LASER:
-			return new LaserBulletController(type);
+			return new LaserBulletController(type, owner_type);
 			break;
 		case BulletType::TORPEDO:
-			return new TorpedoeController(type);
+			return new TorpedoeController(type, owner_type);
 			break;
 		case BulletType::FROST:
 			break;
@@ -62,9 +63,9 @@ namespace Bullet
 		}
 	}
 
-	BulletController* BulletService::spawnBullet(BulletType type, sf::Vector2f position, MovementDirection direction)
+	BulletController* BulletService::spawnBullet(BulletType type, EntityType owner_type, sf::Vector2f position, MovementDirection direction)
 	{
-		BulletController* controller = createBullet(type);
+		BulletController* controller = createBullet(type, owner_type);
 		controller->initialize(position, direction);
 
 		bullet_list.push_back(controller);

@@ -33,6 +33,8 @@ namespace Player
 		void render();
 
 		sf::Vector2f getBarrelPositionOffset();
+
+		const sf::Sprite& getPlayerSprite();
 	};
 
 }

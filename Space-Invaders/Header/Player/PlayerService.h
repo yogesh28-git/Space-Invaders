@@ -18,6 +18,12 @@ namespace Player
 		void initialize();
 		void update();
 		void render();
+
+		void enableShield();
+		void enableRapidFire();
+		void enableTrippleLaser();
+
+		void reset();
 	};
 
 

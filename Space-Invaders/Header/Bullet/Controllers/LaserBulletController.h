@@ -9,7 +9,7 @@ namespace Bullet
 		{
 		public:
 
-			LaserBulletController(BulletType type);
+			LaserBulletController(BulletType type, Entity::EntityType owner_type);
 			~LaserBulletController() override;
 
 			void initialize(sf::Vector2f position, MovementDirection direction) override;
