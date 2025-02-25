@@ -43,4 +43,13 @@ namespace Element
 			bunker_list[i]->render();
 		}
 	}
+	void ElementService::reset()
+	{
+		for (int i = 0; i < bunker_list.size(); i++)
+		{
+			delete bunker_list[i];
+		}
+		bunker_list.clear();
+		initialize();
+	}
 }

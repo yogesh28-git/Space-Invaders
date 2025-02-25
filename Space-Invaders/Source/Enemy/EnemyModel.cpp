@@ -15,6 +15,7 @@ namespace Enemy {
 		movement_direction = MovementDirection::RIGHT;
 		enemy_position = reference_position;
 	}
+
 	sf::Vector2f EnemyModel::getReferencePosition()
 	{
 		return reference_position;

@@ -35,7 +35,6 @@ namespace Enemy {
 		virtual void initialize();
 		void update();
 		void render();
-
 		
 		sf::Vector2f getEnemyPosition();
 		EnemyType getEnemyType();

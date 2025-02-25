@@ -28,6 +28,8 @@ namespace Enemy {
 		void update();
 		void render();
 
+		void reset();
+
 		void spawnEnemy();
 		void destroyEnemy(EnemyController* controller);
 	};

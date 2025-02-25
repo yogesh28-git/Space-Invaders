@@ -63,6 +63,15 @@ namespace Bullet
 		}
 	}
 
+	void BulletService::reset()
+	{
+		for (IProjectile* bullet : bullet_list)
+		{
+			delete bullet;
+		}
+		bullet_list.clear();
+	}
+
 	BulletController* BulletService::spawnBullet(BulletType type, EntityType owner_type, sf::Vector2f position, MovementDirection direction)
 	{
 		BulletController* controller = createBullet(type, owner_type);

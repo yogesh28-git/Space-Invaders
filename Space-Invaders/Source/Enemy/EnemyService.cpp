@@ -94,6 +94,14 @@ namespace Enemy {
 			enemy->render();
 	}
 
+	void EnemyService::reset()
+	{
+		spawn_timer = spawn_interval;
+		for (EnemyController* enemy : enemy_list)
+			delete enemy;
+		enemy_list.clear();
+	}
+
 	void EnemyService::spawnEnemy()
 	{
 		EnemyController* enemy = createEnemy(getRandomEnemyType());

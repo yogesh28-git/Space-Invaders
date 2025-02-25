@@ -6,6 +6,7 @@ namespace Player
 {
 	class PlayerView;
 	class PlayerModel;
+	enum class PlayerState;
 
 	class PlayerController : public Collision::ICollider
 	{
@@ -25,9 +26,9 @@ namespace Player
 		void moveLeft();
 		void moveRight();
 
-		void processBulletCollision(ICollider* other_collider);
-		void processPowerupCollision(ICollider* other_collider);
-		void processEnemyCollision(ICollider* other_collider);
+		bool processBulletCollision(ICollider* other_collider);
+		bool processPowerupCollision(ICollider* other_collider);
+		bool processEnemyCollision(ICollider* other_collider);
 		void updateFreezeDuration();
 		void freezePlayer();
 
@@ -59,6 +60,7 @@ namespace Player
 		void enableTrippleLaser();
 
 		sf::Vector2f getPlayerPosition();
+		int getPlayerScore();
 		PlayerState getPlayerState();
 
 		const sf::Sprite& getColliderSprite() override;
