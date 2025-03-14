@@ -2,6 +2,7 @@
 #include <SFML/System/Vector2.hpp>
 #include "../../Header/Projectile/IProjectile.h"
 #include "../../Header/Entity/EntityConfig.h"
+#include "../../Header/Collision/ICollider.h"
 
 namespace Bullet
 {
@@ -10,7 +11,7 @@ namespace Bullet
 	enum class BulletType;
 	enum class MovementDirection;
 
-	class BulletController : public Projectile::IProjectile
+	class BulletController : public Projectile::IProjectile, public Collision::ICollider
 	{
 	protected: 
 
@@ -36,5 +37,13 @@ namespace Bullet
 		BulletType getBulletType();
 
 		Entity::EntityType getOwnerEntityType();
+
+		void processBulletCollision(ICollider* other_collider);
+		void processEnemyCollision(ICollider* other_collider);
+		void processPlayerCollision(ICollider* other_collider);
+		void processBunkerCollision(ICollider* other_collider);
+
+		const sf::Sprite& getColliderSprite() override;
+		void onCollision(ICollider* other_collider) override;
 	};
 }

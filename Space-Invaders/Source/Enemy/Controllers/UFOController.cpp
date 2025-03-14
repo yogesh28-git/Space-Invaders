@@ -3,6 +3,7 @@
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Powerup/PowerupConfig.h"
+#include "../../Header/Bullet/BulletController.h"
 
 namespace Enemy
 {
@@ -10,6 +11,8 @@ namespace Enemy
 	{
 		using namespace Global;
 		using namespace Powerup;
+		using namespace Bullet;
+		using namespace Entity;
 
 		void UFOController::move()
 		{
@@ -64,6 +67,17 @@ namespace Enemy
 		void UFOController::initialize()
 		{
 			EnemyController::initialize();
+		}
+		void UFOController::onCollision(ICollider* other_collider)
+		{
+			EnemyController::onCollision(other_collider);
+			BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+
+			if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
+			{
+				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(getRandomPowerup(), enemy_model->getEnemyPosition());
+				return;
+			}
 		}
 	}
 }

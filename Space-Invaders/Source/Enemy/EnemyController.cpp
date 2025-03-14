@@ -2,11 +2,16 @@
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Global/ServiceLocator.h";
+#include "../../Header/Bullet/BulletController.h"
+#include "../../Header/Player/PlayerController.h"
 
 
 namespace Enemy {
 
 	using namespace Global;
+	using namespace Bullet;
+	using namespace Player;
+	using namespace Entity;
 
 	void EnemyController::updateFireTimer()
 	{
@@ -141,5 +146,26 @@ namespace Enemy {
 	sf::Vector2f EnemyController::getBarrelPositionOffset()
 	{
 		return enemy_view->getBarrelPositionOffset();
+	}
+	const sf::Sprite& EnemyController::getColliderSprite()
+	{
+		return enemy_view->getEnemySprite();
+	}
+	void EnemyController::onCollision(ICollider* other_collider)
+	{
+		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+
+		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
+		{
+			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
+			return;
+		}
+
+		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
+		
+		if (player_controller)
+		{
+			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
+		}
 	}
 }

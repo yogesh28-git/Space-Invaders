@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 namespace Bullet
 {
@@ -13,5 +14,17 @@ namespace Bullet
 	{
 		UP,
 		DOWN
+	};
+
+	class BulletConfig
+	{
+	private:
+		static const sf::String laser_bullet_texture_path;
+		static const sf::String torpedoe_texture_path;
+		static const sf::String frost_beam_texture_path;
+
+	public:
+
+		sf::String getBulletTexturePath(BulletType type);
 	};
 }

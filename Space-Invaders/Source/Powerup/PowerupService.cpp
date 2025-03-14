@@ -1,6 +1,7 @@
 #include "../../Header/Powerup/PowerupService.h"
 #include "../../Header/Powerup/PowerupController.h"
 #include "../../Header/Powerup/PowerupConfig.h"
+#include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Powerup/Controllers/OutscalBombController.h"
 #include "../../Header/Powerup/Controllers/RapidFireController.h"
 #include "../../Header/Powerup/Controllers/ShieldController.h"
@@ -9,6 +10,8 @@
 namespace Powerup
 {
 	using namespace Controllers;
+	using namespace Global;
+	using namespace Collision;
 
 	PowerupController* PowerupService::createPowerup(PowerupType type)
 	{
@@ -38,6 +41,15 @@ namespace Powerup
 		{
 			delete (powerup_list[i]);
 		}
+		powerup_list.clear();
+	}
+
+	void PowerupService::destroyFlaggedPowerups()
+	{
+		for (Collectible::ICollectible* powerup : flagged_powerup_list)
+			delete (powerup);
+
+		flagged_powerup_list.clear();
 	}
 
 	PowerupService::PowerupService()
@@ -74,14 +86,17 @@ namespace Powerup
 		PowerupController* controller = createPowerup(type);
 
 		controller->initialize(position);
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(controller));
 		powerup_list.push_back(controller);
 		return controller;
 	}
 
 	void PowerupService::destroyPowerup(PowerupController* powerup_controller)
 	{
+		ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(powerup_controller));
+
+		flagged_powerup_list.push_back(powerup_controller);
 		powerup_list.erase(std::remove(powerup_list.begin(), powerup_list.end(), powerup_controller), powerup_list.end());
-		delete(powerup_controller);
 	}
 }
 

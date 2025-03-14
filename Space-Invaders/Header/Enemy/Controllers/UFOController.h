@@ -23,6 +23,8 @@ namespace Enemy
 			void fireBullet() override;
 
 			void initialize() override;
+
+			void onCollision(ICollider* other_collider) override;
 		};
 	}
 }

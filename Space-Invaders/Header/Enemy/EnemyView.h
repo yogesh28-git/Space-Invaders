@@ -32,5 +32,6 @@ namespace Enemy {
 		void render();
 
 		sf::Vector2f getBarrelPositionOffset();
+		const sf::Sprite& getEnemySprite();
 	};
 }

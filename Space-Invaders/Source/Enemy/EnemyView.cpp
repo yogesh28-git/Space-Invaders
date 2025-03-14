@@ -70,4 +70,8 @@ namespace Enemy {
 	{
 		return barrel_position_offset;
 	}
+	const sf::Sprite& EnemyView::getEnemySprite()
+	{
+		return enemy_image->getSprite();
+	}
 }
