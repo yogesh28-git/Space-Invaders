@@ -157,6 +157,7 @@ namespace Enemy {
 
 		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 		{
+			ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
 			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 			return;
 		}

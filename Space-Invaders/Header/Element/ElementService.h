@@ -17,6 +17,10 @@ namespace Element
 																Bunker::BunkerData(sf::Vector2f(1430.0f, 800.f)),
 																Bunker::BunkerData(sf::Vector2f(1730.0f, 800.f)) };
 		std::vector<Bunker::BunkerController*> bunker_list;
+		std::vector<Bunker::BunkerController*> flagged_bunker_list;
+
+		void spawnBunkers();
+		void destroyFlaggedBunkers();
 
 		void destroy();
 
@@ -29,5 +33,7 @@ namespace Element
 		void render();
 
 		void reset();
+
+		void destroyBunker(Bunker::BunkerController* bunker_controller);
 	};
 }

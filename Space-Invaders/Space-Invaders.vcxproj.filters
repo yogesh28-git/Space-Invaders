@@ -162,6 +162,9 @@
     <ClCompile Include="Source\Bullet\BulletConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UI\GameplayUI\GameplayUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\GraphicService.h">
@@ -351,6 +354,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Collision\CollisionService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\UI\GameplayUI\GameplayUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

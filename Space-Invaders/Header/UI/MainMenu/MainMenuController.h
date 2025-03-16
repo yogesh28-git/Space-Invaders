@@ -7,7 +7,7 @@ namespace UI
 {
 	namespace MainMenu
 	{
-		class MainMenuController : Interface::IUIController
+		class MainMenuController : public Interface::IUIController
 		{
 		private:
 

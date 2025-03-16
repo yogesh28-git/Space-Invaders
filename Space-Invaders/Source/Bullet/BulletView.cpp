@@ -21,21 +21,7 @@ namespace Bullet
 
 	sf::String BulletView::getBulletTexturePath()
 	{
-		switch (bullet_controller->getBulletType())
-		{
-		case BulletType::LASER:
-			return Config::laser_bullet_texture_path;
-			break;
-		case BulletType::FROST:
-			return Config::frost_beam_texture_path;
-			break;
-		case BulletType::TORPEDO:
-			return Config::torpedoe_texture_path;
-			break;
-		default: 
-			return "";
-			break;
-		}
+		return BulletConfig::getBulletTexturePath(bullet_controller->getBulletType());
 	}
 
 	void BulletView::destroy()

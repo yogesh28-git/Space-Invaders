@@ -7,6 +7,9 @@ namespace UI
 	{
 		using namespace Global;
 
+		sf::Font TextView::font_bubble_bobble;
+		sf::Font TextView::font_ds_digib;
+
 		void TextView::loadFont()
 		{
 			font_bubble_bobble.loadFromFile(Config::bubble_bobble_font_path);

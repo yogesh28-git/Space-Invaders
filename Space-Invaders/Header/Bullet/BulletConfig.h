@@ -25,6 +25,6 @@ namespace Bullet
 
 	public:
 
-		sf::String getBulletTexturePath(BulletType type);
+		static const sf::String getBulletTexturePath(BulletType type);
 	};
 }

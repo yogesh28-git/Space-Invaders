@@ -267,6 +267,15 @@ namespace Player
 		player_model->setTrippleLaserState(true);
 	}
 
+	void PlayerController::decreasePlayerLives()
+	{
+		PlayerModel::player_lives -= 1;
+		if (PlayerModel::player_lives <= 0)
+		{
+			reset();
+		}
+	}
+
 	sf::Vector2f PlayerController::getPlayerPosition()
 	{
 		return player_model->getPlayerPosition();

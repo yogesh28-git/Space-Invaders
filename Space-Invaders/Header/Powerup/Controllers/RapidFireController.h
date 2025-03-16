@@ -13,6 +13,7 @@ namespace Powerup
 			~RapidFireController();
 
 			void onCollected() override;
+			void applyPowerup() override;
 		};
 	}
 }

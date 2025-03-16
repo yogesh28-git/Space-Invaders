@@ -13,6 +13,7 @@ namespace Powerup
 			~TrippleLaserController();
 
 			void onCollected() override;
+			void applyPowerup() override;
 		};
 	}
 }

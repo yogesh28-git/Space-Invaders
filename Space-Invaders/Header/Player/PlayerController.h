@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../Header/Collision/ICollider.h"
+#include "../../Header/Player/PlayerModel.h"
 
 namespace Player
 {
@@ -58,6 +59,9 @@ namespace Player
 		void enableShield();
 		void enableRapidFire();
 		void enableTrippleLaser();
+
+		void decreasePlayerLives();
+		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
 
 		sf::Vector2f getPlayerPosition();
 		int getPlayerScore();

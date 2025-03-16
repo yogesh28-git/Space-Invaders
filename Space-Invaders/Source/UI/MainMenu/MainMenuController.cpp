@@ -15,6 +15,7 @@ namespace UI
 
 		void MainMenuController::createImage()
 		{
+			background_image = new ImageView();
 		}
 
 		void MainMenuController::createButtons()
@@ -72,6 +73,8 @@ namespace UI
 
 		MainMenuController::MainMenuController()
 		{
+			createImage();
+			createButtons();
 		}
 		MainMenuController::~MainMenuController()
 		{

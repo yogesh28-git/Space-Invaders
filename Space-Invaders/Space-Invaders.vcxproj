@@ -177,6 +177,7 @@
     <ClCompile Include="Source\Powerup\PowerupView.cpp" />
     <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
+    <ClCompile Include="Source\UI\GameplayUI\GameplayUI.cpp" />
     <ClCompile Include="Source\UI\MainMenu\MainMenuController.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\TimeService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
+    <ClInclude Include="Header\UI\GameplayUI\GameplayUI.h" />
     <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenu\MainMenuController.h" />
     <ClInclude Include="Header\UI\UIElement\ButtonView.h" />
