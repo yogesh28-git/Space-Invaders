@@ -54,6 +54,9 @@ namespace UI
 			enemies_killed_text->render();
 			drawPlayerLives();
 		}
+		void GameplayUIController::show()
+		{
+		}
 		void GameplayUIController::updateEnemiesKilledText()
 		{
 			sf::String enemies_killed_string = "Enemies Killed  :  " + std::to_string(PlayerModel::enemies_killed);

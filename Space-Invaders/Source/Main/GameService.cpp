@@ -12,7 +12,7 @@ namespace Main
 	{
 		service_locator->initialize();
 		initializeVariables();
-		showMainMenu();
+		showSplashScreen();
 	}
 
 	void GameService::initializeVariables()
@@ -25,9 +25,10 @@ namespace Main
 		//cleanup resources
 	}
 
-	void GameService::showMainMenu()
+	void GameService::showSplashScreen()
 	{
-		setGameState(GameState::MAIN_MENU);
+		setGameState(GameState::SPLASH_SCREEN);
+		ServiceLocator::getInstance()->getUIService()->showScreen();
 	}
 
 	// PUBLIC METHODS //

@@ -40,9 +40,10 @@ namespace UI
 			GameplayUIController();
 			~GameplayUIController();
 
-			void initialize();
-			void update();
-			void render();
+			void initialize() override;
+			void update() override;
+			void render() override;
+			void show() override;
 			
 			void updateEnemiesKilledText();
 			void drawPlayerLives();

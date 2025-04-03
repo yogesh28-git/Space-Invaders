@@ -8,7 +8,9 @@ namespace UI
 	{
 	private:
 
-		MainMenu::MainMenuController* main_menu_controller;
+		MainMenu::MainMenuController* main_menu_ui_controller;
+		SplashScreen::SplashScreenUIController* splash_screen_ui_controller;
+		GameplayUI::GameplayUIController* gameplay_ui_controller;
 
 		void createControllers();
 		void initializeControllers();
