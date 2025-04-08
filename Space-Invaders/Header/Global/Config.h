@@ -21,6 +21,8 @@ namespace Global
 		static const sf::String rapid_fire_texture_path;
 		static const sf::String outscal_bomb_texture_path;
 
+		static const sf::String explosion_texture_path;
+
 		static const sf::String play_button_texture_path;
 		static const sf::String instructions_button_texture_path;
 		static const sf::String quit_button_texture_path;
